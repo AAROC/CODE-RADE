@@ -1,0 +1,19 @@
+- name: YouTube
+  url: https://www.youtube.com/channel/UCe45ptsEcagm3ebeYnhY01A
+  class: icon-youtube
+  title: "Some interesting videos on Youtube"
+
+- name: Twitter
+  url: http://twitter.com/@thesagrid
+  class: icon-twitter
+  title: "Follow us on Twitter"
+
+- name: Facebook
+  url: http://www.facebook.com/SAGrid
+  class: icon-facebook
+  title: "Follow us on Facebook"
+
+- name: GitHub
+  url: http://github.com/AAROC
+  class: icon-github
+  title: "Come code with us"
