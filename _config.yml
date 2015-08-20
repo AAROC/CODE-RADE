@@ -24,8 +24,8 @@ author: brucellino
 
 # This URL is the main address for absolute links. Don't include a slash at the end.
 #
-url: 'https://www.africa-grid.org/code-rade'
-baseurl: ''
+url: 'http://www.africa-grid.org/code-rade'
+baseurl: 'http://www.africa-grid.org/'
 
 # This is for the editing function in _/includes/improve_content
 # Leave it empty if your site is not on GitHub/GitHub Pages
