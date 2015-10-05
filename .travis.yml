@@ -12,3 +12,8 @@ before_install:
   - docker ps -a
 
 script:
+
+notifications:
+  slack:
+    rooms:
+      - africa-arabia-roc:qn956vBmV7VIyJ1Xod4Cmnd5#code-rade
