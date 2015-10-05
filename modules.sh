@@ -94,13 +94,15 @@ echo $CVMFS_MOUNT
 
 echo "Checking whether you have modules installed"
 
-
-
 # Is "modules even available? "
-if [ ! -n ${MODULESHOME} ] ; then
+if [ -z ${MODULESHOME} ] ; then
   echo "MODULESHOME is not set. Are you sure you have modules installed ? you're going to need it."
+  echo "stuff in p"
   echo "Exiting"
   exit 1;
+else
+  echo "Great, seems that modules are here, at ${MODULESHOME}"
+  module avail
 fi
 
 # Is CVMFS even available ?
