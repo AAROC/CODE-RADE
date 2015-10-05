@@ -7,6 +7,7 @@ services:
 
 before_install:
   - docker build -t aaroc/code-rade-build-slave:u1404 .
+  - docker images
   - docker run -d aaroc/code-rade-build-slave:u1404 /bin/sh -c "echo hi"
   - docker ps -a
 
