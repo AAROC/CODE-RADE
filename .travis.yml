@@ -1,5 +1,7 @@
 sudo: required
 
+language: bash
+
 services:
   - docker
 
@@ -9,6 +11,7 @@ before_install:
   - docker run -d aaroc/code-rade-build-slave:u1404 /bin/sh -c "echo hi"
 script:
   - docker ps -a
+
 
 notifications:
   slack:
