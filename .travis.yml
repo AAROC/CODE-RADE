@@ -12,4 +12,4 @@ before_install:
 notifications:
   slack:
     rooms:
-      - africa-arabia-roc:qn956vBmV7VIyJ1Xod4Cmnd5#code-rade
+      - africa-arabia-roc:qn956vBmV7VIyJ1Xod4Cmnd5#coderade
