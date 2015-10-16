@@ -1,6 +1,7 @@
 #!/bin/bash -e
 #CVMFS installation script. 
 #'sudo sh install_cvmfs.sh' - To run it
+# NOTE: It is preferable to use the Ansible playbook in https://github.com/AAROC/DevOps/
 
 WORK_DIR=`pwd`
 SOURCE_REPO="http://cvmrepo.web.cern.ch/cvmrepo/yum/cernvm.repo"
