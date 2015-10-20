@@ -103,7 +103,7 @@ fi
 # Is CVMFS even available ?
 #CVMFS_MOUNT=`cvmfs_config showconfig devrepo.sagrid.ac.za | grep CVMFS_MOUNT_DIR | awk
 
-# we should check this in a more rigourous way, but we don't have time right now 
+# we should check this in a more rigourous way, but we don't have time right now
 echo "Setting CVMFS_MOUNT to /cvmfs/ for now. We will be awesomer later."
 
 
@@ -122,3 +122,8 @@ if [ ! -n ${MODULESHOME} ] ; then
 else
   echo "ok, you have modules at ${MODULESHOME}"
 fi
+
+# Update MODULEPATH
+
+export MODULEPATH=${MODULEPATH}:${CVMFS_MOUNT_DIR}/devrepo.sagrid.ac.za
+module avail
