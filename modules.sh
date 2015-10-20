@@ -29,7 +29,10 @@ ARCH=`uname -m`
 # It's possible, but very unlikely that some wierdo wants to do this on a machine that's not
 # Linux - let's provide for this instance
 if [ $? != 0 ] ; then
-  echo "My my, uname exited with a nonzero code. \n Are you trying to run this from a non-Linux machine ? \n Dude ! What's WRONG with you !? \n\n Bailing out... aaaaahhhhhrrrggg...."
+  echo "My my, uname exited with a nonzero code. \n
+  Are you trying to run this from a non-Linux machine ? \n
+  Dude ! What's WRONG with you !?   \n\n
+  Bailing out... aaaaahhhhhrrrggg...."
 
   exit 127
 fi
@@ -71,13 +74,23 @@ if [ $? != 0 ] ; then
       exit 127
     fi
   fi
-else # lsb is present
-  LSB_ID=`lsb_release -is`
-  LSB_RELEASE=`lsb_release -rs`
-  echo "You seem to be on ${LSB_RELEASE}, version ${LSB_RELEASE}..."
-  if [[ ${LSB_ID} == 'Ubuntu' && ${LSB_RELEASE} == '14.04' ]] ; then
-    echo "Cool, we test this, welcome :) ; Setting OS=u1404"
+
+  else # lsb is present
+    LSB_ID=`lsb_release -is`
+    LSB_RELEASE=`lsb_release -rs`
+    echo "You seem to be on LSB Release ${LSB_ID}, version ${LSB_RELEASE}..."
+    if [[ ${LSB_ID} == 'Ubuntu' && ${LSB_RELEASE} == '14.04' ]] ; then
+      echo "Cool, we test this, welcome :) ; Setting OS=u1404"
+      OS="u1404"
+    else if [[ ${LSB_ID} == 'Ubuntu' ]] ; then
+      echo "Dude, you seem to be using an Ubuntu machine, but not the one we test for."
+      echo "Setting OS to u1404... YMMV"
+      echo "If you want to have this target certified, please request it of the devs "
+      echo "by opening a ticket at https://github.com/AAROC/CODE-RADE/issues/new"
     OS="u1404"
+  else
+    echo "ahem..."
+  fi
   fi
 fi
 
@@ -87,8 +100,9 @@ if [ ${OS} == 'undefined' ] ; then
   exit 127
 fi
 
-echo $SITE
-echo $OS
+echo "**********************"
+echo "Setting SITE=$SITE"
+echo "Setting OS=$OS"
 echo $ARCH
 echo $CVMFS_MOUNT
 
