@@ -1,0 +1,21 @@
+#%Module 1.0
+#
+#  Deploy modulefile for the users
+#  CVMFS_MOUNT and REPO are defined 
+#  on the module.sh script
+# 
+
+set	   MODULES                $::env(CVMFS_MOUNT)/$::env(REPO)/modules
+set        COMPILERS_MODULES      $MODULES/compilers
+set        PHYSICAL_MODULES       $MODULES/physical-sciences
+set        BIOINFORMATICS_MODULES $MODULES/bioinformatics
+set        LANGUAGES_MODULES      $MODULES/languages
+set        MATH_MODULES	          $MODULES/math
+set        LIBRARIES_MODULES      $MODULES/libraries
+
+prepend-path  MODULEPATH             $MODULES
+prepend-path  MODULEPATH             $COMPILERS_MODULES
+prepend-path  MODULEPATH             ${PHYSICAL_MODULES}
+prepend-path  MODULEPATH             ${BIOINFORMATICS_MODULES}
+prepend-path  MODULEPATH             ${LANGUAGES_MODULES}
+prepend-path  MODULEPATH             ${LIBRARIES_MODULES}

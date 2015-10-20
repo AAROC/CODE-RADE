@@ -23,16 +23,14 @@ SITE="generic"
 OS="undefined"
 ARCH="undefined"
 CVMFS_MOUNT="undefined"
+REPO="devrepo.sagrid.ac.za"
 
 # What architecture are we ?
 ARCH=`uname -m`
 # It's possible, but very unlikely that some wierdo wants to do this on a machine that's not
 # Linux - let's provide for this instance
 if [ $? != 0 ] ; then
-  echo "My my, uname exited with a nonzero code. \n
-  Are you trying to run this from a non-Linux machine ? \n
-  Dude ! What's WRONG with you !?   \n\n
-  Bailing out... aaaaahhhhhrrrggg...."
+  echo "My my, uname exited with a nonzero code. \n Are you trying to run this from a non-Linux machine ? \n Dude ! What's WRONG with you !? \n\n Bailing out... aaaaahhhhhrrrggg...."
 
   exit 127
 fi
@@ -74,24 +72,30 @@ if [ $? != 0 ] ; then
       exit 127
     fi
   fi
-
-  else # lsb is present
-    LSB_ID=`lsb_release -is`
-    LSB_RELEASE=`lsb_release -rs`
-    echo "You seem to be on LSB Release ${LSB_ID}, version ${LSB_RELEASE}..."
-    if [[ ${LSB_ID} == 'Ubuntu' && ${LSB_RELEASE} == '14.04' ]] ; then
-      echo "Cool, we test this, welcome :) ; Setting OS=u1404"
-      OS="u1404"
-    else if [[ ${LSB_ID} == 'Ubuntu' ]] ; then
-      echo "Dude, you seem to be using an Ubuntu machine, but not the one we test for."
-      echo "Setting OS to u1404... YMMV"
-      echo "If you want to have this target certified, please request it of the devs "
-      echo "by opening a ticket at https://github.com/AAROC/CODE-RADE/issues/new"
+else # lsb is present
+  LSB_ID=`lsb_release -is`
+  LSB_RELEASE=`lsb_release -rs`
+  echo "You seem to be on ${LSB_ID}, version ${LSB_RELEASE}..."
+  if [[ ${LSB_ID} == 'Ubuntu' && ${LSB_RELEASE} == '14.04' ]] ; then
+    echo "Cool, we test this, welcome :) ; Setting OS=u1404"
     OS="u1404"
+  elif [[ ${LSB_ID} == 'Ubuntu' ]] ; then
+     echo "Dude, you seem to be using an Ubuntu machine, but not the one we test for."
+     echo "Setting OS to u1404... YMMV"
+     echo "If you want to have this target certified, please request it of the devs "
+     echo "by opening a ticket at https://github.com/AAROC/CODE-RADE/issues/new"
+  elif [[ ${LSB_ID} == 'CentOS' || ${LSB_ID} == 'Scientific' || ${LSB_ID} == 'REDHAT' ]] ; then
+    echo "RPM based machine, now checking the release version"
+    if [[ $(echo $LSB_RELEASE '>=' 6 |bc) -eq 1 ]] ; then
+       echo "We can support your version"
+       OS="sl6"
+    else
+      echo "The minimum release version we support is 6, sorry, please upgrade"
+    fi
   else
-    echo "ahem..."
-  fi
-  fi
+   echo "Ahem...."
+ fi
+
 fi
 
 if [ ${OS} == 'undefined' ] ; then
@@ -100,30 +104,37 @@ if [ ${OS} == 'undefined' ] ; then
   exit 127
 fi
 
-# Is CVMFS even available ?
-#CVMFS_MOUNT=`cvmfs_config showconfig devrepo.sagrid.ac.za | grep CVMFS_MOUNT_DIR | awk
 
-# we should check this in a more rigourous way, but we don't have time right now
-echo "Setting CVMFS_MOUNT to /cvmfs/ for now. We will be awesomer later."
+echo "We assuming CVMFS is installed, so we getting the CVMFS mount point"
+CVMFS_MOUNT=`cvmfs_config showconfig $REPO|grep CVMFS_MOUNT_DIR|awk -F '=' '{print $2}'|awk -F ' ' '{print $1}'`
 
+echo $SITE
+echo $OS
+echo $ARCH
+echo $CVMFS_MOUNT
+echo $REPO
 
-echo "**********************"
-echo "Setting SITE=$SITE"
-echo "Setting OS=$OS"
-echo "Setting ARCH to $ARCH"
+export SITE
+export OS
+export ARCH
+export CVMFS_MOUNT
+export REPO
 
 echo "Checking whether you have modules installed"
 
 # Is "modules even available? "
-if [ ! -n ${MODULESHOME} ] ; then
+if [ -z ${MODULESHOME} ] ; then
   echo "MODULESHOME is not set. Are you sure you have modules installed ? you're going to need it."
-  echo "Exiting. We will have modules in CVMFS soon..."
+  echo "stuff in p"
+  echo "Exiting"
   exit 1;
 else
-  echo "ok, you have modules at ${MODULESHOME}"
+  echo "Great, seems that modules are here, at ${MODULESHOME}"
+  module avail
+  echo "Append CVMFS_MOUNT to the MODULEPATH environment"
+  module use --append $CVMFS_MOUNT/$REPO
+  echo "loading modulefile deploy"
+  module load deploy
+  echo "module avail"
+  module avail
 fi
-
-# Update MODULEPATH
-
-export MODULEPATH=${MODULEPATH}:${CVMFS_MOUNT_DIR}/devrepo.sagrid.ac.za
-module avail
