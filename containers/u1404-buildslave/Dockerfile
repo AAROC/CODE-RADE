@@ -8,4 +8,7 @@ FROM ansible/ubuntu14.04-ansible
 
 CMD git clone https://github.com/AAROC/DevOps
 WORKDIR DevOps/Ansible
-CMD ansible -c local cvmfs.yml
+
+
+# become a jenkins slave with CVMFS
+CMD ansible -c local code-rade-slave.yml
