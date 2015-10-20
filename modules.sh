@@ -100,21 +100,25 @@ if [ ${OS} == 'undefined' ] ; then
   exit 127
 fi
 
+# Is CVMFS even available ?
+#CVMFS_MOUNT=`cvmfs_config showconfig devrepo.sagrid.ac.za | grep CVMFS_MOUNT_DIR | awk
+
+# we should check this in a more rigourous way, but we don't have time right now 
+echo "Setting CVMFS_MOUNT to /cvmfs/ for now. We will be awesomer later."
+
+
 echo "**********************"
 echo "Setting SITE=$SITE"
 echo "Setting OS=$OS"
-echo $ARCH
-echo $CVMFS_MOUNT
+echo "Setting ARCH to $ARCH"
 
 echo "Checking whether you have modules installed"
-
-
 
 # Is "modules even available? "
 if [ ! -n ${MODULESHOME} ] ; then
   echo "MODULESHOME is not set. Are you sure you have modules installed ? you're going to need it."
-  echo "Exiting"
+  echo "Exiting. We will have modules in CVMFS soon..."
   exit 1;
+else
+  echo "ok, you have modules at ${MODULESHOME}"
 fi
-
-# Is CVMFS even available ?
