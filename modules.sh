@@ -84,6 +84,7 @@ else # lsb is present
      echo "Setting OS to u1404... YMMV"
      echo "If you want to have this target certified, please request it of the devs "
      echo "by opening a ticket at https://github.com/AAROC/CODE-RADE/issues/new"
+     OS="u1404"
   elif [[ ${LSB_ID} == 'CentOS' || ${LSB_ID} == 'Scientific' || ${LSB_ID} == 'REDHAT' ]] ; then
     echo "RPM based machine, now checking the release version"
     if [[ $(echo $LSB_RELEASE '>=' 6 |bc) -eq 1 ]] ; then
