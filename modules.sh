@@ -92,6 +92,8 @@ else # lsb is present
     else
       echo "The minimum release version we support is 6, sorry, please upgrade"
     fi
+  else
+   echo "Ahem...."
  fi
 
 fi
