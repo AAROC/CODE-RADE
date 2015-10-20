@@ -18,13 +18,14 @@
 # SITE - default = generic
 # OS - no default.
 # ARCH - default = x86_64
-
 SITE="generic"
 OS="undefined"
 ARCH="undefined"
 CVMFS_MOUNT="undefined"
 REPO="devrepo.sagrid.ac.za"
 
+shelltype=`echo $SHELL | awk 'BEGIN { FS = "/" } {print $3}'`
+echo "looks like you're using $shelltype"
 # What architecture are we ?
 ARCH=`uname -m`
 # It's possible, but very unlikely that some wierdo wants to do this on a machine that's not
@@ -121,6 +122,8 @@ export ARCH
 export CVMFS_MOUNT
 export REPO
 
+echo "you are using devrepo version"
+cat /cvmfs/devrepo.sagrid.ac.za/version
 echo "Checking whether you have modules installed"
 
 # Is "modules even available? "
@@ -130,10 +133,11 @@ if [ -z ${MODULESHOME} ] ; then
   echo "Exiting"
   exit 1;
 else
+  source ${MODULESHOME}/init/${shelltype}
   echo "Great, seems that modules are here, at ${MODULESHOME}"
   module avail
   echo "Append CVMFS_MOUNT to the MODULEPATH environment"
-  module use --append $CVMFS_MOUNT/$REPO
+  module use --append ${CVMFS_MOUNT}/${REPO}/modules/
   echo "loading modulefile deploy"
   module load deploy
   echo "module avail"
