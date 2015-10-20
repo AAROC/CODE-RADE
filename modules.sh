@@ -23,7 +23,7 @@ SITE="generic"
 OS="undefined"
 ARCH="undefined"
 CVMFS_MOUNT="undefined"
-REPO="apprepo.sagrid.ac.za"
+REPO="devrepo.sagrid.ac.za"
 
 # What architecture are we ?
 ARCH=`uname -m`
@@ -79,6 +79,11 @@ else # lsb is present
   if [[ ${LSB_ID} == 'Ubuntu' && ${LSB_RELEASE} == '14.04' ]] ; then
     echo "Cool, we test this, welcome :) ; Setting OS=u1404"
     OS="u1404"
+  elif [[ ${LSB_ID} == 'Ubuntu' ]] ; then
+     echo "Dude, you seem to be using an Ubuntu machine, but not the one we test for."
+     echo "Setting OS to u1404... YMMV"
+     echo "If you want to have this target certified, please request it of the devs "
+     echo "by opening a ticket at https://github.com/AAROC/CODE-RADE/issues/new"
   elif [[ ${LSB_ID} == 'CentOS' || ${LSB_ID} == 'Scientific' || ${LSB_ID} == 'REDHAT' ]] ; then
     echo "RPM based machine, now checking the release version"
     if [[ $(echo $LSB_RELEASE '>=' 6 |bc) -eq 1 ]] ; then
@@ -99,7 +104,7 @@ fi
 
 
 echo "We assuming CVMFS is installed, so we getting the CVMFS mount point"
-CVMFS_MOUNT=`cvmfs_config showconfig $REPO|grep CVMFS_MOUNT_DIR|awk -F '=' '{print $2}'|awk -F '#' '{print $1}'`
+CVMFS_MOUNT=`cvmfs_config showconfig $REPO|grep CVMFS_MOUNT_DIR|awk -F '=' '{print $2}'|awk -F ' ' '{print $1}'`
 
 echo $SITE
 echo $OS
@@ -125,7 +130,7 @@ else
   echo "Great, seems that modules are here, at ${MODULESHOME}"
   module avail
   echo "Append CVMFS_MOUNT to the MODULEPATH environment"
-  #module use --append $CVMFS_MOUNT/$REPO
+  module use --append $CVMFS_MOUNT/$REPO
   echo "loading modulefile deploy"
   module load deploy
   echo "module avail"
