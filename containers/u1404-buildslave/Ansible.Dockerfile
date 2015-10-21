@@ -11,7 +11,7 @@ RUN  apt-get -y install \
      python-selinux  \
      git \
      python-setuptools \
-     which \
+     debianutils \
      build-essential
 
 # Install Ansible
