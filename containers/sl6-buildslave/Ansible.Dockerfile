@@ -6,13 +6,18 @@ MAINTAINER "Bruce Becker <bbecker@Csir.co.za>"
 
 # Get Ansible requirements
 
-RUN  yum -y install python-simplejson libselinux-python git python-setuptools
+RUN  yum -y install \
+            python-simplejson \
+            libselinux-python \
+            git \
+            python-setuptools
+RUN yum -y groupinstall 'Development Tools'
 
 # Install Ansible
 WORKDIR /root/
 RUN git clone --recursive https://github.com/ansible/ansible
 WORKDIR ansible
-RUN pip install setuptools
+#RUN pip install setuptools
 RUN python setup.py install
 RUN which ansible
 RUN ansible --version
