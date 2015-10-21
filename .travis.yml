@@ -3,8 +3,8 @@ sudo: required
 language: bash
 
 env:
-  - CONTAINERDIR=u1404-buildslave
-  - CONTAINERDIR=sl6-buildslave
+  - CONTAINERDIR=u1404
+  - CONTAINERDIR=sl6
 
 services:
   - docker
@@ -19,6 +19,7 @@ script:
   - docker ps -a
 
 after_success:
+
 
 after_failure:
 

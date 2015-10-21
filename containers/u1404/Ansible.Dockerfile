@@ -5,14 +5,15 @@ FROM ubuntu:14.04
 MAINTAINER "Bruce Becker <bbecker@Csir.co.za>"
 
 # Get Ansible requirements
-
+RUN apt-get update
 RUN  apt-get -y install \
      python-simplejson \
-     python-selinux  \
+     python-selinux \
      git \
      python-setuptools \
-     debianutils \
-     build-essential
+     debianutils
+
+RUN apt-get -y install build-essential
 
 # Install Ansible
 WORKDIR /root

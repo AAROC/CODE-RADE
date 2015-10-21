@@ -15,4 +15,4 @@ Information about how to set up CVMFS mounts can be found in [cvmfs](cvmfs/READM
 
 ## Containers
 
-We use a few different branches to build the Jenkins build slave containers. The container Docker files are in [containers](containers)
+Docker containers are used by [Travis][https://travis-ci.org/AAROC/CODE-RADE] to check whether the repo is working. The container Docker files are in [containers](containers)  and you can find them on [Docker Hub](https://hub.docker.com/u/aaroc/dashboard/)
