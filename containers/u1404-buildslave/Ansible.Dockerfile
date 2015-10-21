@@ -10,7 +10,9 @@ RUN  apt-get -y install \
      python-simplejson \
      python-selinux  \
      git \
-     pip
+     python-setuptools \
+     which \
+     build-essential
 
 # Install Ansible
 WORKDIR /root

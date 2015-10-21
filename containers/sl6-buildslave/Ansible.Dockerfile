@@ -19,7 +19,6 @@ RUN yum -y groupinstall 'Development Tools'
 WORKDIR /root/
 RUN git clone --recursive https://github.com/ansible/ansible
 WORKDIR ansible
-#RUN pip install setuptools
 RUN python setup.py install
 RUN which ansible
 RUN ansible --version
