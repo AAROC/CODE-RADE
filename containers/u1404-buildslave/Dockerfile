@@ -1,8 +1,8 @@
 # Ubuntu build slave container for CODE-RADE
 
 # basic metadata
-MAINTAINER Bruce Becker <bbecker@Csir.co.za>
-FROM ansible/ubuntu14.04-ansible
+FROM  ansible/ubuntu1404-ansible
+MAINTAINER "Bruce Becker <bbecker@Csir.co.za>"
 
 # get AAROC DevOps code
 

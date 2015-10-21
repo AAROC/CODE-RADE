@@ -6,9 +6,10 @@ services:
   - docker
 
 before_install:
-  - docker build -t aaroc/code-rade-build-slave:u1404 containers/u1404-buildslave
+  -
+  - docker build  -f Ansible.Dockerfile $PWD/containers/u1404-buildslave
   - docker images
-  - docker run -d aaroc/code-rade-build-slave:u1404 /bin/sh -c "echo hi"
+#  - docker run -d aaroc/code-rade-build-slave:u1404 /bin/sh -c "echo hi"
 script:
   - docker ps -a
 
