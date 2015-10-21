@@ -2,11 +2,15 @@ sudo: required
 
 language: bash
 
+env:
+  - CONTAINERDIR=u1404-buildslave
+  - CONTAINEDIR=sl6-buildslave
+
 services:
   - docker
 
 before_install:
-  - cd containers/u1404-buildslave
+  - cd containers/$CONTAINERDIR
 install:
   - docker build  -f Ansible.Dockerfile .
   - docker images

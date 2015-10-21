@@ -11,7 +11,8 @@ RUN  yum -y install \
             libselinux-python \
             git \
             python-setuptools \
-            python-devel
+            python-devel \
+            which
 RUN yum -y groupinstall 'Development Tools'
 
 # Install Ansible
