@@ -6,7 +6,7 @@ MAINTAINER "Bruce Becker <bbecker@Csir.co.za>"
 
 # Get Ansible requirements
 
-RUN  yum -y install python-simplejson libselinux-python git pip
+RUN  yum -y install python-simplejson libselinux-python git python-setuptools
 
 # Install Ansible
 WORKDIR /root/

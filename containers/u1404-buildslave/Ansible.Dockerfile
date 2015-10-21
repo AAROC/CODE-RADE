@@ -8,7 +8,7 @@ MAINTAINER "Bruce Becker <bbecker@Csir.co.za>"
 
 RUN  apt-get -y install \
      python-simplejson \
-     libselinux-python \
+     python-selinux  \
      git \
      pip
 
