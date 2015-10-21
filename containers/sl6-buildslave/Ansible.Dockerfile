@@ -1,19 +1,15 @@
-# Ansible for Ubuntu 1404.
+# Ansible for CentOS 6.
 #
 # basic metadata
-FROM ubuntu:14.04
+FROM centos:6.7
 MAINTAINER "Bruce Becker <bbecker@Csir.co.za>"
 
 # Get Ansible requirements
 
-RUN  apt-get -y install \
-     python-simplejson \
-     libselinux-python \
-     git \
-     pip
+RUN  yum -y install python-simplejson libselinux-python git pip
 
 # Install Ansible
-WORKDIR /root
+WORKDIR /root/
 RUN git clone --recursive https://github.com/ansible/ansible
 WORKDIR ansible
 RUN pip install setuptools
