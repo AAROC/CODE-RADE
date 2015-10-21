@@ -10,7 +10,8 @@ RUN  yum -y install \
             python-simplejson \
             libselinux-python \
             git \
-            python-setuptools
+            python-setuptools \
+            python-devel
 RUN yum -y groupinstall 'Development Tools'
 
 # Install Ansible
