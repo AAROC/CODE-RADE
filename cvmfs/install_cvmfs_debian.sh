@@ -26,7 +26,7 @@ echo "configure auto.master"
 echo "/cvmfs /etc/auto.cvmfs" >> /etc/auto.master
 
 echo "Download the tar"
-#wget ${SOURCE} -O ${WORKSPACE}.tar.gz
+wget ${SOURCE} -O ${WORKSPACE}.tar.gz
 
 echo "unpacking the source"
 tar -zxvf ${WORKSPACE}.tar.gz -C /tmp/
