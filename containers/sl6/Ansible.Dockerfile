@@ -1,7 +1,7 @@
 # Ansible for CentOS 6.
 #
 # basic metadata
-FROM centos:6.7
+FROM centos:6
 MAINTAINER "Bruce Becker <bbecker@Csir.co.za>"
 
 # Get Ansible requirements

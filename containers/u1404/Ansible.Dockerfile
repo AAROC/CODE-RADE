@@ -22,3 +22,4 @@ WORKDIR ansible
 RUN python setup.py install
 RUN which ansible
 RUN ansible --version
+WORKDIR /root
