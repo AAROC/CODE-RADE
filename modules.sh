@@ -22,7 +22,9 @@ SITE="generic"
 OS="undefined"
 ARCH="undefined"
 CVMFS_MOUNT="undefined"
-REPO="devrepo.sagrid.ac.za"
+#REPO="devrepo.sagrid.ac.za"
+REPO=$1.sagrid.ac.za
+
 
 shelltype=`echo $SHELL | awk 'BEGIN { FS = "/" } {print $3}'`
 echo "looks like you're using $shelltype"
@@ -123,7 +125,7 @@ export CVMFS_MOUNT
 export REPO
 
 echo "you are using devrepo version"
-cat /cvmfs/devrepo.sagrid.ac.za/version
+cat /cvmfs/${REPO}/version
 echo "Checking whether you have modules installed"
 
 # Is "modules even available? "
