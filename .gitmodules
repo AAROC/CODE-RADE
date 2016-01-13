@@ -1,3 +1,9 @@
 [submodule "applications/gmp-deploy"]
-	path = applications/gmp-deploy
+	path = applications/foundation/gmp-deploy
 	url = https://github.com/SouthAfricaDigitalScience/gmp-deploy
+[submodule "applications/foundation/mpfr-deploy"]
+	path = applications/foundation/mpfr-deploy
+	url = https://github.com/SouthAfricaDigitalScience/mpfr-deploy
+[submodule "applications/foundation/mpc-deploy"]
+	path = applications/foundation/mpc-deploy
+	url = https://github.com/SouthAfricaDigitalScience/mpc-deploy
