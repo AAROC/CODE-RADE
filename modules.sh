@@ -139,7 +139,8 @@ else
   echo "Great, seems that modules are here, at ${MODULESHOME}"
   module avail
   echo "Append CVMFS_MOUNT to the MODULEPATH environment"
-  module use --append ${CVMFS_MOUNT}/${REPO}/modules/
+  module use --append ${CVMFS_MOUNT}/${REPO}/modules/libraries
+  module use --append ${CVMFS_MOUNT}/${REPO}/modules/compilers
   echo "loading modulefile deploy"
   module load deploy
   echo "module avail"
