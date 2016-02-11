@@ -47,6 +47,9 @@
     url: "http://www.africa-grid.org/tags/#CODE-RADE"
 
 
+- title: "Discuss"
+  url: http://discourse.sci-gaia.eu
+  side: right
 
 - title: "Contact"
   url: "/contact/"
