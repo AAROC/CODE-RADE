@@ -102,7 +102,7 @@ defaults:
       show_meta: false 	# Hide metadata for all pages
       # sidebar:    		# Possible values › left, right › by default there will be no sidebar
       comments: false
-      author: phlow     # Default author for pages
+      author: brucellino     # Default author for pages
   -
     scope:
       path: ""
@@ -134,8 +134,8 @@ defaults:
 #  /____/_____/\____/    Verify Website to Webmaster Tools
 
 #google_author:             "https://"
-#google_site_verification:  "Vk0IOJ2jwG_qEoG7fuEXYqv0m2rLa8P778Fi_GrsgEQ"
 #bing_webmastertools_id:    "0FB4C028ABCF07C908C54386ABD2D97F"
+google_site_verification:  "UA-51099001-1"
 # alexa_verify_id:         ""
 
 
@@ -219,7 +219,7 @@ sass:
 #
 # used in _includes/footer_scripts
 
-google_analytics_tracking_id: UA-60112281-1
+google_analytics_tracking_id:  UA-51099001-1
 
 
 
