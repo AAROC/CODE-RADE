@@ -62,6 +62,30 @@
 #     url: "/changelog/"
 #   - title: "Roadmap"
 #     url: "/roadmap/"
+- title: Applications
+  url: "/applications/"
+  side: left
+  dropdown:
+  - title: "Dependency Graph"
+    url: "/app-depgraph"
+  - title: "Build and Test"
+    url: "/app-build-test"
+  - title: "Integration"
+    url: "app-integration"
+  - title: "Delivery"
+    url: "/app-delivery"
+    dropdown:
+    - title: "Continuous Delivery"
+      url: "continuous-delivery"
+    - title: "Delivery Mechanisms"
+      url: "delivery-mechanisms"
+
+
+
+- title: Build Server
+  url: "/jenkins/"
+  side: left
+
 
 - title: Blog
   url: "http://www.africa-grid.org/blog"
