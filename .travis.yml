@@ -1,0 +1,29 @@
+sudo: required
+
+language: bash
+
+env:
+  - CONTAINERDIR=u1404
+  - CONTAINERDIR=sl6
+
+services:
+  - docker
+
+before_install:
+  - cd containers/$CONTAINERDIR
+install:
+  - docker build  -f Ansible.Dockerfile .
+  - docker images
+#  - docker run -d aaroc/code-rade-build-slave:u1404 /bin/sh -c "echo hi"
+script:
+  - docker ps -a
+
+after_success:
+
+
+after_failure:
+
+notifications:
+  slack:
+    rooms:
+      - africa-arabia-roc:qn956vBmV7VIyJ1Xod4Cmnd5#coderade

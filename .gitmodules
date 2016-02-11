@@ -1,0 +1,66 @@
+[submodule "applications/gmp-deploy"]
+	path = applications/foundation/gmp-deploy
+	url = https://github.com/SouthAfricaDigitalScience/gmp-deploy
+[submodule "applications/foundation/mpfr-deploy"]
+	path = applications/foundation/mpfr-deploy
+	url = https://github.com/SouthAfricaDigitalScience/mpfr-deploy
+[submodule "applications/foundation/mpc-deploy"]
+	path = applications/foundation/mpc-deploy
+	url = https://github.com/SouthAfricaDigitalScience/mpc-deploy
+[submodule "applications/math/lapack-deploy"]
+	path = applications/math/lapack-deploy
+	url = https://github.com/SouthAfricaDigitalScience/lapack-deploy
+[submodule "applications/math/blas-deploy"]
+	path = applications/math/blas-deploy
+	url = https://github.com/SouthAfricaDigitalScience/blas-deploy
+[submodule "applications/math/ATLAS-deploy"]
+	path = applications/math/ATLAS-deploy
+	url = https://github.com/SouthAfricaDigitalScience/ATLAS-deploy
+[submodule "applications/math/suitesparse-deploy"]
+	path = applications/math/suitesparse-deploy
+	url = https://github.com/SouthAfricaDigitalScience/suitesparse-deploy
+[submodule "applications/foundation/zlib-deploy"]
+	path = applications/foundation/zlib-deploy
+	url = https://github.com/SouthAfricaDigitalScience/zlib-deploy
+[submodule "applications/foundation/OpenMPI-deploy"]
+	path = applications/foundation/OpenMPI-deploy
+	url = https://github.com/SouthAfricaDigitalScience/OpenMPI-deploy
+[submodule "applications/python-base/python-deploy"]
+	path = applications/python-base/python-deploy
+	url = https://github.com/SouthAfricaDigitalScience/python-deploy
+[submodule "applications/foundation/ncurses-deploy"]
+	path = applications/foundation/ncurses-deploy
+	url = https://github.com/SouthAfricaDigitalScience/ncurses-deploy
+[submodule "applications/foundation/lua-deploy"]
+	path = applications/foundation/lua-deploy
+	url = https://github.com/SouthAfricaDigitalScience/lua-deploy
+[submodule "applications/foundation/modules-deploy"]
+	path = applications/foundation/modules-deploy
+	url = https://github.com/SouthAfricaDigitalScience/modules-deploy
+[submodule "applications/foundation/libpng-deploy"]
+	path = applications/foundation/libpng-deploy
+	url = https://github.com/SouthAfricaDigitalScience/libpng-deploy
+[submodule "applications/foundation/freetype-deploy"]
+	path = applications/foundation/freetype-deploy
+	url = https://github.com/SouthAfricaDigitalScience/freetype-deploy
+[submodule "applications/math/fftw3-deploy"]
+	path = applications/math/fftw3-deploy
+	url = https://github.com/SouthAfricaDigitalScience/fftw3-deploy
+[submodule "applications/foundation/hdf5-deploy"]
+	path = applications/foundation/hdf5-deploy
+	url = https://github.com/SouthAfricaDigitalScience/hdf5-deploy
+[submodule "applications/foundation/gnuplot-deploy"]
+	path = applications/foundation/gnuplot-deploy
+	url = https://github.com/SouthAfricaDigitalScience/gnuplot-deploy
+[submodule "applications/compilers/gcc-deploy"]
+	path = applications/compilers/gcc-deploy
+	url = https://github.com/SouthAfricaDigitalScience/gcc-deploy
+[submodule "applications/compilers/llvm-deploy"]
+	path = applications/compilers/llvm-deploy
+	url = https://github.com/SouthAfricaDigitalScience/llvm-deploy
+[submodule "applications/compilers/cmake-deploy"]
+	path = applications/compilers/cmake-deploy
+	url = https://github.com/SouthAfricaDigitalScience/cmake-deploy
+[submodule "applications/foundation/bzlib-deploy"]
+	path = applications/foundation/bzlib-deploy
+	url = https://github.com/SouthAfricaDigitalScience/bzlib-deploy
