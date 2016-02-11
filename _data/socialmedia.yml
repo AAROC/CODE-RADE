@@ -1,5 +1,5 @@
 - name: YouTube
-  url: https://www.youtube.com/channel/UCe45ptsEcagm3ebeYnhY01A
+  url: https://www.youtube.com/channel/UCsc1-GFnKXFkF6BPFhhIkmw
   class: icon-youtube
   title: "Some interesting videos on Youtube"
 
@@ -14,6 +14,6 @@
   title: "Follow us on Facebook"
 
 - name: GitHub
-  url: http://github.com/AAROC
+  url: http://github.com/AAROC/CODE-RADE
   class: icon-github
   title: "Come code with us"

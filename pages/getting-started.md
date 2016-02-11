@@ -1,25 +1,36 @@
 ---
-layout: page
+layout: page-fullwidth
 show_meta: false
 title: "Getting Started"
-subheadline: "A Step-by-Step Guide"
-teaser: "This step-by-step guide helps you to customize Feeling Responsive to your needs."
+subheadline: "For the impatient and daring"
+teaser: "This step-by-step quickstart guide will get you building your application from a running start"
 header:
    image_fullwidth: "header_homepage_13.jpg"
 permalink: "/getting-started/"
 ---
-1. Open `_config.yml` and work it through, it's well documented
-1. Add your own `logo.png` to `/images/`.
-1. Open `_data/socialmedia.yml` and add your own social media links.
-1. Open `_data/navigation.yml` and customize your navigation.
-1. Open `_data/language.yml` and translate the theme if necessary.
-1. Open `_data/services.yml` and customize links in the footer.
-1. Open `_data/network.yml` and customize links in the footer.
-1. Open `_data/authors.yml` and edit author information and set default author in `config.yml`.
-1. [Read the documentation][1] to check out all features of *Feeling Responsive*.
-1. Make it yours and add your own content.
 
-<a class="radius button small" href="{{ site.url }}/documentation/">Check out the documentation for all the tricks ›</a>
+# CODE-RADE Quickstart guide for the impatient.
+
+> Easy, Tiger !
+
+If you're the kind of person who leaps before they look, welcome ! Using CODE-RADE and collaborating with the project is simple and open, but before you dive in the deep end, tick off a few checkboxes.
+
+## Prerequisites
+
+  - [ ] you are comfortable with the [concepts and practices](https://www.thoughtworks.com/continuous-integration) of continuous integration and automated testing
+    1. If not, we're working on a course to guide you into it, for CODE-RADE's purpose.
+    1. You might want to look at the book [Continuous Integration](http://martinfowler.com/books/duvall.html) by Paul Duvall, Steve Matyas, and Andrew Glover
+  - [ ] You are git-broken - you have a basic understanding and working knowledge of [git-flow](https://guides.github.com/introduction/flow/)
+    1. If not - take the [Software Carpentry git bootcamp](http://swcarpentry.github.io/git-novice/)
+  - [ ] You have a <i class="fa fa-github-o"></i> Github user account
+    1. If not, but your code is hosted in some other version control repository - let's talk.
+
+
+
+
+
+
+<a class="radius button small" href="{{ site.url }}/documentation/">Check out the documentation for all the tricks </a>
 
 
  [1]: {{ site.url }}/documentation/

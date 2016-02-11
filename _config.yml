@@ -16,7 +16,7 @@ slogan: "Continuous Delivery of Research Applications in a Distributed Environme
 
 
 # The description is used on homepage and in the footer to quickly describe your website. Use a maximum of 150 characters for SEO-purposes.
-description: ""
+description: "The how and why of continuous collaborative delivery of research applications"
 
 # Main author of the website
 # See > authors.yml
@@ -24,8 +24,9 @@ author: brucellino
 
 # This URL is the main address for absolute links. Don't include a slash at the end.
 #
-url: 'http://www.africa-grid.org'
-baseurl: '/CODE-RADE'
+url: 'http://www.africa-grid.org/CODE-RADE'
+#url: http://localhost:4000/
+baseurl: ''
 
 # This is for the editing function in _/includes/improve_content
 # Leave it empty if your site is not on GitHub/GitHub Pages
@@ -37,11 +38,11 @@ baseurl: '/CODE-RADE'
 # Example: <img src="{{ site.urlimg }}{{ post.image.title }}" />
 # Markdown-Example for posts ![Image Text]({{ site.urlimg }}image.jpg)
 #
-urlimg: 'https://www.africa-grid.org/code-rade/images/'
-
+#urlimg: 'https://www.africa-grid.org/code-rade/images/'
+urlimg: http://localhost:4000/images/
 
 # Logo size is 600x80 pixels
-logo: "logo.png"
+logo: "coderade.png"
 
 
 # Paginates all X entries
