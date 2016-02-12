@@ -1,8 +1,7 @@
 ---
 layout: page-fullwidth
-title: "Theme Documentation"
-subheadline: "How to use Feeling Responsive"
-teaser: "The documentation is a work in progress..."
+title: "Documentation"
+subheadline: "How to use CODE-RADE"
 permalink: "/documentation/"
 header:
    image_fullwidth: "header_roadmap_2.jpg"
@@ -16,8 +15,6 @@ header:
 {:toc}
 </div>
 </div><!-- /.medium-4.columns -->
-
-
 
 <div class="medium-8 medium-pull-4 columns" markdown="1">
 {% include improve_content %}
@@ -89,7 +86,7 @@ Quotes mix it up a little bit, if you write long articles. So use quotes:
 
 You can use comments with *Feeling Responsive* by the way of Disqus. If you want to use Disqus-Comments just open `config.yml` and add your `disqus_shortname`. [More on how to use Disqus ›](https://disqus.com/websites/)
 
-By default comments are turned off. You can customize the default behaviour in `config.yml`. To **turn on comments** just add `comments: true` to front matter using the page layout `layout: page`. 
+By default comments are turned off. You can customize the default behaviour in `config.yml`. To **turn on comments** just add `comments: true` to front matter using the page layout `layout: page`.
 
 <small markdown="1">[Up to table of contents](#toc)</small>
 {: .text-right }
@@ -118,7 +115,7 @@ With foundation responsive videos are easy. [More ›](http://foundation.zurb.co
 
 ## Images: Title, Thumbnails, Homepage   {#images}
 
-There are several types of images you can define via front matter. If you want to change the images used in the header have a look at [Style your Header]({{ site.url }}/headers/). 
+There are several types of images you can define via front matter. If you want to change the images used in the header have a look at [Style your Header]({{ site.url }}/headers/).
 
 
 ### Title Images
@@ -261,7 +258,7 @@ This include lets you loop through a collection to list all entries in that coll
 
 ### alert – Embed an alert in your content
 
-This include lets you easily display an alert. To use the include no `.html` ending is necessary. You can use five different kinds of alerts: `warning`, `info`, `success`, `alert` and `text`. 
+This include lets you easily display an alert. To use the include no `.html` ending is necessary. You can use five different kinds of alerts: `warning`, `info`, `success`, `alert` and `text`.
 
 ~~~
 {% raw %}{% include alert warning='This is a warning.' %}
