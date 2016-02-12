@@ -7,6 +7,8 @@
 layout: frontpage
 header:
   image_fullwidth: header_unsplash_12.jpg
+  title: Project CODE-RADE
+
 widget1:
   title: "Overview of the project"
   url: '/overview/'
@@ -24,6 +26,30 @@ widget3:
   text:
 permalink: /index.html
 ---
+<p></p>
+<center>
+  <p>
+    <h1><b>Co</b>ntinuous <b>De</b>livery of <b>R</b>esearch <b>A</b>pplications in a <b>D</b>istributed <b>E</b>nvironment</h1>
+  </p>
+<h2>
+<p>
+<span class="fa fa-wrench" aria-hidden="true"></span>
+Build.
+<span class="fa fa-check" aria-hidden="true"></span>
+Test.
+<span class="fa fa-cog" aria-hidden="true"></span>
+Execute.
+<span class="fa fa-globe" aria-hidden="true"></span>
+Everywhere.
+</h2>
+  </center>
+</p>
+<div id="header-home">
+    <div class="row">
+        <div class="small-12 columns">
+        </div><!-- /.medium-4.columns -->
+    </div><!-- /.row -->
+</div><!-- /#header-home -->
 
 <div id="videoModal" class="reveal-modal large" data-reveal="">
   <div class="flex-video widescreen vimeo" style="display: block;">
