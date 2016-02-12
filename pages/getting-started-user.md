@@ -73,9 +73,7 @@ Thread model: posix
 gcc version 5.2.1 20151010 (Ubuntu 5.2.1-22ubuntu2)
 
 module add gcc/5.1.0
-$ gcc -v
-Using built-in specs.
-COLLECT_GCC=gcc
+$ gcc -vbelow
 COLLECT_LTO_WRAPPER=/cvmfs/fastrepo.sagrid.ac.za/generic/u1404/x86_64/gcc/5.1.0/libexec/gcc/x86_64-unknown-linux-gnu/5.1.0/lto-wrapper
 Target: x86_64-unknown-linux-gnu
 Configured with: ../configure --prefix=/cvmfs/fastrepo.sagrid.ac.za/generic/u1404/x86_64/gcc/5.1.0 --with-ncurses= --with-mpfr=/cvmfs/fastrepo.sagrid.ac.za/generic/u1404/x86_64/mpfr/3.1.2 --with-mpc=/cvmfs/fastrepo.sagrid.ac.za/generic/u1404/x86_64/mpc/1.0.1 --with-gmp=/cvmfs/fastrepo.sagrid.ac.za/generic/u1404/x86_64/gmp/5.1.3 --enable-languages=c,c++,fortran,java --disable-multilib
@@ -84,11 +82,11 @@ gcc version 5.1.0 (GCC)
 {% endhighlight %}
 
 You, my friend, are now ready to rock !
-
+<div class="text-center">
 <video id="gif-mp4" poster="https://media.giphy.com/media/V2Ylf5EhsUPMQ/200_s.gif" style="margin:0;padding:0" autoplay="" loop="" height="176" width="420">
             <source src="https://media.giphy.com/media/V2Ylf5EhsUPMQ/giphy.mp4" type="video/mp4">
             Your browser does not support the mp4 video codec.
 </video>
-
+</div>
 [^Initial]: At least initially.
 [^bash]: These are for bash. If you use a different shell, change as necessary.
