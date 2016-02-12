@@ -1,5 +1,5 @@
-- title: AfricaGrid Home
-  url: "http://www.africa-grid.org"
+- title: Home
+  url: "/"
   side: left
 
 - title: Overview
@@ -18,23 +18,24 @@
     url: "/site-admin-quickstart"
 
 - title: Applications
-  url: "/applications/"
+  url: "http://www.africa-grid.org/applications"
   side: left
   dropdown:
-  - title: "Dependency Graph"
-    url: "/app-depgraph"
+  - title: "Target Architectures"
+    url: "/app-target/"
   - title: "Build and Test"
-    url: "/app-build-test"
+    url: "/app-build-test/"
   - title: "Integration"
-    url: "app-integration"
+    url: "/app-integration/"
   - title: "Delivery"
-    url: "/app-delivery"
+    url: "/app-delivery/"
     dropdown:
     - title: "Continuous Delivery"
       url: "continuous-delivery"
     - title: "Delivery Mechanisms"
       url: "delivery-mechanisms"
-
+  - title: "Dependency Graph"
+    url: "/app-depgraph"
 - title: Infrastructure
   url: "/infrastructure"
   side: left
