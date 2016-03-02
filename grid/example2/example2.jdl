@@ -13,7 +13,7 @@
 
 # We need to pass at least one argument to the script- the name of the repo we want to use
 
-  Arguments = "fastrepo"
+  Arguments = "fastrepo";
 
 # Standard output (Would have been displayed to the screen output)
 
