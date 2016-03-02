@@ -17,9 +17,9 @@ Note that this documentation and these examples may refer to specific Virtual Or
 
 There are a few basic prerequisites to run jobs on the grid using the CLI
 
-  1. Have a personal X.509 certificate from a trusted CA[^GetCert]
-  2. Belong to a supported Virtual Organisation[^VOSagrid]
-  3. Have a user account on one of the User Interfaces[^RequestUI]
+  1. Have a personal X.509 certificate from a trusted [CA](#GetCert)
+  2. Belong to a supported [Virtual Organisation](#VOSagrid)
+  3. Have a user account on one of the [User Interfaces](#RequestUI)
 
 ## Job Description Language and Job Management
 
@@ -37,6 +37,6 @@ The first example will demonstrate how to check the version of CODE-RADE that is
 
 # Footnotes and References
 
-[^GetCert]: See [the EUGridPMA](http://www.eugridpma.org) website to find out who you can request a certificate from.
-[^VOSagrid]: We will be using `sagrid` VO as example here. You can check if you belong to a VO by going to the VOMS server with the certificate in your browser
-[^RequestUI]: You can request an account via the [SAGrid Perun instance](https://perun.c4.csir.co.za/non/register)
+  * <a name="GetCert"></a> See [the EUGridPMA](http://www.eugridpma.org) website to find out who you can request a certificate from.
+  * <a name="VOSagrid"></a> We will be using `sagrid` VO as example here. You can check if you belong to a VO by going to the VOMS server with the certificate in your browser
+  * <a name="RequestUI"></a> You can request an account via the [SAGrid Perun instance](https://perun.c4.csir.co.za/non/register)
