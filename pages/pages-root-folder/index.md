@@ -11,19 +11,19 @@ header:
 
 widget1:
   title: "Overview of the project"
-  url: '/overview/'
-  image: unsplash_9-302x182.jpg
+  url: '/overview'
+  image: overview.jpg
   text: 'Not sure what this is all about or how you even got here ? Read this first'
 widget2:
-  title: "Quick Demo"
-  url: 'demo/'
-  text: 'Seeing is believing'
-  video: '<a href="#" data-reveal-id="videoModal"><video src="https://oar.sci-gaia.eu/record/99/files/Sci-GaIA-OAR-video-tutorial.mp4?subformat=master" width="302" height="182" alt=""/></a>'
+  title: "Quickstart for Users"
+  url: '/getting-started-users'
+  text: 'For the impatient user'
+  image: roadmap-302x182.jpg
 widget3:
-  title: "Tools"
-  url: ''
-  image:
-  text:
+  title: "Quickstart for providers"
+  url: '/getting-started-sites'
+  image: sites.jpg
+  text: 'How to provide CODE-RADE at your grid, cloud or HPC site.'
 permalink: /index.html
 ---
 <div id="header-home">
