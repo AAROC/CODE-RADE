@@ -149,8 +149,8 @@ else
   echo "Append CVMFS_MOUNT to the MODULEPATH environment"
   module use ${CVMFS_MOUNT}/${REPO}/modules/libraries
   module use ${CVMFS_MOUNT}/${REPO}/modules/compilers
-  module use ${CVMFS_DIR}/modules/bioinformatics
-  module use ${CVMFS_DIR}/modules/astro
+  module use ${CVMFS_MOUNT}/${REPO}/modules/bioinformatics
+  module use ${CVMFS_MOUNT}/${REPO}//modules/astro
   echo "loading modulefile deploy"
   module load deploy
   echo "module avail"
