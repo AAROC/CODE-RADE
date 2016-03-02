@@ -34,6 +34,10 @@ You should be able to submit *generic* jobs which execute arbitrary scripts.
 
 The first example will demonstrate how to check the version of CODE-RADE that is available on a site. This can be found in [example1](example1/)
 
+## Example 2 - Using modules
+
+The next example shows how to select the CODE-RADE modules. This can be seen in [Example 2](example2/)
+
 
 # Footnotes and References
 
