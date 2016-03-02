@@ -1,0 +1,21 @@
+[
+Type = "Job";
+JobType = "Normal";
+
+#Command to execute on the worker node
+Executable = "example1.sh";
+
+#Standard output (Would have been displayed to the screen output)
+StdOutput = "output";
+
+#Standard errors
+StdError = "output";
+
+#Files to save after a jobrun (logfiles, outputfiles, etc.)
+OutputSandbox = {"output"};
+InputSandbox = {"example1.sh"};
+
+#Times to resubmit job, if first submit fails
+RetryCount = 0;
+ShallowRetryCount = 1;
+]
