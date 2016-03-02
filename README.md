@@ -1,6 +1,6 @@
-# CODE-RADE - http://www.africa-grid.org/CODE-RADE
+# [CODE-RADE](http://www.africa-grid.org/CODE-RADE)
 
-Website, documentation and such for the CODE-RADE project : Continuous Delivery of Research Applications in a Distributed Environment
+## Project CODE-RADE : Continuous Delivery of Research Applications in a Distributed Environment
 
 Uses Github repos, Jenkins-CI and CVMFS to build, test and deliver your applications to Linux boxes almost everywhere.
 
@@ -47,7 +47,7 @@ Information about how to set up CVMFS mounts can be found in [cvmfs](cvmfs/READM
 
 ## Containers
 
-Docker containers are used by [Travis][https://travis-ci.org/AAROC/CODE-RADE] to check whether the repo is working. The container Docker files are in [containers](containers)  and you can find them on [Docker Hub](https://hub.docker.com/u/aaroc/dashboard/)
+Docker containers are used by [Travis](https://travis-ci.org/AAROC/CODE-RADE) to check whether the repo is working. The container Docker files are in [containers](containers)  and you can find them on [Docker Hub](https://hub.docker.com/u/aaroc/dashboard/)
 
 
 ## Collaborating
