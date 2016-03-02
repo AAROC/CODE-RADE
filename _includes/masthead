@@ -5,6 +5,21 @@
 		<div class="small-12 columns">
 			<a id="logo" href="{{ site.url }}" title="{{ site.title }} – {{ site.slogan }}">
 				<img src="{{ site.url }}{{ site.baseurl }}/assets/img/{{ site.logo }}" alt="{{ site.title }} – {{ site.slogan }}">
+				<center>
+				  <p>
+				    <b>Co</b>ntinuous <b>De</b>livery of <b>R</b>esearch <b>A</b>pplications in a <b>D</b>istributed <b>E</b>nvironment
+				  </p>
+				<p>
+				<span class="fa fa-wrench" aria-hidden="true"></span>
+				Build.
+				<span class="fa fa-check" aria-hidden="true"></span>
+				Test.
+				<span class="fa fa-cog" aria-hidden="true"></span>
+				Execute.
+				<span class="fa fa-globe" aria-hidden="true"></span>
+				Everywhere.
+		  </center>
+
 			</a>
 		</div><!-- /.small-12.columns -->
 	</div><!-- /.row -->
@@ -24,6 +39,23 @@
 	<div class="row">
 		<div class="small-12 columns">
 			<div class="masthead-title">{{ page.header.title }}</div>
+			<center>
+			  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/{{ site.logo }}" alt="{{ site.title }} – {{ site.slogan }}">
+			  <p>
+			    <b>Co</b>ntinuous <b>De</b>livery of <b>R</b>esearch <b>A</b>pplications in a <b>D</b>istributed <b>E</b>nvironment
+			  </p>
+			<p>
+			<span class="fa fa-wrench" aria-hidden="true"></span>
+			Build.
+			<span class="fa fa-check" aria-hidden="true"></span>
+			Test.
+			<span class="fa fa-cog" aria-hidden="true"></span>
+			Execute.
+			<span class="fa fa-globe" aria-hidden="true"></span>
+			Everywhere.
+
+			  </center>
+
 		</div><!-- /.small-12.columns -->
 	</div><!-- /.row -->
 </div><!-- /#masthead -->
@@ -41,9 +73,6 @@
 	{{ page.header.caption }}
 </div>
 {% endif %}
-
-
-
 
 
 {% elsif page.header.image_fullwidth %}
