@@ -30,7 +30,7 @@ InputSandbox = {"example2.sh"};
 
 # Number of times to resubmit job, if first submit fails from WMS
 
-RetryCount = 0;
+RetryCount = 2;
 
 # Number of times to resubmit the job, if the first submit fails from the local queue
 
