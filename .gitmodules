@@ -64,3 +64,6 @@
 [submodule "applications/foundation/bzlib-deploy"]
 	path = applications/foundation/bzlib-deploy
 	url = https://github.com/SouthAfricaDigitalScience/bzlib-deploy
+[submodule "applications/language/htk-deploy"]
+	path = applications/language/htk-deploy
+	url = https://github.com/SouthAfricaDigitalScience/htk-deploy
