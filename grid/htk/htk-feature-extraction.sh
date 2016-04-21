@@ -25,8 +25,6 @@ time globus-url-copy -vb -fast -p 5 gsiftp://fs01.grid.uj.ac.za/dpm/grid.uj.ac.z
 ls -lht isindebele_$2.tar.gz
 tar xvfz isindebele_$2.tar.gz -C $DIR_EXP/data/audio/
 
-curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "Data chunk '"$2"' finishing on '"$HOSTNAME"'. :wave::skin-tone-6:  ", "icon_emoji": ":labtocat:"}' https://hooks.slack.com/services/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
-
 exit 0;
 
 
@@ -42,3 +40,6 @@ cd $DIR_EXP/src
 echo "running: CMVN.sh cmvn"
 bash CMVN.sh cmvn $DIR_EXP/lists/hcopylist.lst >& $DIR_EXP/log/feature.log
 date >> $DIR_EXP/log/time.feat
+curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "Feature extraction of data chunk '"$2"' finishing on '"$HOSTNAME"'. :wave::skin-tone-6:  ", "icon_emoji": ":labtocat:"}' https://hooks.slack.com/services/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
+
+exit 0;
