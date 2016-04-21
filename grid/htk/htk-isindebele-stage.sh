@@ -9,7 +9,7 @@
 #  We can stage some HTK data from UJ
 # it is a standalone script to be used with exmaple 2
 # ########################################
-
+curl -X POST --data-urlencode 'payload={"channel": "#hlt-research", "username": "gridjob", "text": "This is a job running on the grid.", "icon_emoji": ":labtocat:"}' https://hooks.slack.com/services/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
 # Taking from the "system.sh" script in ASR, we first set up the workind dirs :
 export DIR_EXP=$PWD
 
