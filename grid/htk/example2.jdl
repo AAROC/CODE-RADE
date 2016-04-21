@@ -12,7 +12,7 @@
   Executable = "htk-isindebele-stage.sh";
 
 #  The script might take some arguments - these are passed via :
-  Arguments = "fastrepo";
+  Arguments = "fastrepo 001";
 
 # Standard output (Would have been displayed to the screen output)
 

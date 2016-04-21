@@ -22,7 +22,7 @@ ls $DIR_EXP
 
 # Put the data into $DIR_EXP/data/audio
 # We will use just one chunk - this is passed as the argument
-echo "Staging chunnk $2"
+echo "Staging chunk $2"
 globus-url-copy gsiftp://fs01.grid.uj.ac.za/dpm/grid.uj.ac.za/home/sagrid/hlt-nwu/data/audio/isindebele_$2.tar.gz file:isindebele_$2.tar.gz
 ls -lht isindebele_$2.tar.gz
 tar xvfz isindebele_$2.tar.gz -C $DIR_EXP/data/audio/
