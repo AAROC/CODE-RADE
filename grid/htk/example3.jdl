@@ -26,7 +26,7 @@
 # Files to save after a jobrun (logfiles, outputfiles, etc.)
 
   OutputSandbox = {"htk.out"};
-#  InputSandbox = {
+  InputSandbox = {
                     "htk-isindebele-stage.sh",
                     "gsiftp://fs01.grid.uj.ac.za/dpm/grid.uj.ac.za/home/sagrid/nwu-hlt/data/audio/isindebele__PARAM_.tar.gz"
                   };
