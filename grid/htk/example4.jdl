@@ -9,7 +9,7 @@
 # In this case, it is a script provided by us, which has to be included in the
 # Input Sandbox (see below)
 
-  Executable = "htk-isindebele-stage.sh";
+  Executable = "htk-feature-extraction.sh";
 
 #  The script might take some arguments - these are passed via :
   Arguments = "fastrepo _PARAM_";
