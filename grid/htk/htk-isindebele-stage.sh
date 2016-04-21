@@ -13,7 +13,7 @@
 # Taking from the "system.sh" script in ASR, we first set up the workind dirs :
 export DIR_EXP=$PWD
 
-for dir in $DIR_EXP/data/mfccs $DIR_EXP/log $DIR_EXP/data/proc_trans $DIR_EXP/lists/; do
+for dir in $DIR_EXP/data/mfccs $DIR_EXP/log $DIR_EXP/data/proc_trans $DIR_EXP/lists/ $DIR_EXP/data/audio ; do
   mkdir -p $dir
 done
 ls $DIR_EXP
