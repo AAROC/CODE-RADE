@@ -1,6 +1,6 @@
 [
 
-# CODE-RADE Grid Example 1 - Simple check of version
+# CODE-RADE HTK Exammple 2 : Staging the data
 
   Type = "Job";
   JobType = "Normal";
