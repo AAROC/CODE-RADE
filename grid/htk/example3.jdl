@@ -28,7 +28,7 @@
   OutputSandbox = {"htk.out"};
   InputSandbox = {
                     "htk-isindebele-stage.sh",
-                    "gsiftp://fs01.grid.uj.ac.za/dpm/grid.uj.ac.za/home/sagrid/nwu-hlt/data/audio/isindebele__PARAM_.tar.gz"
+                    "gsiftp://fs01.grid.uj.ac.za/dpm/grid.uj.ac.za/home/sagrid/hlt-nwu/data/audio/isindebele__PARAM_.tar.gz"
                   };
 
 # Number of times to resubmit job, if first submit fails from WMS
