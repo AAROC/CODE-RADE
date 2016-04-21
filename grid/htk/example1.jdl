@@ -7,7 +7,7 @@
 
 # Command to execute on the worker node
 # In this case, it is a script provided by us, which has to be included in the
-  InputSandbox = "htkcheck.sh";
+# Input Sandbox (see below)
 
   Executable = "htkcheck.sh";
 
@@ -22,7 +22,7 @@
 # Files to save after a jobrun (logfiles, outputfiles, etc.)
 
 OutputSandbox = {"htk.out"};
-InputSandbox = {"htk.sh"};
+InputSandbox = {"htkcheck.sh"};
 
 # Number of times to resubmit job, if first submit fails from WMS
 
