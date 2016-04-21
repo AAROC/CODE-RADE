@@ -228,6 +228,7 @@
   OutputSandbox = {"htk.out","$DIR_EXP/log/time.feat"};
   InputSandbox = {
                     "htk-isindebele-stage.sh",
+                    "contrib/scripts/create_hcopy_lists.pl",
                     "gsiftp://fs01.grid.uj.ac.za/dpm/grid.uj.ac.za/home/sagrid/hlt-nwu/data/audio/isindebele__PARAM_.tar.gz"
                   };
 
@@ -240,5 +241,5 @@
   ShallowRetryCount = 0;
 
 # If you want the job to go to a specific site, set your requirements here :
-  Requirements = other.GlueCEUniqueID == "glite-ce.grid.uj.ac.za:8443/cream-pbs-sagrid";
+  Requirements = other.GlueCEUniqueID == ( "glite-ce.grid.uj.ac.za:8443/cream-pbs-sagrid" || "cream-ce.core.wits.ac.za:8443/cream-pbs-sagrid" );
 ]
