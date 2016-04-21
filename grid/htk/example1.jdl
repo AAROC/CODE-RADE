@@ -12,7 +12,7 @@
   Executable = "htkcheck.sh";
 
 #  The script might take some arguments - these are passed via :
-  Arguments = "fastrepo"
+  Arguments = "fastrepo";
 
 # Standard output (Would have been displayed to the screen output)
 
