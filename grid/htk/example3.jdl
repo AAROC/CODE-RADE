@@ -40,5 +40,5 @@
   ShallowRetryCount = 0;
 
 # If you want the job to go to a specific site, set your requirements here :
-Requirements = ther.GlueCEUniqueID == "glite-ce.grid.uj.ac.za:8443/cream-pbs-sagrid"
+Requirements = other.GlueCEUniqueID == "glite-ce.grid.uj.ac.za:8443/cream-pbs-sagrid";
 ]
