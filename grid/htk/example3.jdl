@@ -13,7 +13,7 @@
 
 #  The script might take some arguments - these are passed via :
   Arguments = "fastrepo _PARAM_";
-  Parameters = {001,002,003,004,005,006};  
+  Parameters = {"001" , "002" , "003", "004", "005", "006"};
 
 # Standard output (Would have been displayed to the screen output)
 
@@ -25,14 +25,20 @@
 
 # Files to save after a jobrun (logfiles, outputfiles, etc.)
 
-OutputSandbox = {"htk.out"};
-InputSandbox = {"htk-isindebele-stage.sh"};
+  OutputSandbox = {"htk.out"};
+#  InputSandbox = {
+                    "htk-isindebele-stage.sh"
+                    "gsiftp://fs01.grid.uj.ac.za/dpm/grid.uj.ac.za/home/sagrid/nwu-hlt/data/audio/isindebele__PARAM_.tar.gz"
+                  };
 
 # Number of times to resubmit job, if first submit fails from WMS
 
-RetryCount = 2;
+  RetryCount = 2;
 
 # Number of times to resubmit the job, if the first submit fails from the local queue
 
-ShallowRetryCount = 0;
+  ShallowRetryCount = 0;
+
+# If you want the job to go to a specific site, set your requirements here :
+#  Requirements
 ]
