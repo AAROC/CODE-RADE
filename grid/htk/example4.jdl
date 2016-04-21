@@ -225,7 +225,7 @@
 
 # Files to save after a jobrun (logfiles, outputfiles, etc.)
 
-  OutputSandbox = {"htk.out","$DIR_EXP/log/time.feat"};
+  OutputSandbox = {"htk.out","time.feat"};
   InputSandbox = {
                     "htk-isindebele-stage.sh",
                     "contrib/scripts/create_hcopy_lists.pl",
