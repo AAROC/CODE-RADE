@@ -9,7 +9,7 @@
 #  We can stage some HTK data from UJ
 # it is a standalone script to be used with exmaple 2
 # ########################################
-curl -X POST --data-urlencode 'payload={"channel": "#hlt-research", "username": "gridjob", "text": "This is a job running on the grid at '"$HOSTNAME"'. Will be processing data chunk '"$2"' with Repo '"$1"' ", "icon_emoji": ":labtocat:"}' https://hooks.slack.com/services/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
+curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "HTK running on '"$HOSTNAME"'. starting data chunk '"$2"' with Repo '"$1"' ", "icon_emoji": ":labtocat:"}' https://hooks.slack.com/services/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
 # Taking from the "system.sh" script in ASR, we first set up the workind dirs :
 export DIR_EXP=$PWD
 
@@ -27,4 +27,7 @@ tar xvfz isindebele_$2.tar.gz -C $DIR_EXP/data/audio/
 
 echo "size of the data is "
 du -chs $DIR_EXP/data/audio
+
+curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "Data chunk '"$2"' finishing on '"$HOSTNAME"'. :wave::skin-tone-6:  ", "icon_emoji": ":labtocat:"}' https://hooks.slack.com/services/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
+
 exit 0;
