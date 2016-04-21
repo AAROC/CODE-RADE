@@ -34,7 +34,7 @@ cat /cvmfs/fastrepo.sagrid.ac.za/version
 SITE="generic"
 OS="undefined"
 ARCH="undefined"
-CVMFS_MOUNT="undefined"
+CVMFS_DIR="undefined"
 #REPO="devrepo.sagrid.ac.za"
 REPO=$1.sagrid.ac.za
 
@@ -123,18 +123,18 @@ fi
 
 
 echo "We assuming CVMFS is installed, so we getting the CVMFS mount point"
-CVMFS_MOUNT=`cvmfs_config showconfig $REPO|grep CVMFS_MOUNT_DIR|awk -F '=' '{print $2}'|awk -F ' ' '{print $1}'`
+CVMFS_DIR=`cvmfs_config showconfig $REPO|grep CVMFS_MOUNT_DIR|awk -F '=' '{print $2}'|awk -F ' ' '{print $1}'`
 
-echo $SITE
-echo $OS
-echo $ARCH
-echo $CVMFS_MOUNT
-echo $REPO
+echo "site is $SITE"
+echo "OS is $OS"
+echo "ARCH is $ARCH"
+echo "CVMFS_DIR is $CVMFS_DIR"
+echo "Repo is $REPO"
 
 export SITE
 export OS
 export ARCH
-export CVMFS_MOUNT
+export CVMFS_DIR
 export REPO
 
 echo "you are using devrepo version"
@@ -151,11 +151,11 @@ else
   source ${MODULESHOME}/init/${shelltype}
   echo "Great, seems that modules are here, at ${MODULESHOME}"
   module avail
-  echo "Append CVMFS_MOUNT to the MODULEPATH environment"
-  module use ${CVMFS_MOUNT}/${REPO}/modules/libraries
-  module use ${CVMFS_MOUNT}/${REPO}/modules/compilers
-  module use ${CVMFS_MOUNT}/${REPO}/modules/bioinformatics
-  module use ${CVMFS_MOUNT}/${REPO}//modules/astro
+  echo "Append CVMFS_DIR to the MODULEPATH environment"
+  module use ${CVMFS_DIR}/${REPO}/modules/libraries
+  module use ${CVMFS_DIR}/${REPO}/modules/compilers
+  module use ${CVMFS_DIR}/${REPO}/modules/bioinformatics
+  module use ${CVMFS_DIR}/${REPO}//modules/astro
   echo "loading modulefile deploy"
   module load deploy
   echo "module avail"
