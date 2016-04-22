@@ -2,7 +2,7 @@
 # Author: Charl van Heerden (cvheerden@csir.co.za)
 #
 # Given a hcopy-style list, performs cmn
-# 
+#
 # Important:
 # - you have to set the appropriate variables under CMVN in Vars.sh
 
@@ -69,14 +69,14 @@ fi
 echo "LOCAL_CFG_HCOPY=$LOCAL_CFG_HCOPY"
 
 # Create a local mfcc list
-LOCAL_MFCC_LIST=$DIR_SCRATCH/all.mfccs.lst
+LOCAL_MFCC_LIST=$TMPDIR/all.mfccs.lst
 cat $LIST | awk '{print $2}' > $LOCAL_MFCC_LIST
 echo "Creating a local mfcc list: $LOCAL_MFCC_LIST"
 
 # (1) Extract features without normalization
 export TARGETKIND="MFCC_0_D_A_Z"
 # TODO: It may be cleaner to move this to create_configs once this is well tested
-bash $DIR_SRC/create_configs.sh hcopy $LOCAL_CFG_HCOPY
+bash create_configs.sh hcopy $LOCAL_CFG_HCOPY
 
 # Do feature extraction
 echo "Extracting features: <$TARGETKIND>"
@@ -97,8 +97,8 @@ HCompV -A -T $TRACE -C $CMEANDIR -k "$MFCC_CMEANMASK" -q m -S $LOCAL_MFCC_LIST
 
 # (3) Extract features again, this time doing normalization given the cluster means
 export TARGETKIND="MFCC_0_D_A_Z"
-bash $DIR_SRC/create_configs.sh hcopy $LOCAL_CFG_HCOPY
-echo "HPARM:CMEANDIR  = '$CMEANDIR'" >> $LOCAL_CFG_HCOPY 
+bash create_configs.sh hcopy $LOCAL_CFG_HCOPY
+echo "HPARM:CMEANDIR  = '$CMEANDIR'" >> $LOCAL_CFG_HCOPY
 echo "HPARM:CMEANMASK = '$AUDIO_CMEANMASK'" >> $LOCAL_CFG_HCOPY
 
 echo "Creating backup of <$LOCAL_CFG_HCOPY> at <$DIR_SCRATCH/hcopy.cmnb>"
@@ -108,4 +108,4 @@ cp $LOCAL_CFG_HCOPY $DIR_SCRATCH/hcopy.cmnb
 echo "Extracting features: <$TARGETKIND>"
 HCopy -A -T $TRACE -C $LOCAL_CFG_HCOPY -S $LIST
 
-bash $DIR_SRC/check_exit_status.sh $0 $?
+bash check_exit_status.sh $0 $?
