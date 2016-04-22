@@ -105,18 +105,18 @@ fi
 
 
 echo "We assuming CVMFS is installed, so we getting the CVMFS mount point"
-CVMFS_DIR=`cvmfs_config showconfig $REPO|grep CVMFS_MOUNT_DIR|awk -F '=' '{print $2}'|awk -F ' ' '{print $1}'`
+CVMFS_MOUNT=`cvmfs_config showconfig $REPO|grep CVMFS_MOUNT_DIR|awk -F '=' '{print $2}'|awk -F ' ' '{print $1}'`
 
 echo $SITE
 echo $OS
 echo $ARCH
-echo $CVMFS_DIR
+echo $CVMFS_MOUNT
 echo $REPO
 
 export SITE
 export OS
 export ARCH
-export CVMFS_DIR
+export CVMFS_DIR=${CVMF_MOUNT}/${REPO}
 export REPO
 
 echo "you are using ${REPO} version"
