@@ -28,9 +28,6 @@ echo "Staging chunk $2"
 ls -lht isindebele_$2.tar.gz
 tar xvfz isindebele_$2.tar.gz -C  data/audio/
 
-exit 0;
-
-
 echo ""
 echo "FEATURE EXTRACTION"
 # this will create a list  file associating a WAV with an "MFC" file.
@@ -39,10 +36,9 @@ echo "FEATURE EXTRACTION"
 echo "creating hcopylist.lst"
 date >>  log/time.feat
 perl  contrib/scripts/create_hcopy_lists.pl  data/audio  data/mfccs  lists/hcopylist.lst
-cd  src
 echo "running: CMVN.sh cmvn"
 bash CMVN.sh cmvn  lists/hcopylist.lst >&  log/feature.log
 date >>  log/time.feat
-curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "Feature extraction of data chunk '"$2"' finishing on '"$HOSTNAME"'. :wave::skin-tone-6:  ", "icon_emoji": ":labtocat:"}' https://hooks.slack.com/services/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
+curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "Feature extraction of data chunk '"$2"' finishing on '"$HOSTNAME"'. :wave::skin-tone-6:  ", "icon_emoji": ":labtocat:" }' https://hooks.slack.com/services/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
 
 exit 0;
