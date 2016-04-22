@@ -1,6 +1,6 @@
 # CODE-RADE Example 1 - Version Check
 
-This is the README for CODE-RADE grid example 1. This example simply checks the version of `fastrepo.sagrid.ac.za` which is available on the site.
+This is the README for CODE-RADE grid example 1. This example simply checks the version of `fastrepo.sagrid.ac.za` which is available on the site. The script also checks what is in the mapped user's environment.
 
 This example consists of
 
