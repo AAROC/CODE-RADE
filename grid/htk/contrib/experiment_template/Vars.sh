@@ -29,8 +29,8 @@ export DIR_SRC=${HOME}
 # This should be cleaned up as the job finishes.
 export DIR_SCRATCH=${HOME}
 
-#export TARGETKIND="MFCC_0_D_A_Z" # See HTK book for other types
-#export TRACE=1
+export TARGETKIND="MFCC_0_D_A_Z" # See HTK book for other types
+export TRACE=1
 
 #export SENTSTART="<s>" # <s> is recommended since that is the default for srilm tools
 #export SENTEND="</s>" # </s> is recommended since that is the default for srilm tools
