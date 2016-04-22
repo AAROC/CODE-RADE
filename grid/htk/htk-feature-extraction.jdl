@@ -29,6 +29,9 @@
                     "htk-feature-extraction.sh",
                     "contrib/scripts/create_hcopy_lists.pl",
                     "contrib/experiment_template/CMVN.sh",
+                    "contrib/experiment_template/cmn.sh",
+                    "contrib/experiment_template/cvn.sh",
+                    "contrib/experiment_template/Vars.sh",
                     "gsiftp://fs01.grid.uj.ac.za/dpm/grid.uj.ac.za/home/sagrid/hlt-nwu/data/audio/isindebele_001.tar.gz"
                   };
 
