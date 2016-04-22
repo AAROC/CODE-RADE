@@ -133,8 +133,8 @@ else
   source ${MODULESHOME}/init/${shelltype}
   echo "Great, seems that modules are here, at ${MODULESHOME}"
   echo "Append CVMFS_DIR to the MODULEPATH environment"
-  module use ${CVMFS_DIR}/${REPO}/modules/libraries
-  module use ${CVMFS_DIR}/${REPO}/modules/compilers
+  module use ${CVMFS_MOUNT}/${REPO}/modules/libraries
+  module use ${CVMFS_MOUNT}/${REPO}/modules/compilers
 fi
 
 module add htk
