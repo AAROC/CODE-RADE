@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/./
 # Author: Charl van Heerden (cvheerden@csir.co.za)
 #
 # Given a hcopy-style list, performs cmn
@@ -76,7 +76,7 @@ echo "Creating a local mfcc list: $LOCAL_MFCC_LIST"
 # (1) Extract features without normalization
 export TARGETKIND="MFCC_0_D_A_Z"
 # TODO: It may be cleaner to move this to create_configs once this is well tested
-bash create_configs.sh hcopy $LOCAL_CFG_HCOPY
+./create_configs.sh hcopy $LOCAL_CFG_HCOPY
 
 # Do feature extraction
 echo "Extracting features: <$TARGETKIND>"
@@ -97,7 +97,7 @@ HCompV -A -T $TRACE -C $CMEANDIR -k "$MFCC_CMEANMASK" -q m -S $LOCAL_MFCC_LIST
 
 # (3) Extract features again, this time doing normalization given the cluster means
 export TARGETKIND="MFCC_0_D_A_Z"
-bash create_configs.sh hcopy $LOCAL_CFG_HCOPY
+./create_configs.sh hcopy $LOCAL_CFG_HCOPY
 echo "HPARM:CMEANDIR  = '$CMEANDIR'" >> $LOCAL_CFG_HCOPY
 echo "HPARM:CMEANMASK = '$AUDIO_CMEANMASK'" >> $LOCAL_CFG_HCOPY
 
@@ -108,4 +108,4 @@ cp $LOCAL_CFG_HCOPY $DIR_SCRATCH/hcopy.cmnb
 echo "Extracting features: <$TARGETKIND>"
 HCopy -A -T $TRACE -C $LOCAL_CFG_HCOPY -S $LIST
 
-bash check_exit_status.sh $0 $?
+./check_exit_status.sh $0 $?

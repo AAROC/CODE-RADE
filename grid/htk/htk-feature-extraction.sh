@@ -118,7 +118,7 @@ export OS
 export ARCH
 export CVMFS_DIR=${CVMFS_MOUNT}/${REPO}
 export REPO
-
+export TMPDIR 
 echo "you are using ${REPO} version"
 cat /cvmfs/${REPO}/version
 echo "Checking whether you have modules installed"
