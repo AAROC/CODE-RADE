@@ -241,5 +241,7 @@
   ShallowRetryCount = 0;
 
 # If you want the job to go to a specific site, set your requirements here :
-  Requirements = ( other.GlueCEUniqueID == "glite-ce.grid.uj.ac.za:8443/cream-pbs-sagrid" || other.GlueCEUniqueID == "cream-ce.core.wits.ac.za:8443/cream-pbs-sagrid" );
+  Requirements = ( other.GlueCEUniqueID == "glite-ce.grid.uj.ac.za:8443/cream-pbs-sagrid" ||
+                   other.GlueCEUniqueID == "cream-ce.core.wits.ac.za:8443/cream-pbs-sagrid" ||
+                   other.GlueCEUniqueID == "grid-ce.chpc.ac.za:8443/cream-pbs-sagrid");
 ]
