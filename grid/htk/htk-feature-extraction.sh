@@ -9,6 +9,7 @@
 #  We can stage some HTK data from UJ
 #  And run feature extraction
 # ########################################
+start=`date +%s.%N`
 curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "HTK on '"$HOSTNAME"', starting feature extraction on data chunk '"$2"' with Repo '"$1"' ", "icon_emoji": ":labtocat:"}' https://hooks.slack.com/services/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
 # Taking from the "system.sh" script in ASR, we first set up the workind dirs :
 export DIR_EXP=$PWD
@@ -39,6 +40,9 @@ perl  create_hcopy_lists.pl  data/audio  data/mfccs  lists/hcopylist.lst
 echo "running: CMVN.sh cmvn"
 ./CMVN.sh cmvn  lists/hcopylist.lst >&  log/feature.log
 date >>  log/time.feat
-curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "Feature extraction of data chunk '"$2"' finishing on '"$HOSTNAME"'. :wave::skin-tone-6:  ", "icon_emoji": ":labtocat:" }' https://hooks.slack.com/services/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
+cat log/time.feat
+end=`date +%s.%N`
+time=`echo "$end - $start" | bc`
+curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "Feature extraction of data chunk '"$2"' on '"$HOSTNAME"' took '"$time"' s. :wave::skin-tone-6:  ", "icon_emoji": ":labtocat:" }' https://hooks.slack.com/services/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
 
 exit 0;
