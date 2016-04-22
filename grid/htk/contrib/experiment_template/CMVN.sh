@@ -14,7 +14,8 @@
 #    extracted source files are located.
 
 source Vars.sh
-
+echo "DIR_SRC is $DIR_SRC"
+echo "DIR_EXP is $DIR_EXP"
 FLAG=$1
 LIST=$2
 
@@ -51,9 +52,9 @@ if [ ! -d $DIR_SRC ]; then
 fi
 
 #TODO: Proper DIR_LOG var needed
-if [ ! -d $DIR_EXP/log ]; then
-  echo -e "WARNING: Creating $DIR_EXP/log"
-  mkdir -p $DIR_EXP/log
+if [ ! -d log ]; then
+  echo -e "WARNING: Creating log"
+  mkdir -p log
 fi
 
 if [ ! -d $DIR_SCRATCH ]; then
@@ -74,7 +75,7 @@ fi
 # CMN & FIRST STEP OF CMVN
 #============================================================
 if [ $FLAG = 'cmn' ] || [ $FLAG = 'cmvn' ]; then
-  bash $DIR_SRC/cmn.sh $FLAG $LIST 2>&1 | tee -a $DIR_EXP/log/cmn.log
+  bash cmn.sh $FLAG $LIST 2>&1 | tee -a log/cmn.log
   if [ $? -ne 0 ]; then
     echo "ERROR: $FLAG failed for some reason. Please check the logs!"
     exit 1;
@@ -85,7 +86,7 @@ fi
 # CVN & SECOND STEP OF CMVN
 #============================================================
 if [ $FLAG = 'cvn' ] || [ $FLAG = 'cmvn' ]; then
-  bash $DIR_SRC/cvn.sh $FLAG $LIST 2>&1 | tee -a $DIR_EXP/log/cvn.log
+  ./cvn.sh $FLAG $LIST 2>&1 | tee -a log/cvn.log
   if [ $? -ne 0 ]; then
     echo "ERROR: $FLAG failed for some reason. Please check the logs!"
     exit 1;

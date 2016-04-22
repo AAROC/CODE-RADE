@@ -12,7 +12,7 @@
 # in batch so a user will never have to see the mess of files in this single
 # didectory, so we might as well put it all in one place.
 
-export DIR_SRC=$HOME
+export DIR_SRC=${HOME}
 #export DIR_CFG=$DIR_ROOT/asr_template/config
 
 #export LST_AUDIO_TRN_ORIG=$DIR_ROOT/asr_template/experiment_template/audio_trn.lst

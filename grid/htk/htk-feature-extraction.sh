@@ -19,7 +19,7 @@ start=`date +%s.%N`
 SITE="generic"
 OS="undefined"
 ARCH="undefined"
-CVMFS_MOUNT="undefined"
+CVMFS_DIR="undefined"
 #REPO="devrepo.sagrid.ac.za"
 REPO=$1.sagrid.ac.za
 shelltype=`echo $SHELL | awk 'BEGIN { FS = "/" } {print $3}'`
@@ -105,18 +105,18 @@ fi
 
 
 echo "We assuming CVMFS is installed, so we getting the CVMFS mount point"
-CVMFS_MOUNT=`cvmfs_config showconfig $REPO|grep CVMFS_MOUNT_DIR|awk -F '=' '{print $2}'|awk -F ' ' '{print $1}'`
+CVMFS_DIR=`cvmfs_config showconfig $REPO|grep CVMFS_MOUNT_DIR|awk -F '=' '{print $2}'|awk -F ' ' '{print $1}'`
 
 echo $SITE
 echo $OS
 echo $ARCH
-echo $CVMFS_MOUNT
+echo $CVMFS_DIR
 echo $REPO
 
 export SITE
 export OS
 export ARCH
-export CVMFS_MOUNT
+export CVMFS_DIR
 export REPO
 
 echo "you are using ${REPO} version"
@@ -133,11 +133,11 @@ else
   source ${MODULESHOME}/init/${shelltype}
   echo "Great, seems that modules are here, at ${MODULESHOME}"
   module avail
-  echo "Append CVMFS_MOUNT to the MODULEPATH environment"
-  module use ${CVMFS_MOUNT}/${REPO}/modules/libraries
-  module use ${CVMFS_MOUNT}/${REPO}/modules/compilers
-  module use ${CVMFS_MOUNT}/${REPO}/modules/bioinformatics
-  module use ${CVMFS_MOUNT}/${REPO}//modules/astro
+  echo "Append CVMFS_DIR to the MODULEPATH environment"
+  module use ${CVMFS_DIR}/${REPO}/modules/libraries
+  module use ${CVMFS_DIR}/${REPO}/modules/compilers
+  module use ${CVMFS_DIR}/${REPO}/modules/bioinformatics
+  module use ${CVMFS_DIR}/${REPO}//modules/astro
   echo "module avail"
   module avail
 fi
@@ -155,7 +155,6 @@ ls -lht
 for dir in  data/mfccs  log  data/proc_trans  lists/  data/audio  log ; do
   mkdir -p $dir
 done
-ls $DIR_EXP
 
 # Put the data into  data/audio
 # We will use just one chunk - this is passed as the argument
@@ -174,6 +173,8 @@ date >>  log/time.feat
 perl  create_hcopy_lists.pl  data/audio  data/mfccs  lists/hcopylist.lst
 echo "running: CMVN.sh cmvn"
 chmod +x CMVN.sh cmn.sh cvn.sh create_configs.sh check_exit_status.sh
+ls $DIR_EXP
+echo "DIR SRC = $DIR_SRC"
 time ./CMVN.sh cmvn  lists/hcopylist.lst | tee  log/feature.log
 date >>  log/time.feat
 cat log/time.feat
