@@ -16,17 +16,17 @@ export DIR_EXP=$PWD
 echo "Is the input data here ? "
 ls -lht
 
-for dir in $DIR_EXP/data/mfccs $DIR_EXP/log $DIR_EXP/data/proc_trans $DIR_EXP/lists/ $DIR_EXP/data/audio $DIR_EXP/log ; do
+for dir in  data/mfccs  log  data/proc_trans  lists/  data/audio  log ; do
   mkdir -p $dir
 done
 ls $DIR_EXP
 
-# Put the data into $DIR_EXP/data/audio
+# Put the data into  data/audio
 # We will use just one chunk - this is passed as the argument
 echo "Staging chunk $2"
 # time globus-url-copy -vb -fast -p 5 gsiftp://fs01.grid.uj.ac.za/dpm/grid.uj.ac.za/home/sagrid/hlt-nwu/data/audio/isindebele_$2.tar.gz file:$PWD/isindebele_$2.tar.gz
 ls -lht isindebele_$2.tar.gz
-tar xvfz isindebele_$2.tar.gz -C $DIR_EXP/data/audio/
+tar xvfz isindebele_$2.tar.gz -C  data/audio/
 
 exit 0;
 
@@ -37,12 +37,12 @@ echo "FEATURE EXTRACTION"
 # this list is kept in a file - hcopylist.lst
 # It is done by running a perl script
 echo "creating hcopylist.lst"
-date >> $DIR_EXP/log/time.feat
-perl $DIR_EXP/contrib/scripts/create_hcopy_lists.pl $MAIN_DIR1/data/audio $DIR_EXP/data/mfccs $DIR_EXP/lists/hcopylist.lst
-cd $DIR_EXP/src
+date >>  log/time.feat
+perl  contrib/scripts/create_hcopy_lists.pl  data/audio  data/mfccs  lists/hcopylist.lst
+cd  src
 echo "running: CMVN.sh cmvn"
-bash CMVN.sh cmvn $DIR_EXP/lists/hcopylist.lst >& $DIR_EXP/log/feature.log
-date >> $DIR_EXP/log/time.feat
+bash CMVN.sh cmvn  lists/hcopylist.lst >&  log/feature.log
+date >>  log/time.feat
 curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "Feature extraction of data chunk '"$2"' finishing on '"$HOSTNAME"'. :wave::skin-tone-6:  ", "icon_emoji": ":labtocat:"}' https://hooks.slack.com/services/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
 
 exit 0;
