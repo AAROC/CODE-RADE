@@ -69,7 +69,7 @@ fi
 echo "LOCAL_CFG_HCOPY=$LOCAL_CFG_HCOPY"
 
 # Create a local mfcc list
-LOCAL_MFCC_LIST=$TMPDIR/all.mfccs.lst
+LOCAL_MFCC_LIST=all.mfccs.lst
 cat $LIST | awk '{print $2}' > $LOCAL_MFCC_LIST
 echo "Creating a local mfcc list: $LOCAL_MFCC_LIST"
 

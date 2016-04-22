@@ -24,7 +24,12 @@
 
 # Files to save after a jobrun (logfiles, outputfiles, etc.)
 
-  OutputSandbox = {"htk.out","log/time.feat","log/feature.log"};
+  OutputSandbox = {"htk.out",
+                   "log/time.feat",
+                   "log/feature.log",
+                   "log/cmn.log"
+
+                   };
 
 #  Files that have to be sent to the work load in order to execute
   InputSandbox = {

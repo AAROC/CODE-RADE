@@ -27,7 +27,7 @@ export DIR_SRC=${HOME}
 # The grid sites (at least those with CREAM) Offer $TMPDIR
 # as a preconfigured place to write temporary files.
 # This should be cleaned up as the job finishes.
-export DIR_SCRATCH=$TMPDIR
+export DIR_SCRATCH=${HOME}
 
 #export TARGETKIND="MFCC_0_D_A_Z" # See HTK book for other types
 #export TRACE=1
