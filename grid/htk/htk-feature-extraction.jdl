@@ -27,7 +27,8 @@
   OutputSandbox = {"htk.out","log/time.feat","log/feature.log"};
   InputSandbox = {
                     "htk-feature-extraction.sh",
-                    "contrib/scripts/create_configs.sh"
+                    "contrib/scripts/create_configs.sh",
+                    "contrib/scripts/check_exit_status.sh",
                     "contrib/scripts/create_hcopy_lists.pl",
                     "contrib/experiment_template/CMVN.sh",
                     "contrib/experiment_template/cmn.sh",

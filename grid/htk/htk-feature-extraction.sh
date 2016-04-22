@@ -173,7 +173,7 @@ echo "creating hcopylist.lst"
 date >>  log/time.feat
 perl  create_hcopy_lists.pl  data/audio  data/mfccs  lists/hcopylist.lst
 echo "running: CMVN.sh cmvn"
-chmod +x CMVN.sh cvn.sh
+chmod +x CMVN.sh cvn.sh create_configs.sh check_exit_status.sh
 time ./CMVN.sh cmvn  lists/hcopylist.lst | tee  log/feature.log
 date >>  log/time.feat
 cat log/time.feat
