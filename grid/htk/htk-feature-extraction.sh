@@ -21,7 +21,7 @@ OS="undefined"
 ARCH="undefined"
 CVMFS_MOUNT="undefined"
 #REPO="devrepo.sagrid.ac.za"
-REPO=$2.sagrid.ac.za
+REPO=$1.sagrid.ac.za
 shelltype=`echo $SHELL | awk 'BEGIN { FS = "/" } {print $3}'`
 echo "looks like you're using $shelltype"
 # What architecture are we ?
@@ -173,7 +173,7 @@ echo "creating hcopylist.lst"
 date >>  log/time.feat
 perl  create_hcopy_lists.pl  data/audio  data/mfccs  lists/hcopylist.lst
 echo "running: CMVN.sh cmvn"
-chmod +x CMVN.sh cvn.sh create_configs.sh check_exit_status.sh
+chmod +x CMVN.sh cmn.sh cvn.sh create_configs.sh check_exit_status.sh
 time ./CMVN.sh cmvn  lists/hcopylist.lst | tee  log/feature.log
 date >>  log/time.feat
 cat log/time.feat

@@ -25,6 +25,8 @@
 # Files to save after a jobrun (logfiles, outputfiles, etc.)
 
   OutputSandbox = {"htk.out","log/time.feat","log/feature.log"};
+
+#  Files that have to be sent to the work load in order to execute
   InputSandbox = {
                     "htk-feature-extraction.sh",
                     "contrib/scripts/create_configs.sh",
