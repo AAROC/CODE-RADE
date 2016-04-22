@@ -229,6 +229,7 @@
   InputSandbox = {
                     "htk-feature-extraction.sh",
                     "contrib/scripts/create_hcopy_lists.pl",
+                    "contrib/experiment_template/CMVN.sh",
                     "gsiftp://fs01.grid.uj.ac.za/dpm/grid.uj.ac.za/home/sagrid/hlt-nwu/data/audio/isindebele__PARAM_.tar.gz"
                   };
 
