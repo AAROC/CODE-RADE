@@ -35,9 +35,9 @@ echo "FEATURE EXTRACTION"
 # It is done by running a perl script
 echo "creating hcopylist.lst"
 date >>  log/time.feat
-perl  contrib/scripts/create_hcopy_lists.pl  data/audio  data/mfccs  lists/hcopylist.lst
+perl  create_hcopy_lists.pl  data/audio  data/mfccs  lists/hcopylist.lst
 echo "running: CMVN.sh cmvn"
-bash CMVN.sh cmvn  lists/hcopylist.lst >&  log/feature.log
+./CMVN.sh cmvn  lists/hcopylist.lst >&  log/feature.log
 date >>  log/time.feat
 curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "Feature extraction of data chunk '"$2"' finishing on '"$HOSTNAME"'. :wave::skin-tone-6:  ", "icon_emoji": ":labtocat:" }' https://hooks.slack.com/services/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
 
