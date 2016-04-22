@@ -20,13 +20,16 @@ ls $DIR_EXP
 
 # Put the data into $DIR_EXP/data/audio
 # We will use just one chunk - this is passed as the argument
-echo "Staging chunk $2"
-time globus-url-copy -vb -fast -p 5 gsiftp://fs01.grid.uj.ac.za/dpm/grid.uj.ac.za/home/sagrid/hlt-nwu/data/audio/isindebele_$2.tar.gz file:$PWD/isindebele_$2.tar.gz
-ls -lht isindebele_$2.tar.gz
-tar xvfz isindebele_$2.tar.gz -C $DIR_EXP/data/audio/
+echo "Is the chunk here  ? "
+ls -lht
+echo "looking for the data here"
+find . -name "inindebele_001.tar.gz"
+#time globus-url-copy -vb -fast -p 5 gsiftp://fs01.grid.uj.ac.za/dpm/grid.uj.ac.za/home/sagrid/hlt-nwu/data/audio/isindebele_$2.tar.gz file:$PWD/isindebele_$2.tar.gz
+#ls -lht isindebele_$2.tar.gz
+#tar xvfz isindebele_$2.tar.gz -C $DIR_EXP/data/audio/
 
-echo "size of the data is "
-du -chs $DIR_EXP/data/audio
+#echo "size of the data is "
+#du -chs $DIR_EXP/data/audio
 
 curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "Data chunk '"$2"' finishing on '"$HOSTNAME"'. :wave::skin-tone-6:  ", "icon_emoji": ":labtocat:"}' https://hooks.slack.com/services/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
 

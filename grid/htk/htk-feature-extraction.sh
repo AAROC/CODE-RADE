@@ -13,6 +13,9 @@ curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gri
 # Taking from the "system.sh" script in ASR, we first set up the workind dirs :
 export DIR_EXP=$PWD
 
+echo "Is the input data here ? "
+ls -lht 
+
 for dir in $DIR_EXP/data/mfccs $DIR_EXP/log $DIR_EXP/data/proc_trans $DIR_EXP/lists/ $DIR_EXP/data/audio $DIR_EXP/log ; do
   mkdir -p $dir
 done

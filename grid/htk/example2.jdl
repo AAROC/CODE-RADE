@@ -25,7 +25,9 @@
 # Files to save after a jobrun (logfiles, outputfiles, etc.)
 
 OutputSandbox = {"htk.out"};
-InputSandbox = {"htk-isindebele-stage.sh"};
+InputSandbox = {"htk-isindebele-stage.sh",
+                "gsiftp://fs01.grid.uj.ac.za/dpm/grid.uj.ac.za/home/sagrid/hlt-nwu/data/audio/isindebele_001.tar.gz"
+               };
 
 # Number of times to resubmit job, if first submit fails from WMS
 
