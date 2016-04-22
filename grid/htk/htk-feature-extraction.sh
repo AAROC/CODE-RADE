@@ -116,7 +116,7 @@ echo $REPO
 export SITE
 export OS
 export ARCH
-export CVMFS_DIR=${CVMF_MOUNT}/${REPO}
+export CVMFS_DIR=${CVMFS_MOUNT}/${REPO}
 export REPO
 
 echo "you are using ${REPO} version"
