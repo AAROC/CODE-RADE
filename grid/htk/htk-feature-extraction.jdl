@@ -24,7 +24,7 @@
 
 # Files to save after a jobrun (logfiles, outputfiles, etc.)
 
-  OutputSandbox = {"htk.out","time.feat","feature.log"};
+  OutputSandbox = {"htk.out","log/time.feat","log/feature.log"};
   InputSandbox = {
                     "htk-feature-extraction.sh",
                     "contrib/scripts/create_hcopy_lists.pl",
