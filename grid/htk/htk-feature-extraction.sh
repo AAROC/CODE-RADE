@@ -132,18 +132,17 @@ if [ -z ${MODULESHOME} ] ; then
 else
   source ${MODULESHOME}/init/${shelltype}
   echo "Great, seems that modules are here, at ${MODULESHOME}"
-  module avail
   echo "Append CVMFS_DIR to the MODULEPATH environment"
   module use ${CVMFS_DIR}/${REPO}/modules/libraries
   module use ${CVMFS_DIR}/${REPO}/modules/compilers
-  module use ${CVMFS_DIR}/${REPO}/modules/bioinformatics
-  module use ${CVMFS_DIR}/${REPO}//modules/astro
-  echo "module avail"
-  module avail
 fi
 
 module add htk
 module list
+env | grep -i htk
+
+which HCopy
+which HCompV
 
 curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "HTK on '"$HOSTNAME"', starting feature extraction on data chunk '"$2"' with Repo '"$1"' '"$CODERADE_VERSION"' ", "icon_emoji": ":labtocat:"}' https://hooks.slack.com/services/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
 # Taking from the "system.sh" script in ASR, we first set up the workind dirs :
