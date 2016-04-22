@@ -24,7 +24,7 @@
 
 # Files to save after a jobrun (logfiles, outputfiles, etc.)
 
-  OutputSandbox = {"htk.out","time.feat"};
+  OutputSandbox = {"htk.out","time.feat","feature.log"};
   InputSandbox = {
                     "htk-feature-extraction.sh",
                     "contrib/scripts/create_hcopy_lists.pl",
@@ -38,7 +38,7 @@
 
 # Number of times to resubmit the job, if the first submit fails from the local queue
 
-  ShallowRetryCount = 0;
+  ShallowRetryCount = 2;
 
 # If you want the job to go to a specific site, set your requirements here :
   Requirements = ( other.GlueCEUniqueID == "glite-ce.grid.uj.ac.za:8443/cream-pbs-sagrid" ||
