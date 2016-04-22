@@ -14,7 +14,7 @@ curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gri
 export DIR_EXP=$PWD
 
 echo "Is the input data here ? "
-ls -lht 
+ls -lht
 
 for dir in $DIR_EXP/data/mfccs $DIR_EXP/log $DIR_EXP/data/proc_trans $DIR_EXP/lists/ $DIR_EXP/data/audio $DIR_EXP/log ; do
   mkdir -p $dir
@@ -24,7 +24,7 @@ ls $DIR_EXP
 # Put the data into $DIR_EXP/data/audio
 # We will use just one chunk - this is passed as the argument
 echo "Staging chunk $2"
-time globus-url-copy -vb -fast -p 5 gsiftp://fs01.grid.uj.ac.za/dpm/grid.uj.ac.za/home/sagrid/hlt-nwu/data/audio/isindebele_$2.tar.gz file:$PWD/isindebele_$2.tar.gz
+# time globus-url-copy -vb -fast -p 5 gsiftp://fs01.grid.uj.ac.za/dpm/grid.uj.ac.za/home/sagrid/hlt-nwu/data/audio/isindebele_$2.tar.gz file:$PWD/isindebele_$2.tar.gz
 ls -lht isindebele_$2.tar.gz
 tar xvfz isindebele_$2.tar.gz -C $DIR_EXP/data/audio/
 
