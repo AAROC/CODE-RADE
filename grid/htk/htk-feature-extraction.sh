@@ -38,7 +38,7 @@ echo "creating hcopylist.lst"
 date >>  log/time.feat
 perl  create_hcopy_lists.pl  data/audio  data/mfccs  lists/hcopylist.lst
 echo "running: CMVN.sh cmvn"
-./CMVN.sh cmvn  lists/hcopylist.lst >&  log/feature.log
+time ./CMVN.sh cmvn  lists/hcopylist.lst | tee  log/feature.log
 date >>  log/time.feat
 cat log/time.feat
 end=`date +%s.%N`
