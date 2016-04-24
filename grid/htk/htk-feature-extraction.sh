@@ -161,7 +161,8 @@ echo "Staging chunk $2"
 # time globus-url-copy -vb -fast -p 5 gsiftp://fs01.grid.uj.ac.za/dpm/grid.uj.ac.za/home/sagrid/hlt-nwu/data/audio/isindebele_$2.tar.gz file:$PWD/isindebele_$2.tar.gz
 ls -lht isindebele_$2.tar.gz
 tar xvfz isindebele_$2.tar.gz -C  data/audio/
-
+echo "Data is : "
+du -chs audio/data/
 echo ""
 echo "FEATURE EXTRACTION"
 # this will create a list  file associating a WAV with an "MFC" file.
@@ -173,7 +174,8 @@ perl  create_hcopy_lists.pl  data/audio  data/mfccs  lists/hcopylist.lst
 wc -l lists/hcopylist.lst
 echo "what's in the hcopylist ? "
 cat lists/hcopylist.lst
-
+echo "mfccs are  : "
+ls -lht data/mfccs/
 echo "running: CMVN.sh cmvn"
 chmod +x CMVN.sh cmn.sh cvn.sh create_configs.sh check_exit_status.sh
 ls $DIR_EXP
