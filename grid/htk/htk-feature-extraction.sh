@@ -118,7 +118,7 @@ export OS
 export ARCH
 export CVMFS_DIR=${CVMFS_MOUNT}/${REPO}
 export REPO
-export TMPDIR 
+export TMPDIR
 echo "you are using ${REPO} version"
 cat /cvmfs/${REPO}/version
 echo "Checking whether you have modules installed"
@@ -170,6 +170,10 @@ echo "FEATURE EXTRACTION"
 echo "creating hcopylist.lst"
 date >>  log/time.feat
 perl  create_hcopy_lists.pl  data/audio  data/mfccs  lists/hcopylist.lst
+
+echo "what's in the hcopylist ? "
+cat lists/hcopy.lst
+
 echo "running: CMVN.sh cmvn"
 chmod +x CMVN.sh cmn.sh cvn.sh create_configs.sh check_exit_status.sh
 ls $DIR_EXP

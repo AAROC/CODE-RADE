@@ -27,7 +27,8 @@
   OutputSandbox = {"htk.out",
                    "log/time.feat",
                    "log/feature.log",
-                   "log/cmn.log"
+                   "log/cmn.log",
+                   "lists/hcopylist.lst"
 
                    };
 

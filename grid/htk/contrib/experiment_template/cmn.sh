@@ -1,4 +1,4 @@
-#!/bin/./
+#!/bin/bash
 # Author: Charl van Heerden (cvheerden@csir.co.za)
 #
 # Given a hcopy-style list, performs cmn
