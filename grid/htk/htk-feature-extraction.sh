@@ -170,9 +170,9 @@ echo "FEATURE EXTRACTION"
 echo "creating hcopylist.lst"
 date >>  log/time.feat
 perl  create_hcopy_lists.pl  data/audio  data/mfccs  lists/hcopylist.lst
-wc -l lists/hcopy.lst
+wc -l lists/hcopylist.lst
 echo "what's in the hcopylist ? "
-cat lists/hcopy.lst
+cat lists/hcopylist.lst
 
 echo "running: CMVN.sh cmvn"
 chmod +x CMVN.sh cmn.sh cvn.sh create_configs.sh check_exit_status.sh
