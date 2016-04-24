@@ -171,7 +171,7 @@ tar xvfz isindebele_$2.tar.gz -C  data/audio/
 echo "Data is : "
 du -chs data/audio
 echo ""
-echo "FEATURE EXTRACTION"
+
 # this will create a list  file associating a WAV with an "MFC" file.
 # this list is kept in a file - hcopylist.lst
 # It is done by running a perl script
@@ -180,6 +180,11 @@ date >>  log/time.feat
 perl  create_hcopy_lists.pl  data/audio  data/mfccs  lists/hcopylist.lst
 
 echo "`wc -l lists/hcopylist.lst` entries in hcopylist.lst"
+
+echo "FEATURE EXTRACTION"
+HCopy -T $TRACE -C $CFG -S $LIST
+
+
 echo "Setting scripts executable"
 chmod -v +x CMVN.sh cmn.sh cvn.sh create_configs.sh check_exit_status.sh
 echo "running: CMVN.sh cmvn"
