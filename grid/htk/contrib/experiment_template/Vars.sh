@@ -5,15 +5,15 @@
 # Varibles which WILL be used, and which you MUST CHANGE
 #------------------------------------------------------
 # Full path to where the top-level directory within which the experiment will be created
-#export DIR_ROOT=~/hlt/sepedi
-#export DIR_EXP=/media/DATA/cs_exp
+export DIR_ROOT=${PWD}
+export DIR_EXP=${PWD}
 
 #  Dude, let's just have a flat directory structure. The job is going to run
 # in batch so a user will never have to see the mess of files in this single
 # didectory, so we might as well put it all in one place.
 
-export DIR_SRC=${HOME}
-#export DIR_CFG=$DIR_ROOT/asr_template/config
+export DIR_SRC=${PWD}
+export DIR_CFG=${DIR_ROOT}/config
 
 #export LST_AUDIO_TRN_ORIG=$DIR_ROOT/asr_template/experiment_template/audio_trn.lst
 #export LST_AUDIO_TST_ORIG=$DIR_ROOT/asr_template/experiment_template/audio_tst.lst
@@ -32,8 +32,8 @@ export DIR_SCRATCH=${HOME}
 export TARGETKIND="MFCC_0_D_A_Z" # See HTK book for other types
 export TRACE=1
 
-#export SENTSTART="<s>" # <s> is recommended since that is the default for srilm tools
-#export SENTEND="</s>" # </s> is recommended since that is the default for srilm tools
+export SENTSTART="<s>" # <s> is recommended since that is the default for srilm tools
+export SENTEND="</s>" # </s> is recommended since that is the default for srilm tools
 
 export NUM_HEREST_PROCS=1
 

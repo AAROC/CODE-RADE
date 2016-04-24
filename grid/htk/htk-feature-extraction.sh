@@ -163,11 +163,12 @@ for dir in  data/mfccs  log  data/proc_trans  lists/  data/audio  log ; do
 done
 
 # Put the data into  data/audio
-# We will use just one chunk - this is passed as the argument
-echo "Staging chunk $2"
+# We will use just one chunk - this is passed as the argument.
+# If you don't pass the input data as argument, you need to stage it yourself :
 # time globus-url-copy -vb -fast -p 5 gsiftp://fs01.grid.uj.ac.za/dpm/grid.uj.ac.za/home/sagrid/hlt-nwu/data/audio/isindebele_$2.tar.gz file:$PWD/isindebele_$2.tar.gz
-ls -lht isindebele_$2.tar.gz
-tar xvfz isindebele_$2.tar.gz -C  data/audio/
+
+echo "extracting data"
+tar xfz isindebele_$2.tar.gz -C  data/audio/
 echo "Data is : "
 du -chs data/audio
 echo ""
@@ -177,13 +178,10 @@ echo ""
 # It is done by running a perl script
 echo "creating hcopylist.lst"
 date >>  log/time.feat
+# create_hcopy_lists.pl <in:dir_wav> <out:dir_mfc> <out:hcopy_list>
 perl  create_hcopy_lists.pl  data/audio  data/mfccs  lists/hcopylist.lst
 
 echo "`wc -l lists/hcopylist.lst` entries in hcopylist.lst"
-
-echo "FEATURE EXTRACTION"
-HCopy -T $TRACE -C $CFG -S $LIST
-
 
 echo "Setting scripts executable"
 chmod -v +x CMVN.sh cmn.sh cvn.sh create_configs.sh check_exit_status.sh
