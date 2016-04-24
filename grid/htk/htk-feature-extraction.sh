@@ -11,6 +11,8 @@
 # ########################################
 start=`date +%s.%N`
 
+
+######## CODE RADE setup start ################################################
 # CODE-RADE needs to determine what SITE, OS and ARCH you are on.
 # We need to set the following variables :
 # SITE - default = generic
@@ -143,8 +145,13 @@ env | grep -i htk
 
 which HCopy
 which HCompV
+# End of CODE-RADE Setup #######################################################
 
+## Tell the team ##
 curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "HTK on '"$HOSTNAME"', starting feature extraction on data chunk '"$2"' with Repo '"$1"' '"$CODERADE_VERSION"' ", "icon_emoji": ":labtocat:"}' https://hooks.slack.com/services/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
+##              ##
+
+
 # Taking from the "system.sh" script in ASR, we first set up the workind dirs :
 export DIR_EXP=$PWD
 
@@ -162,7 +169,7 @@ echo "Staging chunk $2"
 ls -lht isindebele_$2.tar.gz
 tar xvfz isindebele_$2.tar.gz -C  data/audio/
 echo "Data is : "
-du -chs audio/data/
+du -chs data/audio
 echo ""
 echo "FEATURE EXTRACTION"
 # this will create a list  file associating a WAV with an "MFC" file.
@@ -171,20 +178,21 @@ echo "FEATURE EXTRACTION"
 echo "creating hcopylist.lst"
 date >>  log/time.feat
 perl  create_hcopy_lists.pl  data/audio  data/mfccs  lists/hcopylist.lst
-wc -l lists/hcopylist.lst
-echo "what's in the hcopylist ? "
-cat lists/hcopylist.lst
-echo "mfccs are  : "
-ls -lht data/mfccs/
+
+echo "`wc -l lists/hcopylist.lst` entries in hcopylist.lst"
+echo "Setting scripts executable"
+chmod -v +x CMVN.sh cmn.sh cvn.sh create_configs.sh check_exit_status.sh
 echo "running: CMVN.sh cmvn"
-chmod +x CMVN.sh cmn.sh cvn.sh create_configs.sh check_exit_status.sh
-ls $DIR_EXP
-echo "DIR SRC = $DIR_SRC"
+######### this is where feature extraction happens, apparently ############
 time ./CMVN.sh cmvn  lists/hcopylist.lst | tee  log/feature.log
+##########################################################################
 date >>  log/time.feat
 cat log/time.feat
 end=`date +%s.%N`
 time=`echo "$end - $start" | bc`
-curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "Feature extraction of data chunk '"$2"' on '"$HOSTNAME"' took '"$time"' s. :wave::skin-tone-6:  ", "icon_emoji": ":labtocat:" }' https://hooks.slack.com/services/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
 
+
+# Tell the team of the outcome #################################################
+curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "Feature extraction of data chunk '"$2"' on '"$HOSTNAME"' took '"$time"' s. :wave::skin-tone-6:  ", "icon_emoji": ":labtocat:" }' https://hooks.slack.com/services/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
+#  #############################################################################
 exit 0;
