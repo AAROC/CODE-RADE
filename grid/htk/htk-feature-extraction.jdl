@@ -28,7 +28,8 @@
                    "log/time.feat",
                    "log/feature.log",
                    "log/cmn.log",
-                   "lists/hcopylist.lst"
+                   "lists/hcopylist.lst",
+                   "config/hcopy.cmvn.conf"
 
                    };
 

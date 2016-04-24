@@ -77,7 +77,8 @@ echo "Creating a local mfcc list: $LOCAL_MFCC_LIST"
 export TARGETKIND="MFCC_0_D_A_Z"
 # TODO: It may be cleaner to move this to create_configs once this is well tested
 ./create_configs.sh hcopy $LOCAL_CFG_HCOPY
-
+echo $LOCAL_CFG_HCOPY
+ls -lht $LOCAL_CFG_HCOPY
 # Do feature extraction
 echo "Extracting features: <$TARGETKIND>"
 HCopy -A -T $TRACE -C $LOCAL_CFG_HCOPY -S $LIST
