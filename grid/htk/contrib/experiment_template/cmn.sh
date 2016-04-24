@@ -94,7 +94,7 @@ if [ ! -d $CMEANDIR ]; then
 fi
 
 echo "HCompV -A -T $TRACE ++ -C $CMEANDIR -k \"$MFCC_CMEANMASK\" -q m -S $LOCAL_MFCC_LIST"
-HCompV -A -T $TRACE -C $CMEANDIR -k "$MFCC_CMEANMASK" -q m -S $LOCAL_MFCC_LIST
+HCompV -A -T $TRACE ++ -C $CMEANDIR -k "$MFCC_CMEANMASK" -q m -S $LOCAL_MFCC_LIST
 
 # (3) Extract features again, this time doing normalization given the cluster means
 export TARGETKIND="MFCC_0_D_A_Z"
