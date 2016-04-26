@@ -237,7 +237,8 @@ do
 					done
 
 					#Final data is train.data
-					rl -o $NGRAM_LINK/computation/train.data $NGRAM_LINK/computation/train_norm.txt
+					# rl -o $NGRAM_LINK/computation/train.data $NGRAM_LINK/computation/train_norm.txt
+          shuf -o $NGRAM_LINK/computation/train.data $NGRAM_LINK/computation/train_norm.txt
 
 					#Remove previous files to free up space
 					#rm -f $NGRAM_LINK/computation/train_norm.txt $NGRAM_LINK/computation/train.txt $NGRAM_LINK/computation/sorted_all_train_ngrams.txt $NGRAM_LINK/computation/all_train_ngrams.txt $NGRAM_LINK/computation/test_all.txt
