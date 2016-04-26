@@ -151,7 +151,6 @@ fi
 module add libsvm gnuplot
 module list
 which svm-predict
-which svm-learn
 which svm-scale
 which svm-train
 which gnuplot
