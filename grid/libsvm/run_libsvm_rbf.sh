@@ -18,6 +18,8 @@
 start=`date +%s.%N`
 export LFC_HOST=lfc.magrid.ma
 
+echo "what variables do we have from CREAM ?"
+env 
 ######## CODE RADE setup start ################################################
 # CODE-RADE needs to determine what SITE, OS and ARCH you are on.
 # We need to set the following variables :
