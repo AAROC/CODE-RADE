@@ -162,7 +162,7 @@ lcg-cp -v --vo sagrid lfn:/grid/sagrid/nwu-hlt/NCHLT/NCHLT_${2}.tar.gz file:${PW
 # Unpack the input data set
 tar xvfz NCHLT_${2}.tar.gz --strip-components=5
 stagingend=`date +%s.%N`
-stagingtime=`echo "$end - $start" | bc`
+stagingtime=`echo "$stagingend - $stagingstart" | bc`
 
 size=`du -chs NCHLT_${2}.tar.gz | awk '{print $1}' | uniq`
 # Tell the team of the staging outcome #################################################
