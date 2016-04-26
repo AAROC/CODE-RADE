@@ -17,7 +17,7 @@
 # The data is registered in the MAGrid LFC
 start=`date +%s.%N`
 export LFC_HOST=lfc.magrid.ma
-
+env 
 ######## CODE RADE setup start ################################################
 # CODE-RADE needs to determine what SITE, OS and ARCH you are on.
 # We need to set the following variables :
