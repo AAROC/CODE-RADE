@@ -205,7 +205,6 @@ do
 				NGRAM_LINK=$LINK/fold_${fold}/ngram_${ngram}
         echo "NGRAM_LINK is ${NGRAM_LINK}"
 				if [ $FRESH_SETUP -eq 1 ]; then
-					rm -r -f $NGRAM_LINK
 					mkdir -p $NGRAM_LINK/computation
 					mkdir -p $NGRAM_LINK/result
 
