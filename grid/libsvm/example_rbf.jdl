@@ -27,7 +27,7 @@
 OutputSandbox = {"rbf.out"};
 
 InputSandbox = {"run_libsvm_rbf.sh",
-                "grid.py"
+                "grid.py",
                 "lfn:/grid/sagrid/nwu-hlt/NCHLT/NCHLT_2K.tar.gz"
                };
 
