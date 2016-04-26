@@ -15,6 +15,7 @@
 # 3. Process it like a boss
 
 # The data is registered in the MAGrid LFC
+start=`date +%s.%N`
 export LFC_HOST=lfc.magrid.ma
 
 ######## CODE RADE setup start ################################################
@@ -169,6 +170,7 @@ TEST_TRAIN=0
 ESTIMATE_C_VALUE=1
 FRESH_SETUP=1
 PREDICT_STAT=0
+curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "libsvm on '"$HOSTNAME"', starting processing of data set '"$2"' with Repo '"$1"' '"$CODERADE_VERSION"' ", "icon_emoji": ":labtocat:"}' https://hooks.slack.com/services/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
 
 for package_name in "original" #"comparing_words" "spell-check"
 do
@@ -271,3 +273,9 @@ do
 		done
 	done
 done
+
+end=`date +%s.%N`
+time=`echo "$end - $start" | bc`
+# Tell the team of the outcome #################################################
+curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "Libsvm processing of '"$2"' on '"$HOSTNAME"' took '"$time"' s. :wave::skin-tone-6:  ", "icon_emoji": ":labtocat:" }' https://hooks.slack.com/services/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
+#  #############################################################################
