@@ -160,7 +160,7 @@ stagingstart=`date +%s.%N`
 echo "getting the data"
 lcg-cp -v --vo sagrid lfn:/grid/sagrid/nwu-hlt/NCHLT/NCHLT_${2}.tar.gz file:${PWD}/NCHLT_${2}.tar.gz
 # Unpack the input data set
-tar xvfz NCHLT_${2}.tar.gz --strip-components=5
+tar xfz NCHLT_${2}.tar.gz --strip-components=5
 stagingend=`date +%s.%N`
 stagingtime=`echo "$stagingend - $stagingstart" | bc`
 
@@ -175,6 +175,13 @@ MAIN_DIR=${HOME} #link to the main directory
 SVM_SCRIPTS_DIR=${HOME}
 GRID_SEARCH=${SVM_SCRIPTS_DIR} #SCript to run grid search
 
+ls ${HOME}
+echo "perl script is at "
+find . -name "*.pl"
+
+echo "grid.py is at "
+find . -name "grid.py"
+
 TEST_TRAIN=0
 ESTIMATE_C_VALUE=1
 FRESH_SETUP=1
@@ -183,7 +190,7 @@ curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gri
 
 for package_name in "original" #"comparing_words" "spell-check"
 do
-	for size in "12K" #"4K" #"2K" "4K" "8K" "10K" "12K"
+	for size in "2K" #"4K" #"2K" "4K" "8K" "10K" "12K"
 	do
 		LINK=$MAIN_DIR/${package_name}/NCHLT/${size}/SVM_RBF
 
