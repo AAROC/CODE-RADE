@@ -17,7 +17,7 @@
 # The data is registered in the MAGrid LFC
 start=`date +%s.%N`
 export LFC_HOST=lfc.magrid.ma
-env 
+
 ######## CODE RADE setup start ################################################
 # CODE-RADE needs to determine what SITE, OS and ARCH you are on.
 # We need to set the following variables :
@@ -171,11 +171,15 @@ curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gri
 
 
 #Radial Basis function Kernel
-MAIN_DIR=${HOME} #link to the main directory
-SVM_SCRIPTS_DIR=${HOME}
+MAIN_DIR=${PWD} #link to the main directory
+SVM_SCRIPTS_DIR=${PWD}
 GRID_SEARCH=${SVM_SCRIPTS_DIR} #SCript to run grid search
 
-ls ${HOME}
+# PBS_JOBNAME=cream_360534252
+# PWD=/home/sagrid019/home_cream_360534252/CREAM360534252
+# HOME=/home/sagrid019/home_cream_360534252
+
+ls ${PWD}
 echo "perl script is at "
 find . -name "*.pl"
 
