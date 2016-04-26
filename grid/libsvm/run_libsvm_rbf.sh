@@ -155,7 +155,8 @@ which svm-scale
 which svm-train
 which gnuplot
 
-
+echo "getting the data"
+lcg-cp -v --vo sagrid lfn:/grid/sagrid/nwu-hlt/NCHLT/NCHLT_${2}.tar.gz file:${PWD}/NCHLT_${2}.tar.gz
 # Unpack the input data set
 tar xvfz NCHLT_${2}.tar.gz --strip-components=5
 
