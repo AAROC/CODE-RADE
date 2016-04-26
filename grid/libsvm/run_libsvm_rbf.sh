@@ -205,7 +205,7 @@ do
 						LANG_FOLD_DIR=$MAIN_DIR/${package_name}/NCHLT/${size}/cross_validate_${lang}/fold_${fold}
 
 						#Create n-gram tokens across all train set
-						perl $SVM_SCRIPTS/text_normalization.pl $LANG_FOLD_DIR/train_${fold} ${ngram} "" ${lang} 1 0 >> $NGRAM_LINK/computation/all_train_ngrams.txt
+						perl $SVM_SCRIPTS_DIR/text_normalization.pl $LANG_FOLD_DIR/train_${fold} ${ngram} "" ${lang} 1 0 >> $NGRAM_LINK/computation/all_train_ngrams.txt
 					done
 
 					#Sort estracted tokens with their frequency preceeding each token item
@@ -217,13 +217,13 @@ do
 						LANG_FOLD_DIR=$MAIN_DIR/${package_name}/NCHLT/${size}/cross_validate_${lang}/fold_${fold}
 
 						#Create feature vectors used for training and testing
-						perl $SVM_SCRIPTS/text_normalization.pl $LANG_FOLD_DIR/train_${fold} ${ngram} $NGRAM_LINK/computation/sorted_all_train_ngrams.txt ${lang} 0 1 >> $NGRAM_LINK/computation/train.txt
+						perl $SVM_SCRIPTS_DIR/text_normalization.pl $LANG_FOLD_DIR/train_${fold} ${ngram} $NGRAM_LINK/computation/sorted_all_train_ngrams.txt ${lang} 0 1 >> $NGRAM_LINK/computation/train.txt
 
 						#Create feature vectors used for testing
-						perl $SVM_SCRIPTS/text_normalization.pl $LANG_FOLD_DIR/test_${fold} ${ngram} $NGRAM_LINK/computation/sorted_all_train_ngrams.txt ${lang} 0 1 >> $NGRAM_LINK/computation/test_all.txt
+						perl $SVM_SCRIPTS_DIR/text_normalization.pl $LANG_FOLD_DIR/test_${fold} ${ngram} $NGRAM_LINK/computation/sorted_all_train_ngrams.txt ${lang} 0 1 >> $NGRAM_LINK/computation/test_all.txt
 
 						#Create feature vectors for each languaeg specific data. This will be used to estimate precision and recall per fold.
-						perl $SVM_SCRIPTS/text_normalization.pl $LANG_FOLD_DIR/test_${fold} ${ngram} $NGRAM_LINK/computation/sorted_all_train_ngrams.txt ${lang} 0 1 > $NGRAM_LINK/computation/test_${lang}.txt
+						perl $SVM_SCRIPTS_DIR/text_normalization.pl $LANG_FOLD_DIR/test_${fold} ${ngram} $NGRAM_LINK/computation/sorted_all_train_ngrams.txt ${lang} 0 1 > $NGRAM_LINK/computation/test_${lang}.txt
 					done
 
 					#Create a range values based on the train data and use it to on our test data.
@@ -276,7 +276,7 @@ do
 
 						svm-predict $NGRAM_LINK/computation/test_${lang}_scale $NGRAM_LINK/computation/train.data.model $NGRAM_LINK/result/predict_${lang} >> $NGRAM_LINK/result/accuracy_for_all_lang
 
-						$SVM_SCRIPTS/estimate_total_result.pl $NGRAM_LINK/result/predict_${lang} ${lang} >> $NGRAM_LINK/result/statistics.txt
+						$SVM_SCRIPTS_DIR/estimate_total_result.pl $NGRAM_LINK/result/predict_${lang} ${lang} >> $NGRAM_LINK/result/statistics.txt
 					done
 				fi
 			done
