@@ -155,10 +155,19 @@ which svm-scale
 which svm-train
 which gnuplot
 
+stagingstart=`date +%s.%N`
+
 echo "getting the data"
 lcg-cp -v --vo sagrid lfn:/grid/sagrid/nwu-hlt/NCHLT/NCHLT_${2}.tar.gz file:${PWD}/NCHLT_${2}.tar.gz
 # Unpack the input data set
 tar xvfz NCHLT_${2}.tar.gz --strip-components=5
+stagingend=`date +%s.%N`
+stagingtime=`echo "$end - $start" | bc`
+
+size=`du -chs NCHLT_${2}.tar.gz | awk '{print $1}' | uniq`
+# Tell the team of the staging outcome #################################################
+curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "staging of dataset '"$2"' ('"$size"') on '"$HOSTNAME"' took '"$stagingtime"' s. :wave::skin-tone-6:  ", "icon_emoji": ":labtocat:" }' https://hooks.slack.com/services/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
+#  #############################################################################
 
 
 #Radial Basis function Kernel
