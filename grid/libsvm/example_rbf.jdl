@@ -27,9 +27,10 @@
 OutputSandbox = {"rbf.out"};
 
 InputSandbox = {"run_libsvm_rbf.sh",
-                "grid.py",
-                "lfn:/grid/sagrid/nwu-hlt/NCHLT/NCHLT_2K.tar.gz"
+                "grid.py"
                };
+
+InputData = {"lfn:/grid/sagrid/nwu-hlt/NCHLT/NCHLT_2K.tar.gz"};
 
 # Number of times to resubmit job, if first submit fails from WMS
 
