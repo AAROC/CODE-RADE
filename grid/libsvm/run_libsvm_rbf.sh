@@ -197,16 +197,15 @@ do
 	for size in "2K" #"4K" #"2K" "4K" "8K" "10K" "12K"
 	do
 		LINK=$MAIN_DIR/${package_name}/NCHLT/${size}/SVM_RBF
-
+    echo "LINK is ${LINK}"
 		for fold in 1 2 3 4 #1 #2 3 4
 		do
 			for ngram in 3 #4 5
 			do
 				NGRAM_LINK=$LINK/fold_${fold}/ngram_${ngram}
-
+        echo "NGRAM_LINK is ${NGRAM_LINK}"
 				if [ $FRESH_SETUP -eq 1 ]; then
 					rm -r -f $NGRAM_LINK
-
 					mkdir -p $NGRAM_LINK/computation
 					mkdir -p $NGRAM_LINK/result
 
@@ -214,7 +213,7 @@ do
 					for lang in "ss" "afr" "zul" "eng"
 					do
 						LANG_FOLD_DIR=$MAIN_DIR/${package_name}/NCHLT/${size}/cross_validate_${lang}/fold_${fold}
-
+            echo "running the perl script for $lang"
 						#Create n-gram tokens across all train set
 						perl $SVM_SCRIPTS_DIR/text_normalization.pl $LANG_FOLD_DIR/train_${fold} ${ngram} "" ${lang} 1 0 >> $NGRAM_LINK/computation/all_train_ngrams.txt
 					done
@@ -236,7 +235,7 @@ do
 						#Create feature vectors for each languaeg specific data. This will be used to estimate precision and recall per fold.
 						perl $SVM_SCRIPTS_DIR/text_normalization.pl $LANG_FOLD_DIR/test_${fold} ${ngram} $NGRAM_LINK/computation/sorted_all_train_ngrams.txt ${lang} 0 1 > $NGRAM_LINK/computation/test_${lang}.txt
 					done
-
+          echo "starting svm-scale for the normalised stuff"
 					#Create a range values based on the train data and use it to on our test data.
 					svm-scale -l 0 -u 1 -s $NGRAM_LINK/computation/range.txt $NGRAM_LINK/computation/train.txt > $NGRAM_LINK/computation/train_norm.txt
 
