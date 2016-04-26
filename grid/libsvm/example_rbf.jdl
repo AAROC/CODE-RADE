@@ -27,7 +27,8 @@
 OutputSandbox = {"rbf.out"};
 
 InputSandbox = {"run_libsvm_rbf.sh",
-                "grid.py"
+                "grid.py",
+                "https://raw.githubusercontent.com/DavidR2016/Support-Vector-Machines-Exp/master/scripts/text_normalization.pl"
                };
 
 #  See http://doc.grid.surfsara.nl/en/latest/Pages/Practices/data_replication.html?highlight=inputdata#data-requirements
