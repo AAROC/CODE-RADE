@@ -240,9 +240,11 @@ do
 					svm-scale -l 0 -u 1 -s $NGRAM_LINK/computation/range.txt $NGRAM_LINK/computation/train.txt > $NGRAM_LINK/computation/train_norm.txt
 
 					#Apply our range values on test set
+          echo "starting svm-scale on all data"
 					svm-scale -r $NGRAM_LINK/computation/range.txt $NGRAM_LINK/computation/test_all.txt > $NGRAM_LINK/computation/test_all.data
 					for lang in "ss" "afr" "zul" "eng"
 					do
+            echo "starting svm-scale  on $lang"
 						svm-scale -r $NGRAM_LINK/computation/range.txt $NGRAM_LINK/computation/test_${lang}.txt > $NGRAM_LINK/computation/test_${lang}_scale
 					done
 
@@ -264,6 +266,7 @@ do
 					result=$(echo "$one/$count" | bc -l)
 					log=$(echo "l($result)/l(2)" | bc -l)
 					cd $GRID_SEARCH
+          echo "running the python script"
 					python $GRID_SEARCH/grid.py -log2c -13.2877,13.2877,1.6609 -log2g ${log},${log},0 -v 3 -m 300 $NGRAM_LINK/computation/train.data  > $NGRAM_LINK/result/result_${ngram}
 					#python $GRID_SEARCH/grid.py -log2c 13.2877,13.2877,0.0 -log2g $log,$log,0 -v 2 -m 400 $NGRAM_LINK/computation/train.data > $NGRAM_LINK/result/result_${ngram}
 
