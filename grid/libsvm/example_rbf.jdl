@@ -30,7 +30,16 @@ InputSandbox = {"run_libsvm_rbf.sh",
                 "grid.py"
                };
 
-InputData = {"lfn:/grid/sagrid/nwu-hlt/NCHLT/NCHLT_2K.tar.gz"};
+#  See http://doc.grid.surfsara.nl/en/latest/Pages/Practices/data_replication.html?highlight=inputdata#data-requirements
+DataRequirements = {
+                     [
+                       InputData = {"lfn:/grid/sagrid/nwu-hlt/NCHLT/NCHLT_2K.tar.gz"};
+                       DataCatalogType = "DLI";
+                       DataCatalog = "http://lfc.magrid.ma:8085";
+                      ]
+                    };
+DataAccessProtocol = {"gsiftp"};
+DataAccessProtocol = "gsiftp";
 
 # Number of times to resubmit job, if first submit fails from WMS
 
