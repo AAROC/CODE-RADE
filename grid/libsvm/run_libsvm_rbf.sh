@@ -148,7 +148,7 @@ fi
 # End of CODE-RADE Setup #######################################################
 
 # checking the environment
-module add libsvm gnuplot
+module add libsvm/3.14 gnuplot
 module list
 which svm-predict
 which svm-scale
