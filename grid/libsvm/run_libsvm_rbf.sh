@@ -157,6 +157,7 @@ for arg_position in $(seq 3 "$#") ; do
   else
     echo "Setting PROCESSING_OPTIONS[$array_position] to ${@:$arg_position:1}"
     PROCESSING_OPTIONS[$array_position]=${@:$arg_position:1}
+  fi
 done
 
 # Set the variables that the script uses:
