@@ -116,7 +116,7 @@ if [ "$#" -gt 6 ]; then
 fi
 
 # 4. Insane variables set
-if [[ "${ALLOWED_REPOS[$@]}" =~ $1 ]]; then
+if [[ ! ${ALLOWED_REPOS[*]} =~ ${1} ]]; then
   echo "Repo $1 not allowed - please use one of ${ALLOWED_REPOS[*]}"
   exit 5;
 else
