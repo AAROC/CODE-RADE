@@ -449,7 +449,7 @@ echo "creating the output sandbox"
 
 end=$(date +%s.%N)
 processing_time=$(echo "$end - $processing_start" | bc)
-totaltime=$(echo "$end - $start" | bc)
+total_time=$(echo "$end - $start" | bc)
 # Tell the team of the outcome #################################################
 # First, get the X509 subject of the submitter
 submitter=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { FS = "/" } {print $6}') # Common Name
