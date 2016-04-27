@@ -60,7 +60,7 @@ ALLOWED_DATASETS=("2K" "4K" "8K" "10K" "12K")
 # </Set Alllowed Mandatory Variables>
 
 # <Set Default Optional parameters>
-PROCESSION_OPTIONS=(1 0 1 0)
+PROCESSING_OPTIONS=(1 0 1 0)
 #TEST_TRAIN=1
 #ESTIMATE_C_VALUE=0
 #FRESH_SETUP=1
@@ -116,7 +116,7 @@ if [ "$#" -gt 6 ]; then
 fi
 
 # 4. Insane variables set
-if [[ ! ${ALLOWED_REPOS[*]} =~ ${1} ]]; then
+if [[ ! "${ALLOWED_REPOS[*]}" =~ "$1" ]]; then
   echo "Repo $1 not allowed - please use one of ${ALLOWED_REPOS[*]}"
   exit 5;
 else
@@ -140,28 +140,28 @@ if [ "$#" == 2 ]; then
   echo "ESTIMATE_C_VALUE=0"
   echo "FRESH_SETUP=1"
   echo "PREDICT_STAT=0"
-
 fi
 
 # 4.1 - Insane variables on processing options
-for arg_position in $(seq 3 $#) ; do
+for arg_position in $(seq 3 "$#") ; do
   let "array_position=$arg_position-3"
-  if [ "${!arg_position}" != 1 -o "${!arg_position}" != 0 ]; then
-    echo "You have set an incorrect value for the argument ${!arg_position} "
-    echo "Setting this to the default ${PROCESSION_OPTIONS[$array_position]}"
+  echo "array position is $array_position ; arg_position is $arg_position"
+  if [ "${@:$arg_position:1}" != 1 -o "${@:$arg_position:1}" != 0 ]; then
+    echo "You have set an incorrect value (${@:$arg_position:1}) for the argument ${arg_position} "
+    echo "Setting this to the default ${PROCESSING_OPTIONS[$array_position]}"
   else
-    echo "Setting PROCESSION_OPTIONS[$array_position] to ${!arg_position}"
-    PROCESSION_OPTIONS[$array_position]=${!arg_position}
+    echo "Setting PROCESSING_OPTIONS[$array_position] to ${@:$arg_position:1}"
+    PROCESSING_OPTIONS[$array_position]=${@:$arg_position:1}
   fi
 done
 
 # Set the variables that the script uses:
 # we could probably do this better with an associative array
 # (ie, name/value dict)
-TEST_TRAIN=${PROCESSION_OPTIONS[0]}
-ESTIMATE_C_VALUE=${PROCESSION_OPTIONS[1]}
-FRESH_SETUP=${PROCESSION_OPTIONS[2]}
-PREDICT_STAT=${PROCESSION_OPTIONS[3]}
+TEST_TRAIN=${PROCESSING_OPTIONS[0]}
+ESTIMATE_C_VALUE=${PROCESSING_OPTIONS[1]}
+FRESH_SETUP=${PROCESSING_OPTIONS[2]}
+PREDICT_STAT=${PROCESSING_OPTIONS[3]}
 
 
 # The data is registered in the MAGrid LFC
@@ -335,7 +335,7 @@ echo "perl script is at $(find . -name "*.pl")"
 echo "grid.py is at $(find . -name "grid.py")"
 
 
-curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "libsvm on '"$HOSTNAME"', starting processing of data set '"$DATASET"' with options '"${PROCESSION_OPTIONS[*]}"' Repo '"$REPO"' '"$CODERADE_VERSION"' ", "icon_emoji": ":labtocat:"}' https://hooks.slack.com/services/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
+curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "libsvm on '"$HOSTNAME"', starting processing of data set '"$DATASET"' with options '"${PROCESSING_OPTIONS[*]}"' Repo '"$REPO"' '"$CODERADE_VERSION"' ", "icon_emoji": ":labtocat:"}' https://hooks.slack.com/services/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
 
 processing_start=$(date +%s.%N)
 
