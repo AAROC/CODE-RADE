@@ -124,7 +124,7 @@ else
   REPO=$1
 fi
 
-if [[ "${ALLOWED_DATASETS[$@]}" =~ $2 ]]; then
+if [[ ! ${ALLOWED_DATASETS[*]} =~ $2 ]]; then
   echo "Data Set $2 not allowed - please use one of ${ALLOWED_DATASETS[*]}"
   exit 6;
 else
