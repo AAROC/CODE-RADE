@@ -147,11 +147,11 @@ if [ "$#" == 2 ]; then
   echo "PREDICT_STAT=0"
 fi
 
-# 4.1 - Insane variables on processing options
+# 4.1 - Insane variables on processing options"
 for arg_position in $(seq 3 "$#") ; do
   let "array_position=$arg_position-3"
   echo "array position is $array_position ; arg_position is $arg_position"
-  if [ "${@:$arg_position:1}" != 1 -o "${@:$arg_position:1}" != 0 ]; then
+  if [ "${@:$arg_position:1}" != "1" -a "${@:$arg_position:1}" != "0" ]; then
     echo "You have set an incorrect value (${@:$arg_position:1}) for the argument ${arg_position} "
     echo "Setting this to the default ${PROCESSING_OPTIONS[$array_position]}"
   else
@@ -248,7 +248,7 @@ else # lsb is present
      OS="u1404"
   elif [[ ${LSB_ID} == 'CentOS' || ${LSB_ID} == 'Scientific' || ${LSB_ID} == 'REDHAT' ]] ; then
     echo "RPM based machine, now checking the release version"
-    if [[ $(echo "$LSB_RELEASE" '>=' 6 |bc) -eq 1 ]] ; then
+    if [[ $(echo "$LSB_RELEASE" '>=' 5 |bc) -eq 1 ]] ; then
        echo "We can support your version"
        OS="sl6"
     else
