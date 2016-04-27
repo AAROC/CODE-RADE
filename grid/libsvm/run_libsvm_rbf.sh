@@ -152,12 +152,11 @@ for arg_position in $(seq 3 "$#") ; do
   let "array_position=$arg_position-3"
   echo "array position is $array_position ; arg_position is $arg_position"
   if [ "${@:$arg_position:1}" != "1" -a "${@:$arg_position:1}" != "0" ]; then
-    echo "You have set an incorrect value (${@:$arg_position:1}) for the argument ${arg_position} "
+    echo "You have set an incorrect value (${@:arg_position:1}) for the argument ${arg_position} "
     echo "Setting this to the default ${PROCESSING_OPTIONS[$array_position]}"
   else
     echo "Setting PROCESSING_OPTIONS[$array_position] to ${@:$arg_position:1}"
     PROCESSING_OPTIONS[$array_position]=${@:$arg_position:1}
-  fi
 done
 
 # Set the variables that the script uses:
