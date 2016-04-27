@@ -123,11 +123,12 @@ else
   echo "Setting REPO to $1"
   REPO=$1
 fi
-
-if [[ ! ${ALLOWED_DATASETS[*]} =~ $2 ]]; then
+echo "checking datasets"
+if [[ ! ${ALLOWED_DATASETS[*]} =~ ${2} ]]; then
   echo "Data Set $2 not allowed - please use one of ${ALLOWED_DATASETS[*]}"
   exit 6;
 else
+  echo "Setting dataset to ${2}"
   DATASET=$2
 fi
 
@@ -178,7 +179,7 @@ OS="undefined"
 ARCH="undefined"
 CVMFS_DIR="undefined"
 #REPO="devrepo.sagrid.ac.za"
-REPO=$1.sagrid.ac.za
+#REPO=$1.sagrid.ac.za - this has been set above
 shelltype=$(echo "$SHELL" | awk 'BEGIN { FS = "/" } {print $3}')
 echo "looks like you're using $shelltype"
 # What architecture are we ?
