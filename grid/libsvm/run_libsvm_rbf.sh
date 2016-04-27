@@ -126,7 +126,7 @@ if [[ ! "${ALLOWED_REPOS[*]}" =~ "$1" ]]; then
   exit 5;
 else
   echo "Setting REPO to $1"
-  REPO=$1
+  REPO=$1.sagrid.ac.za
 fi
 echo "checking datasets"
 if [[ ! ${ALLOWED_DATASETS[*]} =~ ${2} ]]; then
@@ -279,13 +279,13 @@ echo "$REPO"
 export SITE
 export OS
 export ARCH
-export CVMFS_DIR=${CVMFS_MOUNT}/${REPO}
+export CVMFS_DIR="${CVMFS_MOUNT}/${REPO}"
 export REPO
 export TMPDIR
 echo "you are using ${REPO} version"
-cat /cvmfs/"${REPO}"/version
+cat "/cvmfs/${REPO}/version"
 echo "Checking whether you have modules installed"
-CODERADE_VERSION=$(cat /cvmfs/"${REPO}"/version)
+CODERADE_VERSION=$(cat "/cvmfs/${REPO}/version")
 # Is modules even available?
 if [ -z "${MODULESHOME}" ] ; then
   echo "MODULESHOME is not set. Are you sure you have modules installed ? you're going to need it."
