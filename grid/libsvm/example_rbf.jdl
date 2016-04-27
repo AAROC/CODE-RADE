@@ -12,7 +12,7 @@
   Executable = "run_libsvm_rbf.sh";
 
 #  The script might take some arguments - these are passed via numbered position.:
-  Arguments = "fastrepo 2K 1 1 1 1";
+  Arguments = "fastrepo '2K' 1 1 1 1";
 
 # Standard output (Would have been displayed to the screen output)
 
