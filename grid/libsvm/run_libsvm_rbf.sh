@@ -47,6 +47,8 @@
 # 4: Not enough arguments set
 # 5: Wrong selection of CODE-RADE  repo
 # 6: Wrong selection of Data set
+# 7: modules not available
+# 8: wierd architecture
 
 # We need to run a quick check on the arguments. They have to be at least 2
 # If they are less than 2, we die. If they are 2 < NARGS < 6, we only update the
@@ -188,7 +190,7 @@ ARCH=$(uname -m)
 # Linux - let's provide for this instance
 if [ $? != 0 ] ; then
   echo "My my, uname exited with a nonzero code.  Are you trying to run this from a non-Linux machine ?  Dude ! What's WRONG with you !?  Bailing out... aaaaahhhhhrrrggg...."
-  exit 127
+  exit 8;
 fi
 
 # What OS are we on ?
@@ -286,7 +288,7 @@ if [ -z "${MODULESHOME}" ] ; then
   echo "MODULESHOME is not set. Are you sure you have modules installed ? you're going to need it."
   echo "stuff in p"
   echo "Exiting"
-  exit 1;
+  exit 7;
 else
   source "${MODULESHOME}/init/${shelltype}"
   echo "Great, seems that modules are here, at ${MODULESHOME}"
