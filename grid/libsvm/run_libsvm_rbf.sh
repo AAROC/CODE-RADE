@@ -49,6 +49,9 @@
 # 6: Wrong selection of Data set
 # 7: modules not available
 # 8: wierd architecture
+# 9: Debian version not supported
+# 10: Wierd OS
+
 
 # We need to run a quick check on the arguments. They have to be at least 2
 # If they are less than 2, we die. If they are 2 < NARGS < 6, we only update the
@@ -227,7 +230,7 @@ if [ $? != 0 ] ; then
       echo "Setting your OS to u1404 - close enough"
     else
       echo "Debian version ${DEBIAN_VERSION} is not supported"
-      exit 127
+      exit 9;
     fi
   fi
 else # lsb is present
@@ -260,7 +263,7 @@ fi
 if [ ${OS} == 'undefined' ] ; then
   echo "damn, OS is still undefined"
   echo "look dude, You're not CentOS , you're not Debian and you don't have LSB... CVMFS is not your problem right now."
-  exit 127
+  exit 10;
 fi
 
 
