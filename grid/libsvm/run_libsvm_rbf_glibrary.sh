@@ -461,12 +461,6 @@ echo "creating the output sandbox"
 end=$(date +%s.%N)
 processing_time=$(echo "$end - $processing_start" | bc)
 total_time=$(echo "$end - $start" | bc)
-# Tell the team of the outcome #################################################
-# First, get the X509 subject of the submitter
-submitter=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { FS = "/" } {print $6}') # Common Name
-institute=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { FS = "/" } {print $6}') # L= (institute)
-curl -X POST --data-urlencode 'payload={"channel": "#gridjobs","username": "gridjob", "text": "Libsvm processing of '"$DATASET"' on '"$HOSTNAME"' took '"$processing_time"' s. :wave::skin-tone-6:", "icon_emoji": ":labtocat:", "attachments": [ { "fallback": "Job info.", "color": "#36a64f", "pretext": "Job information summary", "title": "Job information", "text": "Submitted by '"$submitter"' from '"$institute"'", "fields": [ { "title": "Total Job Time", "value": "'"$total_time"'", "short": true }, {"title": "Total Processing Time", "value": "'"$processing_time"'", "short": true }, { "title": "Data Staging Time", "value": "'"$staging_time"'", "short": true } ] } ] }' https://hooks.slack.com/services/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
-#  #############################################################################
 
 # TODO
 # Get the Processor info from lcg-info
@@ -476,6 +470,24 @@ curl -X POST --data-urlencode 'payload={"channel": "#gridjobs","username": "grid
 # the basic workflow is :
 # 1. get a token (username and password are required)
 # 2. register the data in the catalogue
+# 3. Update the average ?
 
 # 1. Get the token
 # curl POST /v2/users/login HTTP/1.1 {'username': 'brucellino', 'password': '<password>'}
+curl -X POST -H 'Content-Type: application/json' -d '{"username": "brucellino","password": "EQXIovD0tId4JqV4_CWGNHEzF9HYA4nk"}' http://glibrary.ct.infn.it:3500/v2/users/login > auth
+export token=$(python -c 'import json,sys; json_data=open("auth"); data=json.load(json_data); print data["id"]')
+
+# 2. Register the data
+# curl POST /v2/repos/nwu-hlt/nchlt HTTP/1.1
+curl -X POST -H "Content-Type: application/json" -H "Authorization: $token" -d '{"total_time": "total_time": "'"$total_time"'", "staging_time": "'"$staging_time"'", "processing_time": "'"$processing_time"'"}' http://glibrary.ct.infn.it:3500/v2/repos/nwu_hlt/nchlt
+
+# 3. Calculate the average
+#
+
+# Tell the team of the outcome #################################################
+# First, get the X509 subject of the submitter
+submitter=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { FS = "/" } {print $6}') # Common Name
+institute=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { FS = "/" } {print $6}') # L= (institute)
+# Send slack message
+curl -X POST --data-urlencode 'payload={"channel": "#gridjobs","username": "gridjob", "text": "Libsvm processing of '"$DATASET"' on '"$HOSTNAME"' took '"$processing_time"' s. :wave::skin-tone-6:", "icon_emoji": ":labtocat:", "attachments": [ { "fallback": "Job info.", "color": "#36a64f", "pretext": "Job information summary", "title": "Job information", "text": "Submitted by '"$submitter"' from '"$institute"'", "fields": [ { "title": "Total Job Time", "value": "'"$total_time"'", "short": true }, {"title": "Total Processing Time", "value": "'"$processing_time"'", "short": true }, { "title": "Data Staging Time", "value": "'"$staging_time"'", "short": true } ] } ] }' https://hooks.slack.com/services/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
+#  #############################################################################
