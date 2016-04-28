@@ -457,7 +457,7 @@ do
 done
 
 # there should be a few pngs here....
-ls -lht
+find . -name "*.png"
 
 echo "creating the output sandbox"
 
