@@ -456,6 +456,9 @@ do
 	done
 done
 
+# there should be a few pngs here....
+ls -lht
+
 echo "creating the output sandbox"
 
 end=$(date +%s.%N)
@@ -487,7 +490,7 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: $token" -d '
 # Tell the team of the outcome #################################################
 # First, get the X509 subject of the submitter
 submitter=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { FS = "/" } {print $6}') # Common Name
-institute=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { FS = "/" } {print $6}') # L= (institute)
+institute=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { FS = "/" } {print $5}') # L= (institute)
 # Send slack message
 curl -X POST --data-urlencode 'payload={"channel": "#gridjobs","username": "gridjob", "text": "Libsvm processing of '"$DATASET"' on '"$HOSTNAME"' took '"$processing_time"' s. :wave::skin-tone-6:", "icon_emoji": ":labtocat:", "attachments": [ { "fallback": "Job info.", "color": "#36a64f", "pretext": "Job information summary", "title": "Job information", "text": "Submitted by '"$submitter"' from '"$institute"'", "fields": [ { "title": "Total Job Time", "value": "'"$total_time"'", "short": true }, {"title": "Total Processing Time", "value": "'"$processing_time"'", "short": true }, { "title": "Data Staging Time", "value": "'"$staging_time"'", "short": true } ] } ] }' https://hooks.slack.com/services/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
 #  #############################################################################
