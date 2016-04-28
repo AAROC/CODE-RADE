@@ -327,7 +327,7 @@ staging_time=$(echo "$stagingend - $stagingstart" | bc)
 
 size=$(du -chs "NCHLT_${DATASET}.tar.gz" | awk '{print $1}' | uniq)
 # Tell the team of the staging outcome #################################################
-curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "staging of dataset '"$2"' ('"$size"') on '"$HOSTNAME"' took '"$staging_time"' s. :wave::skin-tone-6:  ", "icon_emoji": ":labtocat:" }' https://hooks.slack.com/services/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
+curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "SVM job starting", "icon_emoji": ":labtocat:", "attachments": [ { "fallback": "Job info.", "color": "#36a64f", "pretext": "Job Start information", "title": "Job Start", "text": "Submitted by '"$submitter"' from '"$institute"'", "fields": [ { "title": "Dataset", "value": "'"$DATASET"'", "short": true }, {"title": "Worker Node", "value": "'"$HOSTNAME"'", "short": true }, { "title": "Data Staging Time", "value": "'"$staging_time"'", "short": true }, { "title": "Processing Options", "value": "'"${PROCESSING_OPTIONS[*]}"'", "short": true}, {"title": "CODE-RADE Version", "value": "'"$CODERADE_VERSION"'"} ] } ]}' https://hooks.slack.com/services/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
 #  #############################################################################
 
 
@@ -343,9 +343,6 @@ GRID_SEARCH=${SVM_SCRIPTS_DIR} #SCript to run grid search
 ls ${PWD}
 echo "perl script is at $(find . -name "*.pl")"
 echo "grid.py is at $(find . -name "grid.py")"
-
-
-curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "libsvm on '"$HOSTNAME"', starting processing of data set '"$DATASET"' with options '"${PROCESSING_OPTIONS[*]}"' Repo '"$REPO"' '"$CODERADE_VERSION"' ", "icon_emoji": ":labtocat:"}' https://hooks.slack.com/services/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
 
 processing_start=$(date +%s.%N)
 
