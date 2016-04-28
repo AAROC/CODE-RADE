@@ -148,26 +148,29 @@ if [ "$#" == 2 ]; then
 fi
 
 # 4.1 - Insane variables on processing options"
-for arg_position in $(seq 3 "$#") ; do
-  let "array_position=$arg_position-3"
-  echo "array position is $array_position ; arg_position is $arg_position"
-  if [ "${@:$arg_position:1}" != "1" -a "${@:$arg_position:1}" != "0" ]; then
-    echo "You have set an incorrect value (${@:arg_position:1}) for the argument ${arg_position} "
-    echo "Setting this to the default ${PROCESSING_OPTIONS[$array_position]}"
-  else
-    echo "Setting PROCESSING_OPTIONS[$array_position] to ${@:$arg_position:1}"
-    PROCESSING_OPTIONS[$array_position]=${@:$arg_position:1}
-  fi
-done
+# for arg_position in $(seq 3 "$#") ; do
+#   let "array_position=$arg_position-3"
+#   echo "array position is $array_position ; arg_position is $arg_position"
+#   if [ "${@:$arg_position:1}" != "1" -a "${@:$arg_position:1}" != "0" ]; then
+#     echo "You have set an incorrect value (${@:arg_position:1}) for the argument ${arg_position} "
+#     echo "Setting this to the default ${PROCESSING_OPTIONS[$array_position]}"
+#   else
+#     echo "Setting PROCESSING_OPTIONS[$array_position] to ${@:$arg_position:1}"
+#     PROCESSING_OPTIONS[$array_position]=${@:$arg_position:1}
+#   fi
+# done
 
 # Set the variables that the script uses:
 # we could probably do this better with an associative array
 # (ie, name/value dict)
-TEST_TRAIN=${PROCESSING_OPTIONS[0]}
-ESTIMATE_C_VALUE=${PROCESSING_OPTIONS[1]}
-FRESH_SETUP=${PROCESSING_OPTIONS[2]}
-PREDICT_STAT=${PROCESSING_OPTIONS[3]}
-
+# TEST_TRAIN=${PROCESSING_OPTIONS[0]}
+# ESTIMATE_C_VALUE=${PROCESSING_OPTIONS[1]}
+# FRESH_SETUP=${PROCESSING_OPTIONS[2]}
+# PREDICT_STAT=${PROCESSING_OPTIONS[3]}
+TEST_TRAIN=1
+ESTIMATE_C_VALUE=1
+FRESH_SETUP=1
+PREDICT_STAT=1
 
 # The data is registered in the MAGrid LFC
 start=$(date +%s.%N)
