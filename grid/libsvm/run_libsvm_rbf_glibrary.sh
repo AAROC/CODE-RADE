@@ -66,7 +66,7 @@ ALLOWED_DATASETS=("2K" "4K" "8K" "10K" "12K")
 # </Set Alllowed Mandatory Variables>
 
 # <Set Default Optional parameters>
-PROCESSING_OPTIONS=(1 0 1 0)
+PROCESSING_OPTIONS=(1 1 1 1)
 #TEST_TRAIN=1
 #ESTIMATE_C_VALUE=0
 #FRESH_SETUP=1
