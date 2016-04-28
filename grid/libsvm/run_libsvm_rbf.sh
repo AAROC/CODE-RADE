@@ -316,7 +316,8 @@ which gnuplot
 stagingstart=$(date +%s.%N)
 
 echo "getting the data"
-lcg-cp -v --vo sagrid "lfn:/grid/sagrid/nwu-hlt/NCHLT/NCHLT_${DATASET}.tar.gz file:${PWD}/NCHLT_${DATASET}.tar.gz"
+echo "lcg-cp -v --vo sagrid lfn:/grid/sagrid/nwu-hlt/NCHLT/NCHLT_${DATASET}.tar.gz file:${PWD}/NCHLT_${DATASET}.tar.gz"
+lcg-cp -v --vo sagrid lfn:/grid/sagrid/nwu-hlt/NCHLT/NCHLT_${DATASET}.tar.gz file:${PWD}/NCHLT_${DATASET}.tar.gz
 # Unpack the input data set
 tar xfz "NCHLT_${DATASET}.tar.gz" --strip-components=5
 stagingend=$(date +%s.%N)
