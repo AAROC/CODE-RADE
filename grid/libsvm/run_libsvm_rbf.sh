@@ -325,6 +325,11 @@ stagingend=$(date +%s.%N)
 staging_time=$(echo "$stagingend - $stagingstart" | bc)
 
 size=$(du -chs "NCHLT_${DATASET}.tar.gz" | awk '{print $1}' | uniq)
+
+# we need to know where we are coming from on the internet in order to tell glibrary of our results.
+# This will get our gateway.
+
+wget -qO - icanhazip.com
 # Tell the team of the staging outcome #################################################
 curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "staging of dataset '"$2"' ('"$size"') on '"$HOSTNAME"' took '"$staging_time"' s. :wave::skin-tone-6:  ", "icon_emoji": ":labtocat:" }' https://hooks.slack.com/services/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
 #  #############################################################################
@@ -424,7 +429,6 @@ do
           echo "running the python script"
 					python $GRID_SEARCH/grid.py -log2c -13.2877,13.2877,1.6609 -log2g ${log},${log},0 -v 3 -m 300 $NGRAM_LINK/computation/train.data  > $NGRAM_LINK/result/result_${ngram}
 					#python $GRID_SEARCH/grid.py -log2c 13.2877,13.2877,0.0 -log2g $log,$log,0 -v 2 -m 400 $NGRAM_LINK/computation/train.data > $NGRAM_LINK/result/result_${ngram}
-
 				fi
 
 				#Train and ouput a model. Test validation set on the output model.
