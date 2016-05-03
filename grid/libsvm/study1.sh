@@ -1,183 +1,32 @@
 #!/bin/bash -e
-# CODE-RADE libsvm basic example
+# LibSVM performance study 1
+# See README
 # Author : Bruce Becker
 #        : https://github.com/brucellino
 #        : CSIR Meraka
 # ########################################
-# See the README.md in the repo
-# Arguments are :
-# 1 - CODE-RADE Repo to use (default : fastrepo)
-# 2 - Dataset to use (default: 2K)
+# First, get the X509 subject of the submitter
+submitter=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { FS = "/" } {print $6}') # Common Name
+institute=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { FS = "/" } {print $5}') # L= (institute)
 
-# This script has 3 parts :
-# 1. Set up CODE-RADE apps
-# 2. Unpack Staged data
-# 3. Process it like a boss
-
-# Arguments are passed in the JDL using the ' Arguments = []; section.
-# Important : the arguments are defined by their numerical position :
-# Arg1 : Which CODE-RADE repo ?  (default : fastrepo | options : devrepo, apprepo)
-# Arg2 : Which data set ? (default 2K | options : 2K, 4K, 6K, 8K, 10K, 12K)
-# Arg3-6 : Booleans for what to run
-#
-# TEST_TRAIN=1/0
-# ESTIMATE_C_VALUE=1/0
-# FRESH_SETUP=1/0
-# PREDICT_STAT=1/0
-
-# ----- What do the parameters mean ? --------
-# From @DavidR2016 :
-# TEST_TRAIN: Train: trains and outputs a model,
-#             Test: tests validation set on the current output model
-#             (so it basically trains and tests)
-# ESTIMATE_C_VALUE: Estimates the C value which is used for:
-#                   The parameter C controls the trade off between errors of the
-#                   SVM on training data and margin maximization
-# FRESH_SETUP: Gives the experiment a fresh setup every time it runs by removing
-#              some of the generated output
-# PREDICT_STAT: Prediction of overall statistics showing the accuracy of
-#               classification based on the obtained results from
-#                training and testing.
-# ----------------------------------------------
-
-# ------ What do the exit codes mean ? ---------
-# See http://tldp.org/LDP/abs/html/exitcodes.html
-# for standard codes (1,2,126,127,128,130,255, etc)
-# 3: No arguments set
-# 4: Not enough arguments set
-# 5: Wrong selection of CODE-RADE  repo
-# 6: Wrong selection of Data set
-# 7: modules not available
-# 8: wierd architecture
-# 9: Debian version not supported
-# 10: Wierd OS
-
-
-# We need to run a quick check on the arguments. They have to be at least 2
-# If they are less than 2, we die. If they are 2 < NARGS < 6, we only update the
-# set ones.
-
-# Set some defaults and allowed variables
-
-# <Set Allowed Mandatory Variables>
-ALLOWED_REPOS=("fastrepo" "devrepo" "apprepo")
-ALLOWED_DATASETS=("2K" "4K" "8K" "10K" "12K")
-# </Set Alllowed Mandatory Variables>
-
-# <Set Default Optional parameters>
-PROCESSING_OPTIONS=(1 0 1 0)
-#TEST_TRAIN=1
-#ESTIMATE_C_VALUE=0
-#FRESH_SETUP=1
-#PREDICT_STAT=0
-# </Set Default Optional Parameters>
-
-###### <Check on Arguments>#####################################################
-
-#  First, deal with the pathological cases.
-#  These are :
-# 1. No variables set
-# 2. Not enough variables set
-# 3. Too many variables set
-# 4. Variables set to insane values
-
-# 1. No variables set
-# --------------------
-if [ "$#" -eq 0 ]; then
-  echo "This script requires arguments please :
-        Arguments are passed in the JDL using the Arguments = []; section.
-        Important : the arguments are defined by their numerical position :
-        Arg1   : Mandatory : Which CODE-RADE repo ?  (default : fastrepo | options : devrepo, apprepo)
-        Arg2   : Mandatory : Which data set ? (default 2K | options : 2K, 4K, 6K, 8K, 10K, 12K)
-        Arg3-6 : Booleans for what to run (optional)
-        TEST_TRAIN : 1/0
-        ESTIMATE_C_VALUE : 1/0
-        FRESH_SETUP :  1/0
-        PREDICT_STAT:  1/0
-
-        Go back and try again"
-        exit 3;
+echo "We are in $PWD"
+# where are we coming from ?
+wget -qO - icanhazip.com
+# Use this when the top-bdii is down :-/
+export LCG_GFAL_INFOSYS="top-bdii.magrid.ma:2170"
+export LFC_HOST=lfc.magrid.ma
+echo "using top-bdii $LCG_GFAL_INFOSYS"
+REPO=fastrepo.sagrid.ac.za
 fi
-
-# 2. not enough variables set
-# ---------------------------
-if [ "$#" -lt 2 ]; then
-  echo "Dude, you have to set at least the first and second arguments of the script"
-  echo "\$1 : Repo name (fastrepo/devrepo/apprepo)"
-  echo "\$2 : Which data set (2K/4K/6K/8K/10K/12K)"
-  echo "Bailing out... go back and try again."
-  exit 4;
-fi
-
-# 3. Too many variables set
-# -------------------------
-# IF we have more than 6 arguments, then it's not clear that the user  knows
-# what they want to do. We will set the arguments up to and including the last
-# one
-if [ "$#" -gt 6 ]; then
-  echo "your have set too many variables ($# instead of max 6)
-  We will use the first 6 to set what we can, but please check your
-  settings for sanity."
-fi
-
-# 4. Insane variables set
-if [[ ! "${ALLOWED_REPOS[*]}" =~ "$1" ]]; then
-  echo "Repo $1 not allowed - please use one of ${ALLOWED_REPOS[*]}"
-  exit 5;
-else
-  echo "Setting REPO to $1"
-  REPO=$1.sagrid.ac.za
-fi
-echo "checking datasets"
-if [[ ! ${ALLOWED_DATASETS[*]} =~ ${2} ]]; then
-  echo "Data Set $2 not allowed - please use one of ${ALLOWED_DATASETS[*]}"
-  exit 6;
-else
-  echo "Setting dataset to ${2}"
-  DATASET=$2
-fi
-
-if [ "$#" == 2 ]; then
-  echo "Running with default parameters : "
-  echo "Repo : $1"
-  echo "Dataset :$2"
-  echo "TEST_TRAIN=1"
-  echo "ESTIMATE_C_VALUE=0"
-  echo "FRESH_SETUP=1"
-  echo "PREDICT_STAT=0"
-fi
-
-# 4.1 - Insane variables on processing options"
-# for arg_position in $(seq 3 "$#") ; do
-#   let "array_position=$arg_position-3"
-#   echo "array position is $array_position ; arg_position is $arg_position"
-#   if [ "${@:$arg_position:1}" != "1" -a "${@:$arg_position:1}" != "0" ]; then
-#     echo "You have set an incorrect value (${@:arg_position:1}) for the argument ${arg_position} "
-#     echo "Setting this to the default ${PROCESSING_OPTIONS[$array_position]}"
-#   else
-#     echo "Setting PROCESSING_OPTIONS[$array_position] to ${@:$arg_position:1}"
-#     PROCESSING_OPTIONS[$array_position]=${@:$arg_position:1}
-#   fi
-# done
-
-# Set the variables that the script uses:
-# we could probably do this better with an associative array
-# (ie, name/value dict)
-# TEST_TRAIN=${PROCESSING_OPTIONS[0]}
-# ESTIMATE_C_VALUE=${PROCESSING_OPTIONS[1]}
-# FRESH_SETUP=${PROCESSING_OPTIONS[2]}
-# PREDICT_STAT=${PROCESSING_OPTIONS[3]}
+DATASET=2K
 TEST_TRAIN=1
 ESTIMATE_C_VALUE=1
 FRESH_SETUP=1
-PREDICT_STAT=1
+PREDICT_STAT=0
 
 # The data is registered in the MAGrid LFC
 start=$(date +%s.%N)
-export LFC_HOST=lfc.magrid.ma
 
-echo "what variables do we have from CREAM ?"
-env 
 ######## CODE RADE setup start ################################################
 # CODE-RADE needs to determine what SITE, OS and ARCH you are on.
 # We need to set the following variables :
@@ -327,13 +176,8 @@ stagingend=$(date +%s.%N)
 staging_time=$(echo "$stagingend - $stagingstart" | bc)
 
 size=$(du -chs "NCHLT_${DATASET}.tar.gz" | awk '{print $1}' | uniq)
-
-# we need to know where we are coming from on the internet in order to tell glibrary of our results.
-# This will get our gateway.
-
-wget -qO - icanhazip.com
 # Tell the team of the staging outcome #################################################
-curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "staging of dataset '"$2"' ('"$size"') on '"$HOSTNAME"' took '"$staging_time"' s. :wave::skin-tone-6:  ", "icon_emoji": ":labtocat:" }' https://hooks.slack.com/services/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
+curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "SVM job starting", "icon_emoji": ":labtocat:", "attachments": [ { "fallback": "Job info.", "color": "#36a64f", "pretext": "Job Start information", "title": "Job Start", "text": "Submitted by '"$submitter"' from '"$institute"'", "fields": [ { "title": "Dataset", "value": "'"$DATASET"'", "short": true }, {"title": "Worker Node", "value": "'"$HOSTNAME"'", "short": true }, { "title": "Data Staging Time", "value": "'"$staging_time"'", "short": true }, { "title": "Processing Options", "value": "'"${PROCESSING_OPTIONS[*]}"'", "short": true}, {"title": "CODE-RADE Version", "value": "'"$CODERADE_VERSION"'"} ] } ]}' https://hooks.slack.com/services/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
 #  #############################################################################
 
 
@@ -346,12 +190,9 @@ GRID_SEARCH=${SVM_SCRIPTS_DIR} #SCript to run grid search
 # PWD=/home/sagrid019/home_cream_360534252/CREAM360534252
 # HOME=/home/sagrid019/home_cream_360534252
 
-ls "${PWD}"
+ls ${PWD}
 echo "perl script is at $(find . -name "*.pl")"
 echo "grid.py is at $(find . -name "grid.py")"
-
-
-curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "libsvm on '"$HOSTNAME"', starting processing of data set '"$DATASET"' with options '"${PROCESSING_OPTIONS[*]}"' Repo '"$REPO"' '"$CODERADE_VERSION"' ", "icon_emoji": ":labtocat:"}' https://hooks.slack.com/services/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
 
 processing_start=$(date +%s.%N)
 
@@ -377,11 +218,11 @@ do
 						LANG_FOLD_DIR=$MAIN_DIR/${package_name}/NCHLT/${size}/cross_validate_${lang}/fold_${fold}
             echo "running the perl script for $lang"
 						#Create n-gram tokens across all train set
-						perl "$SVM_SCRIPTS_DIR/text_normalization.pl $LANG_FOLD_DIR/train_${fold} ${ngram}" "" "${lang}" 1 0 >> "$NGRAM_LINK/computation/all_train_ngrams.txt"
+						perl $SVM_SCRIPTS_DIR/text_normalization.pl $LANG_FOLD_DIR/train_${fold} ${ngram} "" ${lang} 1 0 >> $NGRAM_LINK/computation/all_train_ngrams.txt
 					done
 
 					#Sort estracted tokens with their frequency preceeding each token item
-					sort "$NGRAM_LINK/computation/all_train_ngrams.txt" | uniq -c | sed -e 's/^[ ]*//' > "$NGRAM_LINK/computation/sorted_all_train_ngrams.txt"
+					sort $NGRAM_LINK/computation/all_train_ngrams.txt | uniq -c | sed -e 's/^[ ]*//' > $NGRAM_LINK/computation/sorted_all_train_ngrams.txt
 
 					#Create feature vector
 					for lang in "ss" "afr" "zul" "eng"
@@ -389,7 +230,7 @@ do
 						LANG_FOLD_DIR=$MAIN_DIR/${package_name}/NCHLT/${size}/cross_validate_${lang}/fold_${fold}
 
 						#Create feature vectors used for training and testing
-						perl "$SVM_SCRIPTS_DIR/text_normalization.pl" "$LANG_FOLD_DIR/train_${fold}" "${ngram}" "$NGRAM_LINK/computation/sorted_all_train_ngrams.txt" "${lang}" 0 1 >> "$NGRAM_LINK/computation/train.txt"
+						perl $SVM_SCRIPTS_DIR/text_normalization.pl $LANG_FOLD_DIR/train_${fold} ${ngram} $NGRAM_LINK/computation/sorted_all_train_ngrams.txt ${lang} 0 1 >> $NGRAM_LINK/computation/train.txt
 
 						#Create feature vectors used for testing
 						perl ${SVM_SCRIPTS_DIR}/text_normalization.pl $LANG_FOLD_DIR/test_${fold} ${ngram} $NGRAM_LINK/computation/sorted_all_train_ngrams.txt ${lang} 0 1 >> $NGRAM_LINK/computation/test_all.txt
@@ -431,6 +272,7 @@ do
           echo "running the python script"
 					python $GRID_SEARCH/grid.py -log2c -13.2877,13.2877,1.6609 -log2g ${log},${log},0 -v 3 -m 300 $NGRAM_LINK/computation/train.data  > $NGRAM_LINK/result/result_${ngram}
 					#python $GRID_SEARCH/grid.py -log2c 13.2877,13.2877,0.0 -log2g $log,$log,0 -v 2 -m 400 $NGRAM_LINK/computation/train.data > $NGRAM_LINK/result/result_${ngram}
+
 				fi
 
 				#Train and ouput a model. Test validation set on the output model.
@@ -461,17 +303,37 @@ do
 	done
 done
 
+# there should be a few pngs here....
+find . -name "*.png"
+
 echo "creating the output sandbox"
 
 end=$(date +%s.%N)
 processing_time=$(echo "$end - $processing_start" | bc)
 total_time=$(echo "$end - $start" | bc)
-# Tell the team of the outcome #################################################
-# First, get the X509 subject of the submitter
-submitter=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { FS = "/" } {print $6}') # Common Name
-institute=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { FS = "/" } {print $6}') # L= (institute)
-curl -X POST --data-urlencode 'payload={"channel": "#gridjobs","username": "gridjob", "text": "Libsvm processing of '"$DATASET"' on '"$HOSTNAME"' took '"$processing_time"' s. :wave::skin-tone-6:", "icon_emoji": ":labtocat:", "attachments": [ { "fallback": "Job info.", "color": "#36a64f", "pretext": "Job information summary", "title": "Job information", "text": "Submitted by '"$submitter"' from '"$institute"'", "fields": [ { "title": "Total Job Time", "value": "'"$total_time"'", "short": true }, {"title": "Total Processing Time", "value": "'"$processing_time"'", "short": true }, { "title": "Data Staging Time", "value": "'"$staging_time"'", "short": true } ] } ] }' https://hooks.slack.com/services/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
-#  #############################################################################
 
 # TODO
 # Get the Processor info from lcg-info
+
+# Add the output to the collection
+# the basic workflow is :
+# 1. get a token (username and password are required)
+# 2. register the data in the catalogue
+# 3. Update the average ?
+
+# 1. Get the token
+# curl POST /v2/users/login HTTP/1.1 {'username': 'brucellino', 'password': '<password>'}
+curl -X POST -H 'Content-Type: application/json' -d '{"username": "brucellino","password": "EQXIovD0tId4JqV4_CWGNHEzF9HYA4nk"}' http://glibrary.ct.infn.it:3500/v2/users/login > auth
+export token=$(python -c 'import json,sys; json_data=open("auth"); data=json.load(json_data); print data["id"]')
+
+# 2. Register the data
+# curl POST /v2/repos/nwu-hlt/nchlt HTTP/1.1
+curl -X POST -H "Content-Type: application/json" -H "Authorization: $token" -d '{"study": "1", "dataset": "'"$DATASET"'", "total_time": "'"$total_time"'", "staging_time": "'"$staging_time"'", "processing_time": "'"$processing_time"'"}' http://glibrary.ct.infn.it:3500/v2/repos/nwu_hlt/nchlt
+
+# 3. Calculate the average
+#
+
+# Tell the team of the outcome #################################################
+# Send slack message
+curl -X POST --data-urlencode 'payload={"channel": "#gridjobs","username": "gridjob", "text": "Libsvm processing of '"$DATASET"' on '"$HOSTNAME"' took '"$processing_time"' s. :wave::skin-tone-6:", "icon_emoji": ":labtocat:", "attachments": [ { "fallback": "Job info.", "color": "#36a64f", "pretext": "Job information summary", "title": "Job information", "text": "Submitted by '"$submitter"' from '"$institute"'", "fields": [ { "title": "Total Job Time", "value": "'"$total_time"'", "short": true }, {"title": "Total Processing Time", "value": "'"$processing_time"'", "short": true }, { "title": "Data Staging Time", "value": "'"$staging_time"'", "short": true } ] } ] }' https://hooks.slack.com/services/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
+#  #############################################################################

@@ -1,9 +1,10 @@
 [
 
-# CODE-RADE libsvm Example RBF - run analysis based on input parameters
+# CODE-RADE svm example 1 - run analysis based on parametrised arguments
 
   Type = "Job";
-  JobType = "Normal";
+  JobType = "Parametric";
+  Parameters = {"2K", "4K"};
 
 # Command to execute on the worker node
 # In this case, it is a script provided by us, which has to be included in the
@@ -12,7 +13,7 @@
   Executable = "run_libsvm_rbf.sh";
 
 #  The script might take some arguments - these are passed via numbered position.:
-  Arguments = "fastrepo '2K' 1 1 1 1";
+  Arguments = "fastrepo _PARAM_ 1 1 1 1";
 
 # Standard output (Would have been displayed to the screen output)
 
