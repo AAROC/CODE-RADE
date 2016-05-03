@@ -13,7 +13,7 @@ echo "We are in $PWD"
 # where are we coming from ?
 wget -qO - icanhazip.com
 # Use this when the top-bdii is down :-/
-export LCG_GFAL_INFOSYS="top-bdii.magrid.ma:2170"
+#export LCG_GFAL_INFOSYS="top-bdii.magrid.ma:2170"
 export LFC_HOST=lfc.magrid.ma
 echo "using top-bdii $LCG_GFAL_INFOSYS"
 REPO=fastrepo.sagrid.ac.za
