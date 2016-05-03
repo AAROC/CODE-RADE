@@ -9,7 +9,7 @@
 # In this case, it is a script provided by us, which has to be included in the
 # Input Sandbox (see below)
 
-  Executable = "run_libsvm_rbf.sh";
+  Executable = "run_libsvm_rbf_glibrary.sh";
 
 #  The script might take some arguments - these are passed via numbered position.:
   Arguments = "fastrepo '2K' 1 1 1 1";
@@ -26,7 +26,7 @@
 
 OutputSandbox = {"rbf.out"};
 
-InputSandbox = {"run_libsvm_rbf.sh",
+InputSandbox = {"run_libsvm_rbf_glibrary.sh",
                 "grid.py",
                 "text_normalization.pl"
                };

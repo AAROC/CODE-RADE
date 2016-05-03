@@ -3,16 +3,17 @@
 # CODE-RADE libsvm Example RBF - run analysis based on input parameters
 
   Type = "Job";
-  JobType = "Normal";
+  JobType = "Parametric";
 
 # Command to execute on the worker node
 # In this case, it is a script provided by us, which has to be included in the
 # Input Sandbox (see below)
 
-  Executable = "run_libsvm_rbf.sh";
+  Executable = "run_libsvm_rbf_glibrary.sh";
 
 #  The script might take some arguments - these are passed via numbered position.:
-  Arguments = "fastrepo '2K' 1 1 1 1";
+  Arguments = "fastrepo '_PARAM_' 1 1 1 1";
+  Parameters = {"2K", "4K", "6K", "8K", "10K", "12K"};
 
 # Standard output (Would have been displayed to the screen output)
 
@@ -26,7 +27,13 @@
 
 OutputSandbox = {"rbf.out"};
 
-InputSandbox = {"run_libsvm_rbf.sh",
+#  These are long-running jobs - we want to see what they are doing.
+# see : http://wiki.grid.auth.gr/wiki/bin/view/Groups/ALL/MonitoringTheOutputOfYourJob
+PerusalFileEnable = true;
+# Set updates every 3 minutes
+PerusalTimeInterval = 180;
+
+InputSandbox = {"run_libsvm_rbf_glibrary.sh",
                 "grid.py",
                 "text_normalization.pl"
                };
