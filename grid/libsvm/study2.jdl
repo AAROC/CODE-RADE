@@ -45,7 +45,7 @@ DataRequirements = {
 DataAccessProtocol = {"gsiftp"};
 DataAccessProtocol = "gsiftp";
 
-Requirements = other.GlueCEUniqueID=='glite-ce.grid.uj.ac.za:8443/cream-pbs-sagrid';
+Requirements = other.GlueCEUniqueID=="glite-ce.grid.uj.ac.za:8443/cream-pbs-sagrid";
 
 # Number of times to resubmit job, if first submit fails from WMS
 

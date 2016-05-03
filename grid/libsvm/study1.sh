@@ -17,7 +17,6 @@ export LCG_GFAL_INFOSYS="top-bdii.magrid.ma:2170"
 export LFC_HOST=lfc.magrid.ma
 echo "using top-bdii $LCG_GFAL_INFOSYS"
 REPO=fastrepo.sagrid.ac.za
-fi
 DATASET=2K
 TEST_TRAIN=1
 ESTIMATE_C_VALUE=1
