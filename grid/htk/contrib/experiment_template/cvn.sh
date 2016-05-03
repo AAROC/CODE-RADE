@@ -2,10 +2,10 @@
 # Author: Charl van Heerden (cvheerden@csir.co.za)
 #
 # Given a hcopy-style list, performs cvn
-# 
+#
 # Important:
 # - you have to set the appropriate variables under CMVN in Vars.sh
-
+source Vars.sh
 FLAG=$1
 LIST=$2
 
@@ -113,10 +113,10 @@ else
   # TODO: Anyone has any idea how to tell HTK to print VARSCALE instead of CEPSNORM & VARIANCE?
   sed -i '/CEPSNORM/d' $VARSCALEFN
   sed -i 's/VARIANCE/VARSCALE/' $VARSCALEFN
-fi 
+fi
 
 # (3) Extract features again, this time doing normalization given the cluster means and/or vairiances
-echo "HPARM:VARSCALEDIR  = '$VARSCALEDIR'" >> $LOCAL_CFG_HCOPY 
+echo "HPARM:VARSCALEDIR  = '$VARSCALEDIR'" >> $LOCAL_CFG_HCOPY
 echo "HPARM:VARSCALEMASK = '$AUDIO_VARSCALEMASK'" >> $LOCAL_CFG_HCOPY
 echo "HPARM:VARSCALEFN   = '$VARSCALEFN'" >> $LOCAL_CFG_HCOPY
 

@@ -5,7 +5,7 @@
 #
 # Important:
 # - you have to set the appropriate variables under CMVN in Vars.sh
-
+source Vars.sh
 FLAG=$1
 LIST=$2
 

@@ -13,7 +13,7 @@
 #  - Make sure to set the DIR_SRC variable in Vars.sh to point to where the
 #    extracted source files are located.
 
-#source Vars.sh
+source Vars.sh
 echo "DIR_SRC is $DIR_SRC"
 echo "DIR_EXP is $DIR_EXP"
 FLAG=$1
