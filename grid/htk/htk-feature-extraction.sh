@@ -139,7 +139,7 @@ else
   module use ${CVMFS_MOUNT}/${REPO}/modules/compilers
 fi
 
-module add htk
+module add htk/3.4.1
 module list
 env | grep -i htk
 
