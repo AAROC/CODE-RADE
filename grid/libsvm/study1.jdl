@@ -29,7 +29,7 @@ PerusalFileEnable = true;
 # Set updates every 3 minutes
 PerusalTimeInterval = 180;
 
-InputSandbox = {"run_libsvm_rbf_glibrary.sh",
+InputSandbox = {"study1.sh",
                 "grid.py",
                 "text_normalization.pl"
                };
