@@ -29,7 +29,7 @@
 
 OutputSandbox = {"rbf.out"};
 
-InputSandbox = {"run_libsvm_rbf.sh",
+InputSandbox = {"run_libsvm_rbf-parallel.sh",
                 "grid-parallel.py",
                 "text_normalization.pl"
                };
