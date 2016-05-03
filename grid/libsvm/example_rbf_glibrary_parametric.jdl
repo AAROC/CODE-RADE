@@ -27,6 +27,12 @@
 
 OutputSandbox = {"rbf.out"};
 
+#  These are long-running jobs - we want to see what they are doing.
+# see : http://wiki.grid.auth.gr/wiki/bin/view/Groups/ALL/MonitoringTheOutputOfYourJob
+PerusalFileEnable = true;
+# Set updates every 3 minutes
+PerusalTimeInterval = 180;
+
 InputSandbox = {"run_libsvm_rbf_glibrary.sh",
                 "grid.py",
                 "text_normalization.pl"
