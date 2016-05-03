@@ -36,8 +36,6 @@ SITE="generic"
 OS="undefined"
 ARCH="undefined"
 CVMFS_DIR="undefined"
-#REPO="devrepo.sagrid.ac.za"
-#REPO=$1.sagrid.ac.za - this has been set above
 shelltype=$(echo "$SHELL" | awk 'BEGIN { FS = "/" } {print $3}')
 echo "looks like you're using $shelltype"
 # What architecture are we ?
