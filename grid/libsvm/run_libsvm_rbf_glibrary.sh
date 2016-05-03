@@ -45,7 +45,7 @@ institute=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { 
 
 echo "We are in $PWD"
 # Use this when the top-bdii is down :-/
-LCG_GFAL_INFOSYS="top-bdii.africa-grid.org:2170"
+LCG_GFAL_INFOSYS="top-bdii.magrid.ma:2170"
 echo "using top-bdii $LCG_GFAL_INFOSYS"
 # ------ What do the exit codes mean ? ---------
 # See http://tldp.org/LDP/abs/html/exitcodes.html
@@ -484,7 +484,7 @@ export token=$(python -c 'import json,sys; json_data=open("auth"); data=json.loa
 
 # 2. Register the data
 # curl POST /v2/repos/nwu-hlt/nchlt HTTP/1.1
-curl -X POST -H "Content-Type: application/json" -H "Authorization: $token" -d '{"dataset": "'"$DATASET"'", "total_time": "'"$total_time"'", "staging_time": "'"$staging_time"'", "processing_time": "'"$processing_time"'"}' http://glibrary.ct.infn.it:3500/v2/repos/nwu_hlt/nchlt
+curl -X POST -H "Content-Type: application/json" -H "Authorization: $token" -d '{dataset": "'"$DATASET"'", "total_time": "'"$total_time"'", "staging_time": "'"$staging_time"'", "processing_time": "'"$processing_time"'"}' http://glibrary.ct.infn.it:3500/v2/repos/nwu_hlt/nchlt
 
 # 3. Calculate the average
 #
