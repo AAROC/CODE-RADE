@@ -44,6 +44,8 @@ submitter=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { 
 institute=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { FS = "/" } {print $5}') # L= (institute)
 
 echo "We are in $PWD"
+# Use this when the top-bdii is down :-/
+LCG_GFAL_INFOSYS=top-bdii.africa-grid.org:2170
 # ------ What do the exit codes mean ? ---------
 # See http://tldp.org/LDP/abs/html/exitcodes.html
 # for standard codes (1,2,126,127,128,130,255, etc)
@@ -467,7 +469,6 @@ total_time=$(echo "$end - $start" | bc)
 
 # TODO
 # Get the Processor info from lcg-info
-
 
 # Add the output to the collection
 # the basic workflow is :
