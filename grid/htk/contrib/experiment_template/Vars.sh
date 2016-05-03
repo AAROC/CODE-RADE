@@ -13,7 +13,7 @@ export DIR_EXP=${PWD}
 # didectory, so we might as well put it all in one place.
 
 export DIR_SRC=${PWD}
-export DIR_CFG=${DIR_ROOT}/config
+export DIR_CFG=${PWD}/config
 
 #export LST_AUDIO_TRN_ORIG=$DIR_ROOT/asr_template/experiment_template/audio_trn.lst
 #export LST_AUDIO_TST_ORIG=$DIR_ROOT/asr_template/experiment_template/audio_tst.lst
