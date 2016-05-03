@@ -21,4 +21,6 @@ Only C-parameter estimation performed.
 These are defined in the JDLs :
 
   1. `study1.jdl` : 3-gram, 4 fold, 2K dataset, site=ZA-UJ
-  2. `study2.jdl` : 3-gram, 4 fold, 6K dataset, site=ZA-UJ
+  1. `study2.jdl` : 3-gram, 4 fold, 6K dataset, site=ZA-UJ
+  1. `study3.jdl` : 3-gram, 4 fold, 2K dataset, site=ZA-WITS-CORE
+  1. `study4.jdl` : 3-gram, 4 fold, 6K dataset, site=ZA-WITS-CORE
