@@ -7,7 +7,9 @@
   JobType = "Normal";
   CPUNumber = 4;
   SMPGranularity = 4;
-  WholeNodes=true;
+# WholeNodes gives the whole damn node to the job... we don't necessarily want that.
+# but we do want jobs to stay on the same node.
+  #WholeNodes=true;
 
 # Command to execute on the worker node
 # In this case, it is a script provided by us, which has to be included in the
