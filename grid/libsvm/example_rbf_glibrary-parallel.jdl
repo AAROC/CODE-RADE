@@ -50,9 +50,7 @@ DataAccessProtocol = "gsiftp";
 RetryCount = 2;
 
 # We need mpi-start to be available.
-Requirements = Member("MPI-START", other.GlueHostApplicationSoftwareRunTimeEnvironment)
-        && Member("MPICH2", other.GlueHostApplicationSoftwareRunTimeEnvironment)
-        && (other.GlueHostArchitecturePlatformType == "x86_64");
+Requirements = Member("MPI-START", other.GlueHostApplicationSoftwareRunTimeEnvironment) && (other.GlueHostArchitecturePlatformType == "x86_64");
 # Number of times to resubmit the job, if the first submit fails from the local queue
 
 ShallowRetryCount = 0;
