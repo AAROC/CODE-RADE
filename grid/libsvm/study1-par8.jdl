@@ -33,7 +33,7 @@ PerusalFileEnable = true;
 PerusalTimeInterval = 180;
 
 InputSandbox = {"study1-par.sh",
-                "grid.py",
+                "grid-parallel.py",
                 "text_normalization.pl"
                };
 
