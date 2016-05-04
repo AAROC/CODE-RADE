@@ -428,10 +428,10 @@ do
 					log=$(echo "l($result)/l(2)" | bc -l)
 					cd $GRID_SEARCH
           echo "running the python script"
-          pythonstart=$(date +%s.%N)
+          python_start=$(date +%s.%N)
           python $GRID_SEARCH/grid.py -log2c -13.2877,13.2877,1.6609 -log2g ${log},${log},0 -v 3 -m 300 $NGRAM_LINK/computation/train.data  > $NGRAM_LINK/result/result_${ngram}
-          pythonend=$(date +%s.%N)
-          python_time=$(echo "$end - $start" | bc)
+          python_end=$(date +%s.%N)
+          python_time=$(echo "$python_end - $python_start" | bc)
           echo "C Estimation took $python_time"
 				fi
 
