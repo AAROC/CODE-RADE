@@ -424,6 +424,8 @@ do
 			result=$(echo "$one/$count" | bc -l)
 			log=$(echo "l($result)/l(2)" | bc -l)
 			cd $GRID_SEARCH
+      # We need to substitute the number of cores in the local workers setup :
+      sed -i 's/nr_local_worker = .$/nr_local_worker = '"${PBS_NP}"'/g' grid-parallel.py
       echo "running the python script"
       pythonstart=$(date +%s.%N)
       python $GRID_SEARCH/grid-parallel.py -log2c -13.2877,13.2877,1.6609 -log2g ${log},${log},0 -v 3 -m 300 $NGRAM_LINK/computation/train.data  > $NGRAM_LINK/result/result_${ngram}
