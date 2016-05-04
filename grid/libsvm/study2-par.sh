@@ -12,7 +12,7 @@ env
 echo "We are in $PWD"
 # Use this when the top-bdii is down :-/
 #export LCG_GFAL_INFOSYS="top-bdii.magrid.ma:2170"
-# export LFC_HOST=lfc.magrid.ma
+export LFC_HOST=lfc.magrid.ma
 echo "using top-bdii $LCG_GFAL_INFOSYS"
 REPO=fastrepo.sagrid.ac.za
 DATASET=6K
