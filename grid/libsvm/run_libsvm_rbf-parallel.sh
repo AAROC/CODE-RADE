@@ -350,12 +350,14 @@ GRID_SEARCH=${SVM_SCRIPTS_DIR} #SCript to run grid search
 
 ls ${PWD}
 echo "perl script is at $(find . -name "*.pl")"
-echo "grid.py is at $(find . -name "grid.py")"
+echo "grid-parallel.py is at $(find . -name "grid-parallel.py")"
 
 processing_start=$(date +%s.%N)
 
 # Taken out the outer two loops, since we've parametrised this.
 LINK=$MAIN_DIR/${package_name}/NCHLT/${size}/SVM_RBF
+package_name="original"
+size=${DATASET}
 echo "LINK is ${LINK}"
 for fold in 1 2 3 4 #1 #2 3 4
 do
