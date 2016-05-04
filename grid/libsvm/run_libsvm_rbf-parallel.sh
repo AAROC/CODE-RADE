@@ -432,7 +432,8 @@ do
       python_start=$(date +%s.%N)
       python $GRID_SEARCH/grid-parallel.py -log2c -13.2877,13.2877,1.6609 -log2g ${log},${log},0 -v 3 -m 300 $NGRAM_LINK/computation/train.data  > $NGRAM_LINK/result/result_${ngram}
 			python_end=$(date +%s.%N)
-      python_time=$(echo "$python_end - $pythonm_start" | bc)
+      python_time=$(echo "$python_end - $python_start" | bc)
+      
 		fi # ESTIMATE_C_VALUE
 
 		#Train and ouput a model. Test validation set on the output model.
