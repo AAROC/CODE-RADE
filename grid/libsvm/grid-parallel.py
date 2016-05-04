@@ -120,7 +120,7 @@ def permute_sequence(seq):
 
     return ret
 
-def redraw(db,best_param,tofile=False):
+def redraw(db,best_param,tofile=True):
     if len(db) == 0: return
     begin_level = round(max(x[2] for x in db)) - 3
     step_size = 0.5
