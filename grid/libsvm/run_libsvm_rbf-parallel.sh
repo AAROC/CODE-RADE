@@ -42,7 +42,7 @@
 # First, get the X509 subject of the submitter
 submitter=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { FS = "/" } {print $6}') # Common Name
 institute=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { FS = "/" } {print $5}') # L= (institute)
-
+env
 echo "We are in $PWD"
 # Use this when the top-bdii is down :-/
 LCG_GFAL_INFOSYS="top-bdii.magrid.ma:2170"
@@ -483,8 +483,8 @@ curl -X POST -H 'Content-Type: application/json' -d '{"username": "brucellino","
 export token=$(python -c 'import json,sys; json_data=open("auth"); data=json.load(json_data); print data["id"]')
 
 # 2. Register the data
-# curl POST /v2/repos/nwu-hlt/nchlt HTTP/1.1
-curl -X POST -H "Content-Type: application/json" -H "Authorization: $token" -d '{dataset": "'"$DATASET"'", "total_time": "'"$total_time"'", "staging_time": "'"$staging_time"'", "processing_time": "'"$processing_time"'"}' http://glibrary.ct.infn.it:3500/v2/repos/nwu_hlt/nchlt
+# curl POST /v2/repos/nwu-hlt/nchlt HTTP/1.1"
+curl -X POST -H "Content-Type: application/json" -H "Authorization: $token" -d '{"dataset": "'"$DATASET"'", "total_time": "'"$total_time"'", "staging_time": "'"$staging_time"'", "processing_time": "'"$processing_time"'"}' http://glibrary.ct.infn.it:3500/v2/repos/nwu_hlt/nchlt
 
 # 3. Calculate the average
 #
