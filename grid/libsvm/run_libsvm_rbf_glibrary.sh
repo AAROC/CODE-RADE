@@ -44,6 +44,8 @@ submitter=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { 
 institute=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { FS = "/" } {print $5}') # L= (institute)
 
 echo "We are in $PWD"
+echo "using nodes in $PBS_NODEFILE: "
+cat $PBS_NODEFILE
 # Use this when the top-bdii is down :-/
 # LCG_GFAL_INFOSYS="top-bdii.magrid.ma:2170"
 echo "using top-bdii $LCG_GFAL_INFOSYS"
@@ -333,7 +335,7 @@ staging_time=$(echo "$stagingend - $stagingstart" | bc)
 
 size=$(du -chs "NCHLT_${DATASET}.tar.gz" | awk '{print $1}' | uniq)
 # Tell the team of the staging outcome #################################################
-curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "SVM job starting", "icon_emoji": ":labtocat:", "attachments": [ { "fallback": "Job info.", "color": "#36a64f", "pretext": "Job Start information", "title": "Job Start", "text": "Submitted by '"$submitter"' from '"$institute"'", "fields": [ { "title": "Dataset", "value": "'"$DATASET"'", "short": true }, {"title": "Worker Node", "value": "'"$HOSTNAME"'", "short": true }, { "title": "Data Staging Time", "value": "'"$staging_time"'", "short": true }, { "title": "Processing Options", "value": "'"${PROCESSING_OPTIONS[*]}"'", "short": true}, {"title": "CODE-RADE Version", "value": "'"$CODERADE_VERSION"'"} ] } ]}' https://hooks.slack.com/services/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
+curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "*SVM job starting*", "icon_emoji": ":labtocat:", "attachments": [ { "fallback": "Job info.", "color": "#36a64f", "title": "Job Start", "text": "Submitted by '"$submitter"' from '"$institute"'", "fields": [ { "title": "Dataset", "value": "'"$DATASET"'", "short": true }, {"title": "Worker Node", "value": " '"$HOSTNAME"' with '"$PBS_NP"' cores", "short": true }, { "title": "Data Staging Time", "value": "'"$staging_time"'", "short": true }, { "title": "Processing Options", "value": "'"${PROCESSING_OPTIONS[*]}"'", "short": true}, {"title": "CODE-RADE Version", "value": "'"$CODERADE_VERSION"'"} ] } ]}' https://hooks.slack.com/services/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
 #  #############################################################################
 
 
@@ -426,9 +428,11 @@ do
 					log=$(echo "l($result)/l(2)" | bc -l)
 					cd $GRID_SEARCH
           echo "running the python script"
-					python $GRID_SEARCH/grid.py -log2c -13.2877,13.2877,1.6609 -log2g ${log},${log},0 -v 3 -m 300 $NGRAM_LINK/computation/train.data  > $NGRAM_LINK/result/result_${ngram}
-					#python $GRID_SEARCH/grid.py -log2c 13.2877,13.2877,0.0 -log2g $log,$log,0 -v 2 -m 400 $NGRAM_LINK/computation/train.data > $NGRAM_LINK/result/result_${ngram}
-
+          pythonstart=$(date +%s.%N)
+          python $GRID_SEARCH/grid.py -log2c -13.2877,13.2877,1.6609 -log2g ${log},${log},0 -v 3 -m 300 $NGRAM_LINK/computation/train.data  > $NGRAM_LINK/result/result_${ngram}
+          pythonend=$(date +%s.%N)
+          python_time=$(echo "$end - $start" | bc)
+          echo "C Estimation took $python_time"
 				fi
 
 				#Train and ouput a model. Test validation set on the output model.
@@ -484,12 +488,12 @@ export token=$(python -c 'import json,sys; json_data=open("auth"); data=json.loa
 
 # 2. Register the data
 # curl POST /v2/repos/nwu-hlt/nchlt HTTP/1.1
-curl -X POST -H "Content-Type: application/json" -H "Authorization: $token" -d '{"dataset": "'"$DATASET"'", "total_time": "'"$total_time"'", "staging_time": "'"$staging_time"'", "processing_time": "'"$processing_time"'"}' http://glibrary.ct.infn.it:3500/v2/repos/nwu_hlt/nchlt
+curl -X POST -H "Content-Type: application/json" -H "Authorization: $token" -d '{"dataset": "'"$DATASET"'", "ncpus": "'"$PBS_NP"'", "total_time": "'"$total_time"'", "staging_time": "'"$staging_time"'", "processing_time": "'"$processing_time"'", "c_estimate_time": "'"$python_time"'"}' http://glibrary.ct.infn.it:3500/v2/repos/nwu_hlt/nchlt
 
 # 3. Calculate the average
 #
 
 # Tell the team of the outcome #################################################
 # Send slack message
-curl -X POST --data-urlencode 'payload={"channel": "#gridjobs","username": "gridjob", "text": "Libsvm processing of '"$DATASET"' on '"$HOSTNAME"' took '"$processing_time"' s. :wave::skin-tone-6:", "icon_emoji": ":labtocat:", "attachments": [ { "fallback": "Job info.", "color": "#36a64f", "pretext": "Job information summary", "title": "Job information", "text": "Submitted by '"$submitter"' from '"$institute"'", "fields": [ { "title": "Total Job Time", "value": "'"$total_time"'", "short": true }, {"title": "Total Processing Time", "value": "'"$processing_time"'", "short": true }, { "title": "Data Staging Time", "value": "'"$staging_time"'", "short": true } ] } ] }' https://hooks.slack.com/services/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
+curl -X POST --data-urlencode 'payload={"channel": "#gridjobs","username": "gridjob", "text": ":checkered_flag: Libsvm processing of '"$DATASET"' on '"$HOSTNAME"' with '"$PBS_NP"' CPUS took '"$processing_time"' s. :checkered_flag:", "icon_emoji": ":labtocat:", "attachments": [ { "fallback": "Job info.", "color": "#36a64f", "pretext": "Job information summary", "title": "Job information", "text": "Submitted by '"$submitter"' from '"$institute"'", "fields": [ { "title": "Total Job Time", "value": "'"$total_time"'", "short": true }, {"title": "Total Processing Time", "value": "'"$processing_time"'", "short": true }, { "title": "Data Staging Time", "value": "'"$staging_time"'", "short": true }, { "title": "C Estimation Time", "value": " '"$python_time"'"} ] } ] }' https://hooks.slack.com/services/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
 #  #############################################################################

@@ -44,8 +44,10 @@ submitter=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { 
 institute=$(openssl x509 -in "$X509_USER_PROXY" -noout -subject | awk  'BEGIN { FS = "/" } {print $5}') # L= (institute)
 env
 echo "We are in $PWD"
+echo "using nodes in $PBS_NODEFILE: "
+cat $PBS_NODEFILE
 # Use this when the top-bdii is down :-/
-LCG_GFAL_INFOSYS="top-bdii.magrid.ma:2170"
+#LCG_GFAL_INFOSYS="top-bdii.magrid.ma:2170"
 echo "using top-bdii $LCG_GFAL_INFOSYS"
 # ------ What do the exit codes mean ? ---------
 # See http://tldp.org/LDP/abs/html/exitcodes.html
@@ -333,7 +335,7 @@ staging_time=$(echo "$stagingend - $stagingstart" | bc)
 
 size=$(du -chs "NCHLT_${DATASET}.tar.gz" | awk '{print $1}' | uniq)
 # Tell the team of the staging outcome #################################################
-curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "SVM job starting", "icon_emoji": ":labtocat:", "attachments": [ { "fallback": "Job info.", "color": "#36a64f", "pretext": "Job Start information", "title": "Job Start", "text": "Submitted by '"$submitter"' from '"$institute"'", "fields": [ { "title": "Dataset", "value": "'"$DATASET"'", "short": true }, {"title": "Worker Node", "value": "'"$HOSTNAME"'", "short": true }, { "title": "Data Staging Time", "value": "'"$staging_time"'", "short": true }, { "title": "Processing Options", "value": "'"${PROCESSING_OPTIONS[*]}"'", "short": true}, {"title": "CODE-RADE Version", "value": "'"$CODERADE_VERSION"'"} ] } ]}' https://hooks.slack.com/services/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
+curl -X POST --data-urlencode 'payload={"channel": "#gridjobs", "username": "gridjob", "text": "*SVM job starting*", "icon_emoji": ":labtocat:", "attachments": [ { "fallback": "Job info.", "color": "#36a64f", "title": "Job Start", "text": "Submitted by '"$submitter"' from '"$institute"'", "fields": [ { "title": "Dataset", "value": "'"$DATASET"'", "short": true }, {"title": "Worker Node", "value": " '"$HOSTNAME"' with '"$PBS_NP"' cores", "short": true }, { "title": "Data Staging Time", "value": "'"$staging_time"'", "short": true }, { "title": "Processing Options", "value": "'"${PROCESSING_OPTIONS[*]}"'", "short": true}, {"title": "CODE-RADE Version", "value": "'"$CODERADE_VERSION"'"} ] } ]}' https://hooks.slack.com/services/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
 #  #############################################################################
 
 
@@ -352,112 +354,108 @@ echo "grid.py is at $(find . -name "grid.py")"
 
 processing_start=$(date +%s.%N)
 
-for package_name in "original" #"comparing_words" "spell-check"
+# Taken out the outer two loops, since we've parametrised this.
+LINK=$MAIN_DIR/${package_name}/NCHLT/${size}/SVM_RBF
+echo "LINK is ${LINK}"
+for fold in 1 2 3 4 #1 #2 3 4
 do
-	for size in "${DATASET}" #"4K" #"2K" "4K" "8K" "10K" "12K" # -next step - seralise this.
+	for ngram in 3 #4 5
 	do
-		LINK=$MAIN_DIR/${package_name}/NCHLT/${size}/SVM_RBF
-    echo "LINK is ${LINK}"
-		for fold in 1 2 3 4 #1 #2 3 4
-		do
-			for ngram in 3 #4 5
+		NGRAM_LINK=$LINK/fold_${fold}/ngram_${ngram}
+    echo "NGRAM_LINK is ${NGRAM_LINK}"
+		if [ "$FRESH_SETUP" -eq 1 ]; then
+			mkdir -p "$NGRAM_LINK/computation"
+			mkdir -p "$NGRAM_LINK/result"
+
+			#Create n-gram tokens
+			for lang in "ss" "afr" "zul" "eng"
 			do
-				NGRAM_LINK=$LINK/fold_${fold}/ngram_${ngram}
-        echo "NGRAM_LINK is ${NGRAM_LINK}"
-				if [ "$FRESH_SETUP" -eq 1 ]; then
-					mkdir -p "$NGRAM_LINK/computation"
-					mkdir -p "$NGRAM_LINK/result"
+				LANG_FOLD_DIR=$MAIN_DIR/${package_name}/NCHLT/${size}/cross_validate_${lang}/fold_${fold}
+        echo "running the perl script for $lang"
+				#Create n-gram tokens across all train set
+				perl $SVM_SCRIPTS_DIR/text_normalization.pl $LANG_FOLD_DIR/train_${fold} ${ngram} "" ${lang} 1 0 >> $NGRAM_LINK/computation/all_train_ngrams.txt
+			done # done language loop
 
-					#Create n-gram tokens
-					for lang in "ss" "afr" "zul" "eng"
-					do
-						LANG_FOLD_DIR=$MAIN_DIR/${package_name}/NCHLT/${size}/cross_validate_${lang}/fold_${fold}
-            echo "running the perl script for $lang"
-						#Create n-gram tokens across all train set
-						perl $SVM_SCRIPTS_DIR/text_normalization.pl $LANG_FOLD_DIR/train_${fold} ${ngram} "" ${lang} 1 0 >> $NGRAM_LINK/computation/all_train_ngrams.txt
-					done
+			#Sort estracted tokens with their frequency preceeding each token item
+			sort $NGRAM_LINK/computation/all_train_ngrams.txt | uniq -c | sed -e 's/^[ ]*//' > $NGRAM_LINK/computation/sorted_all_train_ngrams.txt
 
-					#Sort estracted tokens with their frequency preceeding each token item
-					sort $NGRAM_LINK/computation/all_train_ngrams.txt | uniq -c | sed -e 's/^[ ]*//' > $NGRAM_LINK/computation/sorted_all_train_ngrams.txt
+			#Create feature vector
+			for lang in "ss" "afr" "zul" "eng"
+			do
+				LANG_FOLD_DIR=$MAIN_DIR/${package_name}/NCHLT/${size}/cross_validate_${lang}/fold_${fold}
 
-					#Create feature vector
-					for lang in "ss" "afr" "zul" "eng"
-					do
-						LANG_FOLD_DIR=$MAIN_DIR/${package_name}/NCHLT/${size}/cross_validate_${lang}/fold_${fold}
+				#Create feature vectors used for training and testing
+				perl $SVM_SCRIPTS_DIR/text_normalization.pl $LANG_FOLD_DIR/train_${fold} ${ngram} $NGRAM_LINK/computation/sorted_all_train_ngrams.txt ${lang} 0 1 >> $NGRAM_LINK/computation/train.txt
 
-						#Create feature vectors used for training and testing
-						perl $SVM_SCRIPTS_DIR/text_normalization.pl $LANG_FOLD_DIR/train_${fold} ${ngram} $NGRAM_LINK/computation/sorted_all_train_ngrams.txt ${lang} 0 1 >> $NGRAM_LINK/computation/train.txt
+				#Create feature vectors used for testing
+				perl ${SVM_SCRIPTS_DIR}/text_normalization.pl $LANG_FOLD_DIR/test_${fold} ${ngram} $NGRAM_LINK/computation/sorted_all_train_ngrams.txt ${lang} 0 1 >> $NGRAM_LINK/computation/test_all.txt
 
-						#Create feature vectors used for testing
-						perl ${SVM_SCRIPTS_DIR}/text_normalization.pl $LANG_FOLD_DIR/test_${fold} ${ngram} $NGRAM_LINK/computation/sorted_all_train_ngrams.txt ${lang} 0 1 >> $NGRAM_LINK/computation/test_all.txt
+				#Create feature vectors for each languaeg specific data. This will be used to estimate precision and recall per fold.
+				perl $SVM_SCRIPTS_DIR/text_normalization.pl $LANG_FOLD_DIR/test_${fold} ${ngram} $NGRAM_LINK/computation/sorted_all_train_ngrams.txt ${lang} 0 1 > $NGRAM_LINK/computation/test_${lang}.txt
+			done # language loop
+      echo "starting svm-scale for the normalised stuff"
+			#Create a range values based on the train data and use it to on our test data.
+			svm-scale -l 0 -u 1 -s $NGRAM_LINK/computation/range.txt $NGRAM_LINK/computation/train.txt > $NGRAM_LINK/computation/train_norm.txt
 
-						#Create feature vectors for each languaeg specific data. This will be used to estimate precision and recall per fold.
-						perl $SVM_SCRIPTS_DIR/text_normalization.pl $LANG_FOLD_DIR/test_${fold} ${ngram} $NGRAM_LINK/computation/sorted_all_train_ngrams.txt ${lang} 0 1 > $NGRAM_LINK/computation/test_${lang}.txt
-					done
-          echo "starting svm-scale for the normalised stuff"
-					#Create a range values based on the train data and use it to on our test data.
-					svm-scale -l 0 -u 1 -s $NGRAM_LINK/computation/range.txt $NGRAM_LINK/computation/train.txt > $NGRAM_LINK/computation/train_norm.txt
+			#Apply our range values on test set
+      echo "starting svm-scale on all data"
+			svm-scale -r $NGRAM_LINK/computation/range.txt $NGRAM_LINK/computation/test_all.txt > $NGRAM_LINK/computation/test_all.data
+			for lang in "ss" "afr" "zul" "eng"
+			do
+        echo "starting svm-scale  on $lang"
+				svm-scale -r $NGRAM_LINK/computation/range.txt $NGRAM_LINK/computation/test_${lang}.txt > $NGRAM_LINK/computation/test_${lang}_scale
+			done #  language scaling loop
 
-					#Apply our range values on test set
-          echo "starting svm-scale on all data"
-					svm-scale -r $NGRAM_LINK/computation/range.txt $NGRAM_LINK/computation/test_all.txt > $NGRAM_LINK/computation/test_all.data
-					for lang in "ss" "afr" "zul" "eng"
-					do
-            echo "starting svm-scale  on $lang"
-						svm-scale -r $NGRAM_LINK/computation/range.txt $NGRAM_LINK/computation/test_${lang}.txt > $NGRAM_LINK/computation/test_${lang}_scale
-					done
+			#Final data is train.data
+			# rl -o $NGRAM_LINK/computation/train.data $NGRAM_LINK/computation/train_norm.txt
+      shuf -o $NGRAM_LINK/computation/train.data $NGRAM_LINK/computation/train_norm.txt
 
-					#Final data is train.data
-					# rl -o $NGRAM_LINK/computation/train.data $NGRAM_LINK/computation/train_norm.txt
-          shuf -o $NGRAM_LINK/computation/train.data $NGRAM_LINK/computation/train_norm.txt
-
-					#Remove previous files to free up space
-					#rm -f $NGRAM_LINK/computation/train_norm.txt $NGRAM_LINK/computation/train.txt $NGRAM_LINK/computation/sorted_all_train_ngrams.txt $NGRAM_LINK/computation/all_train_ngrams.txt $NGRAM_LINK/computation/test_all.txt
-					for lang in "ss" "afr" "zul" "eng"
-					do
-						rm -f $NGRAM_LINK/computation/test_${lang}.txt
-					done
-				fi
-
-				if [ $ESTIMATE_C_VALUE -eq 1 ]; then
-					count=$(wc -l < "$NGRAM_LINK/computation/sorted_all_train_ngrams.txt")
-					one=1
-					result=$(echo "$one/$count" | bc -l)
-					log=$(echo "l($result)/l(2)" | bc -l)
-					cd $GRID_SEARCH
-          echo "running the python script"
-					python $GRID_SEARCH/grid-parallel.py -log2c -13.2877,13.2877,1.6609 -log2g ${log},${log},0 -v 3 -m 300 $NGRAM_LINK/computation/train.data  > $NGRAM_LINK/result/result_${ngram}
-					#python $GRID_SEARCH/grid.py -log2c 13.2877,13.2877,0.0 -log2g $log,$log,0 -v 2 -m 400 $NGRAM_LINK/computation/train.data > $NGRAM_LINK/result/result_${ngram}
-
-				fi
-
-				#Train and ouput a model. Test validation set on the output model.
-				if [ "$TEST_TRAIN" -eq 1 ]; then
-					echo "running training"
-          svm-train -c 2 -t 2 -g 0.1767767 -s 0 -m 400 $NGRAM_LINK/computation/train.data $NGRAM_LINK/computation/train.data.model
-          echo "running prediction"
-					svm-predict $NGRAM_LINK/computation/test_all.data $NGRAM_LINK/computation/train.data.model $NGRAM_LINK/result/predict.txt > $NGRAM_LINK/result/result.txt
-				fi
-
-				if [ "$PREDICT_STAT" -eq 1 ]; then
-          echo "running prediction of statistics"
-					rm -f $NGRAM_LINK/result/statistics.txt $NGRAM_LINK/result/accuracy_for_all_lang
-
-					echo -e " SS  AF  ZUL  EN  TOTAL" >> $NGRAM_LINK/result/statistics.txt
-
-					for lang in "ss" "afr" "zul" "eng"
-					do
-						echo -e "Identification accuracy for ${lang} is: " >> $NGRAM_LINK/result/accuracy_for_all_lang
-
-						svm-predict $NGRAM_LINK/computation/test_${lang}_scale $NGRAM_LINK/computation/train.data.model $NGRAM_LINK/result/predict_${lang} >> $NGRAM_LINK/result/accuracy_for_all_lang
-
-						$SVM_SCRIPTS_DIR/estimate_total_result.pl $NGRAM_LINK/result/predict_${lang} ${lang} >> $NGRAM_LINK/result/statistics.txt
-					done
-				fi
+			#Remove previous files to free up space
+			#rm -f $NGRAM_LINK/computation/train_norm.txt $NGRAM_LINK/computation/train.txt $NGRAM_LINK/computation/sorted_all_train_ngrams.txt $NGRAM_LINK/computation/all_train_ngrams.txt $NGRAM_LINK/computation/test_all.txt
+			for lang in "ss" "afr" "zul" "eng"
+			do
+				rm -f $NGRAM_LINK/computation/test_${lang}.txt
 			done
-		done
-	done
-done
+		fi # Fresh setup
+
+		if [ $ESTIMATE_C_VALUE -eq 1 ]; then
+			count=$(wc -l < "$NGRAM_LINK/computation/sorted_all_train_ngrams.txt")
+			one=1
+			result=$(echo "$one/$count" | bc -l)
+			log=$(echo "l($result)/l(2)" | bc -l)
+			cd $GRID_SEARCH
+      echo "running the python script"
+      pythonstart=$(date +%s.%N)
+      python $GRID_SEARCH/grid-parallel.py -log2c -13.2877,13.2877,1.6609 -log2g ${log},${log},0 -v 3 -m 300 $NGRAM_LINK/computation/train.data  > $NGRAM_LINK/result/result_${ngram}
+			pythonend=$(date +%s.%N)
+
+		fi # ESTIMATE_C_VALUE
+
+		#Train and ouput a model. Test validation set on the output model.
+		if [ "$TEST_TRAIN" -eq 1 ]; then
+			echo "running training"
+      svm-train -c 2 -t 2 -g 0.1767767 -s 0 -m 400 $NGRAM_LINK/computation/train.data $NGRAM_LINK/computation/train.data.model
+      echo "running prediction"
+			svm-predict $NGRAM_LINK/computation/test_all.data $NGRAM_LINK/computation/train.data.model $NGRAM_LINK/result/predict.txt > $NGRAM_LINK/result/result.txt
+		fi
+
+		if [ "$PREDICT_STAT" -eq 1 ]; then
+      echo "running prediction of statistics for $NGRAM-gram "
+			rm -f $NGRAM_LINK/result/statistics.txt $NGRAM_LINK/result/accuracy_for_all_lang
+
+			echo -e " SS  AF  ZUL  EN  TOTAL" >> $NGRAM_LINK/result/statistics.txt
+
+			for lang in "ss" "afr" "zul" "eng"
+			do
+				echo -e "Identification accuracy for ${lang} is: " >> $NGRAM_LINK/result/accuracy_for_all_lang
+
+				svm-predict $NGRAM_LINK/computation/test_${lang}_scale $NGRAM_LINK/computation/train.data.model $NGRAM_LINK/result/predict_${lang} >> $NGRAM_LINK/result/accuracy_for_all_lang
+
+				$SVM_SCRIPTS_DIR/estimate_total_result.pl $NGRAM_LINK/result/predict_${lang} ${lang} >> $NGRAM_LINK/result/statistics.txt
+			done
+		fi
+	done # ngram
+done # fold
 
 # there should be a few pngs here....
 find . -name "*.png"
@@ -484,12 +482,12 @@ export token=$(python -c 'import json,sys; json_data=open("auth"); data=json.loa
 
 # 2. Register the data
 # curl POST /v2/repos/nwu-hlt/nchlt HTTP/1.1"
-curl -X POST -H "Content-Type: application/json" -H "Authorization: $token" -d '{"dataset": "'"$DATASET"'", "total_time": "'"$total_time"'", "staging_time": "'"$staging_time"'", "processing_time": "'"$processing_time"'"}' http://glibrary.ct.infn.it:3500/v2/repos/nwu_hlt/nchlt
+curl -X POST -H "Content-Type: application/json" -H "Authorization: $token" -d '{"dataset": "'"$DATASET"'", "ncpus": "'"$PBS_NP"'", "total_time": "'"$total_time"'", "staging_time": "'"$staging_time"'", "processing_time": "'"$processing_time"'", "c_estimate_time": "'"$python_time"'"}' http://glibrary.ct.infn.it:3500/v2/repos/nwu_hlt/nchlt
 
 # 3. Calculate the average
 #
 
 # Tell the team of the outcome #################################################
 # Send slack message
-curl -X POST --data-urlencode 'payload={"channel": "#gridjobs","username": "gridjob", "text": "Libsvm processing of '"$DATASET"' on '"$HOSTNAME"' took '"$processing_time"' s. :wave::skin-tone-6:", "icon_emoji": ":labtocat:", "attachments": [ { "fallback": "Job info.", "color": "#36a64f", "pretext": "Job information summary", "title": "Job information", "text": "Submitted by '"$submitter"' from '"$institute"'", "fields": [ { "title": "Total Job Time", "value": "'"$total_time"'", "short": true }, {"title": "Total Processing Time", "value": "'"$processing_time"'", "short": true }, { "title": "Data Staging Time", "value": "'"$staging_time"'", "short": true } ] } ] }' https://hooks.slack.com/services/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
+curl -X POST --data-urlencode 'payload={"channel": "#gridjobs","username": "gridjob", "text": ":checkered_flag: Libsvm processing of '"$DATASET"' on '"$HOSTNAME"' with '"$PBS_NP"' CPUS took '"$processing_time"' s. :checkered_flag:", "icon_emoji": ":labtocat:", "attachments": [ { "fallback": "Job info.", "color": "#36a64f", "pretext": "Job information summary", "title": "Job information", "text": "Submitted by '"$submitter"' from '"$institute"'", "fields": [ { "title": "Total Job Time", "value": "'"$total_time"'", "short": true }, {"title": "Total Processing Time", "value": "'"$processing_time"'", "short": true }, { "title": "Data Staging Time", "value": "'"$staging_time"'", "short": true }, { "title": "C Estimation Time", "value": " '"$python_time"'"} ] } ] }' https://hooks.slack.com/services/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
 #  #############################################################################
