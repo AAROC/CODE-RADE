@@ -5,8 +5,8 @@
 
   Type = "Job";
   JobType = "Normal";
-  CPUNumber = 4;
-  SMPGranularity = 4;
+  CPUNumber = 2;
+  SMPGranularity = 2;
   WholeNodes=true;
 
 # Command to execute on the worker node
