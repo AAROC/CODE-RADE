@@ -266,7 +266,10 @@ do
 					result=$(echo "$one/$count" | bc -l)
 					log=$(echo "l($result)/l(2)" | bc -l)
 					cd $GRID_SEARCH
+          echo "Substituting local worker number with ${PBS_NP}"
+          sed -i 's/nr_local_worker = .$/nr_local_worker = '"${PBS_NP}"'/g' grid-parallel.py
           echo "running the python script"
+          python_start=$(date +%s.%N)
 					python $GRID_SEARCH/grid.py -log2c -13.2877,13.2877,1.6609 -log2g ${log},${log},0 -v 3 -m 300 $NGRAM_LINK/computation/train.data  > $NGRAM_LINK/result/result_${ngram}
 					#python $GRID_SEARCH/grid.py -log2c 13.2877,13.2877,0.0 -log2g $log,$log,0 -v 2 -m 400 $NGRAM_LINK/computation/train.data > $NGRAM_LINK/result/result_${ngram}
 
