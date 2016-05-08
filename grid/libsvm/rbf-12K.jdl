@@ -19,7 +19,7 @@
 # Standard errors - we merge this with stdout
   StdError = "rbf.out";
 
-InputSandbox = {"study1.sh",
+InputSandbox = {"run_libsvvm_rbf_glibrary.sh",
                 "grid.py",
                 "text_normalization.pl"
                };
