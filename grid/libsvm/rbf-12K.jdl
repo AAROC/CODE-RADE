@@ -24,6 +24,9 @@ InputSandbox = {"run_libsvm_rbf_glibrary.sh",
                 "text_normalization.pl"
                };
 
+OutputSandbox = {"rbf.out"};
+OutputSandboxBaseDestURI = "gsiftp://grid-ce.chpc.ac.za//tmp/";
+
 #  See http://doc.grid.surfsara.nl/en/latest/Pages/Practices/data_replication.html?highlight=inputdata#data-requirements
 DataRequirements = {
                      [
