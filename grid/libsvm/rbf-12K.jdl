@@ -11,7 +11,7 @@
 # Input Sandbox (see below)
 
   Executable = "run_libsvm_rbf_glibrary.sh";
-  Arguments = "fastrepo '2K' 1 1 1 1";
+  Arguments = "fastrepo '12K' 1 1 1 1";
 
 # Standard output (Would have been displayed to the screen output)
   StdOutput = "rbf.out";
