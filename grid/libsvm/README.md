@@ -49,6 +49,6 @@ In order to estimate the scaling efficiency and investigate higher performance, 
   11. `study4-par-4.jdl` : 3-gram, 4 fold, 6K dataset, site=ZA-WITS-CORE, 4 Cores
   12. `study4-par-8.jdl` : 3-gram, 4 fold, 6K dataset, site=ZA-WITS-CORE, 8 Cores
   13. `study5-par-8.jdl` : 3-gram, 4 fold, 12K dataset, site=ZA-UJ, 8 Cores
-  14. `study1-par-8.jdl` : 3-gram, 4 fold, 2K dataset, site=CHPC, machine gnode-2-32.chpc.ac.za, 48 Cores
-  15. `study1-par-8.jdl` : 3-gram, 4 fold, 6K dataset, site=CHPC, machine gnode-2-32.chpc.ac.za, 48 Cores
-  16. `study1-par-8.jdl` : 3-gram, 4 fold, 12K dataset, site=CHPC, machine gnode-2-32.chpc.ac.za, 48 Cores
+  14. `study6-par-8.jdl` : 3-gram, 4 fold, 2K dataset, site=CHPC, machine gnode-2-32.chpc.ac.za, 48 Cores
+  15. `study7-par-8.jdl` : 3-gram, 4 fold, 6K dataset, site=CHPC, machine gnode-2-32.chpc.ac.za, 48 Cores
+  16. `study8-par-8.jdl` : 3-gram, 4 fold, 12K dataset, site=CHPC, machine gnode-2-32.chpc.ac.za, 48 Cores
