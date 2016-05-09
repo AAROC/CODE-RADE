@@ -26,10 +26,14 @@ These are defined in the JDLs :
   1. `study2.jdl` : 3-gram, 4 fold, 6K dataset, site=ZA-UJ
   1. `study3.jdl` : 3-gram, 4 fold, 2K dataset, site=ZA-WITS-CORE
   1. `study4.jdl` : 3-gram, 4 fold, 6K dataset, site=ZA-WITS-CORE
+  1. 'study5.jdl' : 3-gram, 4 fold, 12K dataset, site=ZA-UJ
+  1. 'study6.jdl' : 3-gram, 4 fold, 2K dataset, site=CHPC, machine gnode-2-32.chpc.ac.za
+  1. 'study7.jdl' : 3-gram, 4 fold, 6K dataset, site=CHPC, machine gnode-2-32.chpc.ac.za
+  1. 'study8.jdl' : 3-gram, 4 fold, 12K dataset, site=CHPC, machine gnode-2-32.chpc.ac.za
 
-## Parallel C-estimation
+## Parallel C-estimation and Training
 
-The python script that performs C-parameter estimation has been implemented with a queue system, which can take advantage of several available cores.
+The python script that performs C-parameter estimation and training has been implemented with a queue system, which can take advantage of several available cores.
 In order to estimate the scaling efficiency and investigate higher performance, we conduct a few studies to vary the available cores
 
   1. `study1-par-2.jdl` : 3-gram, 4 fold, 2K dataset, site=ZA-UJ, 2 Cores
@@ -44,3 +48,7 @@ In order to estimate the scaling efficiency and investigate higher performance, 
   10. `study4-par-2.jdl` : 3-gram, 4 fold, 6K dataset, site=ZA-WITS-CORE, 2 Cores
   11. `study4-par-4.jdl` : 3-gram, 4 fold, 6K dataset, site=ZA-WITS-CORE, 4 Cores
   12. `study4-par-8.jdl` : 3-gram, 4 fold, 6K dataset, site=ZA-WITS-CORE, 8 Cores
+  13. `study5-par-8.jdl` : 3-gram, 4 fold, 12K dataset, site=ZA-UJ, 8 Cores
+  14. `study1-par-8.jdl` : 3-gram, 4 fold, 2K dataset, site=CHPC, machine gnode-2-32.chpc.ac.za, 48 Cores
+  15. `study1-par-8.jdl` : 3-gram, 4 fold, 6K dataset, site=CHPC, machine gnode-2-32.chpc.ac.za, 48 Cores
+  16. `study1-par-8.jdl` : 3-gram, 4 fold, 12K dataset, site=CHPC, machine gnode-2-32.chpc.ac.za, 48 Cores
