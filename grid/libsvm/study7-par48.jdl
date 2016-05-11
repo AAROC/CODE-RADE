@@ -24,7 +24,7 @@
 
 # Files to save after a jobrun (logfiles, outputfiles, etc.)
 
-OutputSandbox = {"rbf.out"};
+#OutputSandbox = {"rbf.out"};
 
 #  These are long-running jobs - we want to see what they are doing.
 # see : http://wiki.grid.auth.gr/wiki/bin/view/Groups/ALL/MonitoringTheOutputOfYourJob
