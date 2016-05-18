@@ -67,3 +67,6 @@
 [submodule "applications/language/htk-deploy"]
 	path = applications/language/htk-deploy
 	url = https://github.com/SouthAfricaDigitalScience/htk-deploy
+[submodule "applications/language/libsvm-deploy"]
+	path = applications/language/libsvm-deploy
+	url = https://github.com/SouthAfricaDigitalScience/libsvm-deploy
