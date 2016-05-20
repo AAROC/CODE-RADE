@@ -70,3 +70,9 @@
 [submodule "applications/language/libsvm-deploy"]
 	path = applications/language/libsvm-deploy
 	url = https://github.com/SouthAfricaDigitalScience/libsvm-deploy
+[submodule "abinit-deploy"]
+	path = applications/chemistry/abinit-deploy
+	url = https://github.com/SouthAfricaDigitalScience/abinit-deploy
+[submodule "applications/chemistry/gromacs-deploy"]
+	path = applications/chemistry/gromacs-deploy
+	url = https://github.com/SouthAfricaDigitalScience/gromacs-deploy
