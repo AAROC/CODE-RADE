@@ -5,12 +5,11 @@
 Uses Github repos, Jenkins-CI and CVMFS to build, test and deliver your applications to Linux boxes almost everywhere.
 
 
-
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [CODE-RADE - http://www.africa-grid.org/CODE-RADE](#code-rade-httpwwwafrica-gridorgcode-rade)
 - [Project](#project)
-	- [Academic projects.](#academic-projects)
+	- [Academic projects](#academic-projects)
 	- [Using](#using)
 	- [CVMFS](#cvmfs)
 	- [Containers](#containers)
@@ -21,6 +20,10 @@ Uses Github repos, Jenkins-CI and CVMFS to build, test and deliver your applicat
 # Project
 
 [![tickets in Backlog](https://badge.waffle.io/AAROC/CODE-RADE.svg?label=backlog&title=backlog)](https://waffle.io/AAROC/CODE-RADE) [![tickets in Ready](https://badge.waffle.io/AAROC/CODE-RADE.svg?label=ready&title=Ready)](https://waffle.io/AAROC/CODE-RADE) [![issues in Ready](https://badge.waffle.io/AAROC/CODE-RADE.svg?label=in%20progress&title=In%20Progress)](https://waffle.io/AAROC/CODE-RADE) [![issues in Ready](https://badge.waffle.io/AAROC/CODE-RADE.svg?label=passing&title=Passing)](https://waffle.io/AAROC/CODE-RADE) [![issues in Ready](https://badge.waffle.io/AAROC/CODE-RADE.svg?label=delivery&title=Delivery)](https://waffle.io/AAROC/CODE-RADE) [![Build Status](https://travis-ci.org/AAROC/CODE-RADE.svg?branch=u1404-buildslave)](https://travis-ci.org/AAROC/CODE-RADE)
+
+## What is CODE-RADE for ?
+
+CODE-RADE solves the problem of application delivery to back-end computing infrastructure. 
 
 CODE-RADE is an Open community project which anyone can use or contribute to.
 <!-- TODO - add CONTRIBUTING and CODE_OF_CONDUCT -->
