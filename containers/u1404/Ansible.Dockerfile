@@ -13,7 +13,7 @@ RUN  apt-get -y install \
      git \
      python-setuptools \
      libffi-dev \
-     libssl-dev openssl-dev \
+     libssl-dev libssl \
      debianutils \
      build-essential
 
