@@ -12,6 +12,7 @@ RUN  yum -y install \
             git \
             python-setuptools \
             python-devel \
+            libffi-dev \
             which
 RUN yum -y groupinstall 'Development Tools'
 
