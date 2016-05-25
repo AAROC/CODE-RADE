@@ -1,4 +1,3 @@
-[![Stories in Ready](https://badge.waffle.io/AAROC/CODE-RADE.png?label=ready&title=Ready)](https://waffle.io/AAROC/CODE-RADE)
 # Project [CODE-RADE](http://www.africa-grid.org/CODE-RADE)
 
 ## Continuous Delivery of Research Applications in a Distributed Environment
@@ -146,7 +145,7 @@ Docker containers are used by [Travis](https://travis-ci.org/AAROC/CODE-RADE) to
 ## Project and planning
 
 We use both ZenHub and [Waffle](https://waffle.io/AAROC/CODE-RADE) for providing project boards to developers and colaborators.
-
+[![Stories in Backlog](https://badge.waffle.io/AAROC/CODE-RADE.png?label=ready&title=Backlog)](https://waffle.io/AAROC/CODE-RADE)
 CODE-RADE is an open infrastructure project, and aims to reduce the barrier to entry for users of distributed computing infrastructure by solving the delivery problem. The applications you see here come from the work of a few people, and the design of the platform has come from the intellectual contributions of innumerable chats over :beers: and other beverages. For a platform to succeed, it needs to evolve and adapt to the needs of the user community - so if anything you've read here piques your interest, please read [the guidelines on contributing](CONTRIBUTING.md) and let's build something awesome. Essentially, there are a few  general ways to collaborate :
 
   1. Improve tests and quality
