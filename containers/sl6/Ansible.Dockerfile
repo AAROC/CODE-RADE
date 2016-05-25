@@ -5,7 +5,8 @@ FROM centos:6
 MAINTAINER "Bruce Becker <bbecker@Csir.co.za>"
 
 # Get Ansible requirements
-
+RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+RUN yum update
 RUN  yum -y install \
             python-simplejson \
             libselinux-python \
@@ -24,4 +25,4 @@ RUN ansible --version
 WORKDIR /root
 RUN git checkout --recursive https://github.com/AAROC/DevOps/
 WORKDIR /root/DevOps/Ansible
-RUN ansible-playbook -i inventories/inventory.local cvmfs.yml 
+RUN ansible-playbook -i inventories/inventory.local cvmfs.yml
