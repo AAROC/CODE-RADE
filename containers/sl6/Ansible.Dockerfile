@@ -13,6 +13,7 @@ RUN  yum -y install \
             python-setuptools \
             python-devel \
             python-pip \
+            libffi-devel \ 
             which \
             git
 RUN yum -y groupinstall 'Development Tools'
@@ -25,4 +26,4 @@ RUN ansible --version
 WORKDIR /root
 RUN git checkout --recursive https://github.com/AAROC/DevOps/
 WORKDIR /root/DevOps/Ansible
-RUN ansible-playbook -i inventories/inventory.local cvmfs.yml
+RUN ansible-playbook -c local -i inventories/inventory.local cvmfs.yml
