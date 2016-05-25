@@ -9,14 +9,19 @@ MAINTAINER "Bruce Becker <bbecker@Csir.co.za>"
 RUN  yum -y install \
             python-simplejson \
             libselinux-python \
-            git \
             python-setuptools \
             python-devel \
-            which
+            python-pip \
+            which \
+            git
 RUN yum -y groupinstall 'Development Tools'
 
 # Install Ansible
-WORKDIR /root/
 RUN pip install ansible
 RUN which ansible
 RUN ansible --version
+
+WORKDIR /root
+RUN git checkout --recursive https://github.com/AAROC/DevOps/
+WORKDIR /root/DevOps/Ansible
+RUN ansible-playbook -i inventories/inventory.local cvmfs.yml 
