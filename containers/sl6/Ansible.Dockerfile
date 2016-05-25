@@ -12,15 +12,11 @@ RUN  yum -y install \
             git \
             python-setuptools \
             python-devel \
-            libffi-dev libffi \
-            libssl libssl-dev \
             which
 RUN yum -y groupinstall 'Development Tools'
 
 # Install Ansible
 WORKDIR /root/
-RUN git clone --recursive https://github.com/ansible/ansible
-WORKDIR ansible
-RUN python setup.py install
+RUN pip install ansible
 RUN which ansible
 RUN ansible --version

@@ -13,15 +13,11 @@ RUN  apt-get -y install \
      git \
      python-setuptools \
      debianutils \
-     libffi libffi-dev \
-     libssl libssl-dev \
      build-essential
 
 # Install Ansible
 WORKDIR /root
-RUN git clone --recursive https://github.com/ansible/ansible
-WORKDIR ansible
-RUN python setup.py install
+
 RUN which ansible
 RUN ansible --version
 WORKDIR /root
