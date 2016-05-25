@@ -104,7 +104,7 @@ All you need in each case is access to the repository, via CVMFS. In order to us
 		module use ${CVMFS_DIR}/modules/bioinformatics
 		module use ${CVMFS_DIR}/modules/astro
 		<etc>
-	```
+	  ```
 	1. `module add <your favourite application>`
 	2. What are you waiting for, go SCIENCE ! :tada:
 
