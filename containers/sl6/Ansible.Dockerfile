@@ -20,6 +20,7 @@ RUN  yum -y install \
 RUN yum -y groupinstall 'Development Tools'
 
 # Install Ansible
+RUN pip install paramiko PyYAML Jinja2 httplib2 six
 RUN pip install ansible
 RUN which ansible
 RUN ansible --version
