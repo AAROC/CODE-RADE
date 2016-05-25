@@ -13,7 +13,8 @@ RUN  apt-get -y install \
      git \
      python-setuptools \
      debianutils \
-     libffi-dev \
+     libffi libffi-dev \
+     libssl libssl-dev \
      build-essential
 
 # Install Ansible
