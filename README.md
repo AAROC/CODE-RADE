@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/AAROC/CODE-RADE.png?label=ready&title=Ready)](https://waffle.io/AAROC/CODE-RADE)
 # Project [CODE-RADE](http://www.africa-grid.org/CODE-RADE)
 
 ## Continuous Delivery of Research Applications in a Distributed Environment
