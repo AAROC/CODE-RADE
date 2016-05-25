@@ -28,4 +28,4 @@ RUN ansible --version
 WORKDIR /root
 RUN git clone --recursive https://github.com/AAROC/DevOps/
 WORKDIR /root/DevOps/Ansible
-RUN ansible-playbook -c local -i inventories/inventory.local cvmfs.yml
+RUN ansible-playbook -c local -i inventories/inventory.local cvmfs.yml -e slack_token=T02BJKQR4/B03ACH9CV/aSrsbdte1kY4B7taogRVxkWf
