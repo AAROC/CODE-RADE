@@ -26,6 +26,6 @@ RUN which ansible
 RUN ansible --version
 
 WORKDIR /root
-RUN git checkout --recursive https://github.com/AAROC/DevOps/
+RUN git clone --recursive https://github.com/AAROC/DevOps/
 WORKDIR /root/DevOps/Ansible
 RUN ansible-playbook -c local -i inventories/inventory.local cvmfs.yml
