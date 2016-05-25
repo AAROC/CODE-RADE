@@ -13,7 +13,8 @@ RUN  yum -y install \
             python-setuptools \
             python-devel \
             python-pip \
-            libffi-devel \ 
+            libffi-devel \
+            libssl-devel \
             which \
             git
 RUN yum -y groupinstall 'Development Tools'
