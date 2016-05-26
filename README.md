@@ -91,20 +91,20 @@ All you need in each case is access to the repository, via CVMFS. In order to us
 
   1. CVMFS installed and mount our repos.
   2. A small script to discover the CODE-RADE modules : something like
-		```bash
-    . /etc/profile.d/modules.sh
-		# cvmfs stuff
-		export SITE=generic
-		export OS=u1404
-		export ARCH=x86_64
-		export CVMFS_DIR=/cvmfs/fastrepo.sagrid.ac.za/
+			```bash
+    	. /etc/profile.d/modules.sh
+			# cvmfs stuff
+			export SITE=generic
+			export OS=u1404
+			export ARCH=x86_64
+			export CVMFS_DIR=/cvmfs/fastrepo.sagrid.ac.za/
 			# Add modules
-		module use $CVMFS_DIR/modules/compilers
-		module use $CVMFS_DIR/modules/libraries
-		module use ${CVMFS_DIR}/modules/bioinformatics
-		module use ${CVMFS_DIR}/modules/astro
-		<etc>
-	  ```
+			module use $CVMFS_DIR/modules/compilers
+			module use $CVMFS_DIR/modules/libraries
+			module use ${CVMFS_DIR}/modules/bioinformatics
+			module use ${CVMFS_DIR}/modules/astro
+			<etc>
+	  	```
 	1. `module add <your favourite application>`
 	2. What are you waiting for, go SCIENCE ! :tada:
 
