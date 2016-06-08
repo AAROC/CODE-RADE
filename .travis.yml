@@ -1,3 +1,9 @@
+# We need to test :
+# Client access to the repositories (for various targets)
+# build-slave configuration
+
+# this tests that we can mount and retrieve the version of FastRepo with static mounts
+
 sudo: required
 
 language: bash
@@ -5,6 +11,8 @@ language: bash
 env:
   - CONTAINERDIR=u1404
   - CONTAINERDIR=sl6
+#  - CONTAINERDIR=sl6buildslave
+#  - CONTAINERDIR=u1404buildslave
 
 services:
   - docker
@@ -12,11 +20,13 @@ services:
 before_install:
   - cd containers/$CONTAINERDIR
 install:
-  - docker build  -f Ansible.Dockerfile .
+  - docker build  -t coderade-f Ansible.Dockerfile .
   - docker images
 #  - docker run -d aaroc/code-rade-build-slave:u1404 /bin/sh -c "echo hi"
 script:
   - docker ps -a
+# can we see code-rade ?
+  - docker run -P -v coderade cat /cvmfs/fastrepo.sagrid.ac.za/version
 
 after_success:
 

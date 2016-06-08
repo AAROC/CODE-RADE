@@ -1,0 +1,38 @@
+[
+
+# CODE-RADE Grid Example 2 - Using Modules
+
+  Type = "Job";
+  JobType = "Normal";
+
+# Command to execute on the worker node
+# In this case, it is a script provided by us, which has to be included in the
+# Input Sandbox
+
+  Executable = "example2.sh";
+
+# We need to pass at least one argument to the script- the name of the repo we want to use
+
+  Arguments = "fastrepo";
+
+# Standard output (Would have been displayed to the screen output)
+
+  StdOutput = "example2.out";
+
+# Standard errors - we merge this with stdout
+
+  StdError = "example2.out";
+
+# Files to save after a jobrun (logfiles, outputfiles, etc.)
+
+OutputSandbox = {"example2.out"};
+InputSandbox = {"example2.sh"};
+
+# Number of times to resubmit job, if first submit fails from WMS
+
+RetryCount = 2;
+
+# Number of times to resubmit the job, if the first submit fails from the local queue
+
+ShallowRetryCount = 0;
+]

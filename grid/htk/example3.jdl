@@ -1,0 +1,43 @@
+[
+
+# CODE-RADE HTK Example 3  - serial run
+
+  Type = "Job";
+  JobType = "Normal";
+
+# Command to execute on the worker node
+# In this case, it is a script provided by us, which has to be included in the
+# Input Sandbox (see below)
+
+  Executable = "htk-isindebele-stage.sh";
+
+#  The script might take some arguments - these are passed via :
+  Arguments = "fastrepo 001";
+
+# Standard output (Would have been displayed to the screen output)
+
+  StdOutput = "htk.out";
+
+# Standard errors - we merge this with stdout
+
+  StdError = "htk.out";
+
+# Files to save after a jobrun (logfiles, outputfiles, etc.)
+
+  OutputSandbox = {"htk.out","time.feat"};
+  InputSandbox = {
+                    "htk-isindebele-stage.sh",
+                    "gsiftp://fs01.grid.uj.ac.za/dpm/grid.uj.ac.za/home/sagrid/hlt-nwu/data/audio/isindebele_001.tar.gz"
+                  };
+
+# Number of times to resubmit job, if first submit fails from WMS
+
+  RetryCount = 2;
+
+# Number of times to resubmit the job, if the first submit fails from the local queue
+
+  ShallowRetryCount = 0;
+
+# If you want the job to go to a specific site, set your requirements here :
+  Requirements = other.GlueCEUniqueID == "glite-ce.grid.uj.ac.za:8443/cream-pbs-sagrid";
+]
