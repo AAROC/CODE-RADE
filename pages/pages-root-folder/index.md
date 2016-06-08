@@ -18,7 +18,7 @@ widget2:
   title: "Quickstart for Users"
   url: '/getting-started-user'
   text: 'For the impatient user'
-  image: roadmap-302x182.jpg
+  image: header_roadmap_2.jpg
 widget3:
   title: "Quickstart for providers"
   url: '/site-admin-quickstart/'
