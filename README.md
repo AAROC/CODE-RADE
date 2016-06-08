@@ -1,4 +1,5 @@
 # Project [CODE-RADE](http://www.africa-grid.org/CODE-RADE)
+[![MozSprint 2016](https://img.shields.io/badge/MozSprint-2016-brightgreen.svg)](https://www.mozillascience.org/global-sprint-2016)
 
 ## Continuous Delivery of Research Applications in a Distributed Environment
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
