@@ -16,7 +16,7 @@ widget1:
   text: 'Not sure what this is all about or how you even got here ? Read this first'
 widget2:
   title: "Quickstart for Users"
-  url: '/getting-started-users'
+  url: '/getting-started-user'
   text: 'For the impatient user'
   image: roadmap-302x182.jpg
 widget3:
