@@ -21,7 +21,7 @@ widget2:
   image: roadmap-302x182.jpg
 widget3:
   title: "Quickstart for providers"
-  url: '/getting-started-sites'
+  url: '/site-admin-quickstart/'
   image: sites.jpg
   text: 'How to provide CODE-RADE at your grid, cloud or HPC site.'
 permalink: /index.html
