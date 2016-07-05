@@ -76,3 +76,6 @@
 [submodule "applications/chemistry/gromacs-deploy"]
 	path = applications/chemistry/gromacs-deploy
 	url = https://github.com/SouthAfricaDigitalScience/gromacs-deploy
+[submodule "applications/physical-sciences/FMD-codes-from-T.-Neff-"]
+	path = applications/physical-sciences/fermionic-molecular-dynamics
+	url = https://github.com/SouthAfricaDigitalScience/FMD-codes-from-T.-Neff-
