@@ -10,9 +10,6 @@
 [submodule "applications/math/lapack-deploy"]
 	path = applications/math/lapack-deploy
 	url = https://github.com/SouthAfricaDigitalScience/lapack-deploy
-[submodule "applications/math/blas-deploy"]
-	path = applications/math/blas-deploy
-	url = https://github.com/SouthAfricaDigitalScience/blas-deploy
 [submodule "applications/math/ATLAS-deploy"]
 	path = applications/math/ATLAS-deploy
 	url = https://github.com/SouthAfricaDigitalScience/ATLAS-deploy
