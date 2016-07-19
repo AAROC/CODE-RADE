@@ -9,8 +9,6 @@ This example consists of
 
 # Job submission (WMS)
 
-
-
 ## Step-by-step instructions
 
   1. Get a proxy[#proxy] :
@@ -99,4 +97,6 @@ Follow steps 1 and 2 above and select an endpoint. Since the CREAM user interfac
   2. [Determine an endpoint](#infosites)
   3. Submit the job :
     * Command :
-      `glite-ce-job-submit -a -r `
+      `glite-ce-job-submit -a -r cream-ce.core.wits.ac.za:8443/cream-pbs-sagrid -o example.out example1-cream.jdl`
+    * Expected Output :
+      
