@@ -22,7 +22,6 @@ whoami
 echo " on "
 hostname -f
 
-REPO="fastrepo"
 echo "LFC_HOST is $LFC_HOST"
 echo "Top-BDII is $LCG_GFAL_INFOSYS"
 echo "LFC_TYPE is $LFC_TYPE"
@@ -30,13 +29,15 @@ echo "LFC_TYPE is $LFC_TYPE"
 
 echo "We assuming CVMFS is installed, so we getting the CVMFS mount point"
 CVMFS_MOUNT=`cvmfs_config showconfig $REPO|grep CVMFS_MOUNT_DIR|awk -F '=' '{print $2}'|awk -F ' ' '{print $1}'`
+echo "CVMFS_MOUNT is "
+echo ${CVMFS_MOUNT}
 
 SITE="generic"
 OS="undefined"
 ARCH="undefined"
 CVMFS_DIR="undefined"
 #REPO="devrepo.sagrid.ac.za"
-REPO=$1.sagrid.ac.za
+REPO=fastrepo.sagrid.ac.za
 shelltype=`echo $SHELL | awk 'BEGIN { FS = "/" } {print $3}'`
 echo "looks like you're using $shelltype"
 # What architecture are we ?
@@ -139,6 +140,7 @@ cat /cvmfs/${REPO}/version
 echo "Checking whether you have modules installed"
 CODERADE_VERSION=`cat /cvmfs/${REPO}/version`
 # Is "modules even available? "
+echo "you are using CODE-RADE version $CODERADE_VERSION"
 if [ -z ${MODULESHOME} ] ; then
   echo "MODULESHOME is not set. Are you sure you have modules installed ? you're going to need it."
   echo "stuff in p"
