@@ -160,4 +160,7 @@ fi
 
 module avail FMD
 module add FMD
+
+which minenergy
+ls $FMD_DIR
 exit 0;
