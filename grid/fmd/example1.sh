@@ -30,26 +30,43 @@ echo "Top-BDII is $LCG_GFAL_INFOSYS"
 echo "LFC_TYPE is $LFC_TYPE"
 
 
-echo "checking mounts"
-cat /etc/fstab
-mount -l
-echo "checking cvmfs config"
-ls /etc/cvmfs
-cat /etc/cvmfs/default.local
-cat /etc/cvmfs/config.d/fastrepo.sagrid.ac.za.conf
-file /etc/auto.cvmfs
-cat /etc/auto.cvmfs
-cat /etc/auto.master
-echo "checking whether cvmfs is running"
-/etc/init.d/autofs status
+echo "We assuming CVMFS is installed, so we getting the CVMFS mount point"
+CVMFS_MOUNT=`cvmfs_config showconfig $REPO|grep CVMFS_MOUNT_DIR|awk -F '=' '{print $2}'|awk -F ' ' '{print $1}'`
 
-echo " is /cvmfs even there ? "
-ls -lht /
-ls -lht /cvmfs
+echo $SITE
+echo $OS
+echo $ARCH
+echo $CVMFS_MOUNT
+echo $REPO
 
-echo "checking Fastrepo"
-echo "FastRepo version is"
-cat /cvmfs/fastrepo.sagrid.ac.za/version
+export SITE
+export OS
+export ARCH
+export CVMFS_DIR=${CVMFS_MOUNT}/${REPO}
+export REPO
+export TMPDIR
+echo "you are using ${REPO} version"
+cat /cvmfs/${REPO}/version
+echo "Checking whether you have modules installed"
+CODERADE_VERSION=`cat /cvmfs/${REPO}/version`
+# Is "modules even available? "
+if [ -z ${MODULESHOME} ] ; then
+  echo "MODULESHOME is not set. Are you sure you have modules installed ? you're going to need it."
+  echo "stuff in p"
+  echo "Exiting"
+  exit 1;
+else
+  source ${MODULESHOME}/init/${shelltype}
+  echo "Great, seems that modules are here, at ${MODULESHOME}"
+  echo "Append CVMFS_DIR to the MODULEPATH environment"
+  module use ${CVMFS_DIR}/modules/compilers
+  module use ${CVMFS_DIR}/modules/libraries
+  module use ${CVMFS_DIR}/modules/bioinformatics
+  module use ${CVMFS_DIR}/modules/astro
+  module use ${CVMFS_DIR}/modules/physical-sciences
+  module use ${CVMFS_DIR}/modules/chemistry
+
+fi
 
 module avail FMD
 module add FMD
