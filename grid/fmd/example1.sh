@@ -22,7 +22,7 @@ whoami
 echo " on "
 hostname -f
 
-REPO="fastrepo.sagrid.ac.za"
+REPO="fastrepo"
 echo "LFC_HOST is $LFC_HOST"
 echo "Top-BDII is $LCG_GFAL_INFOSYS"
 echo "LFC_TYPE is $LFC_TYPE"

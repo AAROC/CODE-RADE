@@ -99,4 +99,14 @@ Follow steps 1 and 2 above and select an endpoint. Since the CREAM user interfac
     * Command :
       `glite-ce-job-submit -a -r cream-ce.core.wits.ac.za:8443/cream-pbs-sagrid -o example.out example1-cream.jdl`
     * Expected Output :
-      
+      `https://cream-ce.core.wits.ac.za:8443/CREAM744219002`
+      You should also have a file containing the job numbers : `example.out`. Be sure to write only one kind of job - WMS or CREAM submission - not both.
+  1. Get the status :
+    * Command :
+      `glite-ce-job-status -i example.out`
+    * Expected Output :
+      ```
+          ******  JobID=[https://cream-ce.core.wits.ac.za:8443/CREAM910525109]
+	        Status        = [DONE-OK]
+	        ExitCode      = [0]
+      ```
