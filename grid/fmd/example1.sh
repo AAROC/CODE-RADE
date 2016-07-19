@@ -22,9 +22,7 @@ whoami
 echo " on "
 hostname -f
 
-echo "this is my environment : "
-env
-
+REPO="fastrepo.sagrid.ac.za"
 echo "LFC_HOST is $LFC_HOST"
 echo "Top-BDII is $LCG_GFAL_INFOSYS"
 echo "LFC_TYPE is $LFC_TYPE"
