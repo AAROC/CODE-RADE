@@ -4,12 +4,16 @@ This is the README for Fermionic Molecular Dynamics.
 
 This example consists of
 
-  1. 1 shell script - `example1.sh`
-  2. 1 JDL file - `example1.jdl`
+  1. shell scripts - _e.g._ `example1.sh`
+  2. JDL files - _e.g._ `example1.jdl`
 
-# Step-by-step instructions
+# Job submission (WMS)
 
-  1. Get a proxy :
+
+
+## Step-by-step instructions
+
+  1. Get a proxy[#proxy] :
      * Command :
            voms-proxy-init --voms sagrid
      * Expected Output :
@@ -21,7 +25,7 @@ This example consists of
             Done
             Your proxy is valid until Thu Mar  3 06:32:12 2016
 
-  1. Check job matches :
+  1. Check job matches[#infosites] :
     * Command :
           glite-wms-job-list-match -a example1.jdl
     * Expected Output :
@@ -82,3 +86,14 @@ This example consists of
     * Expected Output :
             FastRepo version is
             Build 199a
+
+# Direct submission
+
+The easiest way to submit jobs to the grid is to use the workload management system (WMS), which determine an appropriate endpoint for you  and submit the jobs there on your behalf, dealing with input and output sandboxes. However, you can also use direct submission to individual CREAM CEs.
+
+## Step-by-step guide
+
+Follow steps 1 and 2 above and select an endpoint. Since the CREAM user interface does not deal with sandboxes and staging in the same way as the WMS, there is a slightly different JDL syntax. Use the `[example-cream.jdl](example-cream.jdl)` JDL file as an example.
+
+  1. [Obtain a proxy](#proxy)
+  2. [Determine an endpoint](#infosites)
