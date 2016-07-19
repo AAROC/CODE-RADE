@@ -52,5 +52,5 @@ echo "FastRepo version is"
 cat /cvmfs/fastrepo.sagrid.ac.za/version
 
 module avail FMD
-
+module add FMD
 exit 0;

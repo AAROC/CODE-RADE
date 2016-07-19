@@ -97,3 +97,6 @@ Follow steps 1 and 2 above and select an endpoint. Since the CREAM user interfac
 
   1. [Obtain a proxy](#proxy)
   2. [Determine an endpoint](#infosites)
+  3. Submit the job :
+    * Command :
+      `glite-ce-job-submit -a -r `
