@@ -27,7 +27,7 @@
 OutputSandboxBaseDestURI = "gsiftp://wms.c4.csir.co.za/tmp";
 
 OutputSandbox = {"example-test-case.out"};
-InputSandbox = {"example-test-case.sh"};
+InputSandbox = {"example-test-case.sh","AV18-UsrgD2000f-v11ls-2.0.int","He4.fmd"};
 
 # Number of times to resubmit job, if first submit fails from WMS
 
