@@ -10,7 +10,7 @@
 # In this case, it is a script provided by us, which has to be included in the
 # Input Sandbox
 
-  Executable = "exaple-test-case.sh";
+  Executable = "example-test-case.sh";
 
 # Standard output (Would have been displayed to the screen output)
 
