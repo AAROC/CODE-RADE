@@ -10,4 +10,4 @@ RUN git clone https://github.com/AAROC/DevOps
 
 WORKDIR DevOps/Ansible
 RUN ansible all -i inventories/inventory.local -c local -m ping
-RUN ansible-playbook -i inventories/inventory.local -c local cvmfs.yml
+RUN ansible-playbook -i inventories/inventory.local -c local cvmfs-client-2.2.yml

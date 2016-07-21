@@ -7,4 +7,4 @@ MAINTAINER "Bruce Becker <bbecker@Csir.co.za>"
 WORKDIR /root
 RUN git clone --recursive https://github.com/AAROC/DevOps/
 WORKDIR /root/DevOps/Ansible
-RUN ansible-playbook -c local cvmfs-static.yml -e slack_token=T02BJKQR4/B03ACH9CV/aSrsbdte1kY4B7taogRVxkWf
+RUN ansible-playbook -c local cvmfs-client-2.2.yml
