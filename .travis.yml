@@ -20,7 +20,7 @@ services:
 before_install:
   - cd containers/$CONTAINERDIR
 install:
-  - docker build  -t coderade-f Ansible.Dockerfile .
+  - docker build  -t coderade -f Ansible.Dockerfile .
   - docker images
 #  - docker run -d aaroc/code-rade-build-slave:u1404 /bin/sh -c "echo hi"
 script:
