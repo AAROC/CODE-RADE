@@ -110,3 +110,36 @@ Follow steps 1 and 2 above and select an endpoint. Since the CREAM user interfac
 	        Status        = [DONE-OK]
 	        ExitCode      = [0]
       ```
+  1. Get the output : The output was stored on the WMS, so you have to retrieve it from there.
+<!-- TODO : add the commands for getting the output -->
+     * Expected Output :
+       ```bash
+              sagrid019
+              on
+              n22.core.wits.ac.za
+              LFC_HOST is
+              Top-BDII is top-bdii.africa-grid.org:2170
+              LFC_TYPE is
+              We assuming CVMFS is installed, so we getting the CVMFS mount point
+              CVMFS_MOUNT is
+              /cvmfs /cvmfs /cvmfs /cvmfs /cvmfs
+              looks like you are using bash
+              You seem to be on Scientific, version 6.7...
+              RPM based machine, now checking the release version
+              We can support your version
+              We assuming CVMFS is installed, so we getting the CVMFS mount point
+              generic
+              sl6
+              x86_64
+              /cvmfs
+              fastrepo.sagrid.ac.za
+              you are using fastrepo.sagrid.ac.za version
+              Build 199a
+              Checking whether you have modules installed
+              you are using CODE-RADE version Build 199a
+              Great, seems that modules are here, at /usr/share/Modules
+              Append CVMFS_DIR to the MODULEPATH environment
+
+              ------------ /cvmfs/fastrepo.sagrid.ac.za/modules/physical-sciences ------------
+              FMD/0.1
+    ```
