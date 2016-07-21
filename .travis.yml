@@ -26,7 +26,7 @@ install:
 script:
   - docker ps -a
 # can we see code-rade ?
-  - docker run -P -v coderade cat /cvmfs/fastrepo.sagrid.ac.za/version
+  - docker run --privileged -P -v /cvmfs/fastrepo.sagrid.ac.za/ coderade 'cat /cvmfs/fastrepo.sagrid.ac.za/version'
 
 after_success:
 
