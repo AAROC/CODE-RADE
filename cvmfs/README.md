@@ -28,17 +28,17 @@ The *preferred* way of installing and configuring CVMFS locally is to use our [A
 
 The following commands should take you right home :
 
-	1. You're going to need git... duh :
+  1. You're going to need git... duh :
 		* **RedHat** : `sudo yum install git`
 		* **Debian** : `sudo apt-get install git`
-	1. Ensure that you have Ansible :
-	   * **RedHat** : `sudo yum install python-pip`
-		 * **Debian** : `sudo apt-get install python-pip`
-		 * `pip install ansible`
-	1. Ensure that you have the DevOps repo install :
-		 * `git clone https://github.com/AAROC/DevOps --recursive`
-		 * `cd DevOps/Ansible/`
-		 * `ansible-playbook -c local -i localhost, cvmfs-client-2.2.yml -s --ask-sudo-pass`
+  1. Ensure that you have Ansible :
+    * **RedHat** : `sudo yum install python-pip`
+    * **Debian** : `sudo apt-get install python-pip`
+    * `pip install ansible`
+  1. Ensure that you have the DevOps repo install :
+    * `git clone https://github.com/AAROC/DevOps --recursive`
+    * `cd DevOps/Ansible/`
+    * `ansible-playbook -c local -i localhost, cvmfs-client-2.2.yml -s --ask-sudo-pass`
 
 **Note** : The playbook will need some sudo rights since some packages need to be installed and services restarted. We suggest running this playbook as a normal user with sudo rights - hence the `-s` (allow sudo) `--ask-sudo-pass` (and provide the password) Ansible playbook arguments.
 
