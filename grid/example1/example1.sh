@@ -50,4 +50,5 @@ ls -lht /cvmfs
 echo "checking Fastrepo"
 echo "FastRepo version is"
 cat /cvmfs/fastrepo.sagrid.ac.za/version
+source  /cvmfs/fastrepo.sagrid.ac.za/bash-setup.sh
 exit 0;
