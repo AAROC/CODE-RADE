@@ -26,7 +26,7 @@ author: brucellino
 #
 #url: 'http://www.africa-grid.org/CODE-RADE'
 url: http://localhost:4000/
-baseurl: ''
+baseurl: '/'
 
 # This is for the editing function in _/includes/improve_content
 # Leave it empty if your site is not on GitHub/GitHub Pages
