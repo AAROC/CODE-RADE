@@ -1,5 +1,5 @@
 #!/bin/bash -e
-#CVMFS installation script. 
+#CVMFS installation script.
 #'sudo sh install_cvmfs.sh' - To run it
 # NOTE: It is preferable to use the Ansible playbook in https://github.com/AAROC/DevOps/
 
@@ -10,7 +10,7 @@ GPG_KEY="http://cvmrepo.web.cern.ch/cvmrepo/yum/RPM-GPG-KEY-CernVM"
 GPG_DIR="/etc/pki/rpm-gpg/RPM-GPG-KEY-CernVM"
 packages="cvmfs-release cvmfs-keys cvmfs cvmfs-init-scripts cvmfs-auto-setup"
 CVMFS_CONFIG_DIR="/etc/cvmfs/"
-CVMFS_REPO_DIR="/cvmfs/apprepo.sagrid.ac.za"
+CVMFS_REPO_DIR="/cvmfs/code-rade.africa-grid.org"
 
 echo "Downloading Repo to yum.repos.d and GPG key"
 wget $SOURCE_REPO -O $YUM_REPO
@@ -36,7 +36,7 @@ service autofs restart
 echo "Check repo mount"
 ls $CVMFS_REPO_DIR
 if [ $? -eq 0 ] ; then
-	echo "$CVMFS_REPO_DIR is mounted" 
+	echo "$CVMFS_REPO_DIR is mounted"
 else
 	echo "$CVMFS_REPO_DIR is not mounted. There was an error"
 fi
