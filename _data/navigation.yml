@@ -5,6 +5,9 @@
 - title: Overview
   url: "/overview"
   side: left
+  dropdown:
+    - title: 7 Hypotheses
+      url: "/hypotheses/"
 
 - title: Documentation
   url: "/documentation/"
