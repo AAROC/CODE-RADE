@@ -1,31 +1,43 @@
 #!/bin/bash
+# CODE-RADE Grid Example 1
+# Author : Bruce Becker
+#        : https://github.com/brucellino
+#        : CSIR Meraka
+# ########################################
+# See the README.md in the repo
+# This script runs basic checks on a site
+# and tells the user what the version of
+# fastrepo is that is currently available
+# ########################################
+
+# We give some verbose context to the user -
+# who were you mapped as and which worker node are you
+# running on. The 'sleep' is just there to give the job
+# time to appear as "running" on the site - else it
+# exits too quickly for the user or site admin to notice
+# this is a purely debugging choice.
+sleep 5
+echo "I am "
+whoami
+echo " on "
+hostname -f
+
+echo "LFC_HOST is $LFC_HOST"
+echo "Top-BDII is $LCG_GFAL_INFOSYS"
+echo "LFC_TYPE is $LFC_TYPE"
 
 
-# Script to set a few variables on the deploy side.
-# this needs to find out what kind of machine it's been executed on and set the path to the
-# CODE-RADE modules.
+echo "We assuming CVMFS is installed, so we getting the CVMFS mount point"
+CVMFS_MOUNT=`cvmfs_config showconfig $REPO|grep CVMFS_MOUNT_DIR|awk -F '=' '{print $2}'|awk -F ' ' '{print $1}'`
+echo "CVMFS_MOUNT is "
+echo ${CVMFS_MOUNT}
 
-# Test with : docker run -t -v $PWD:$PWD -w $PWD <os> modules.sh
-# e.g. docker run -t -v $PWD:$PWD -w $PWD centos:6 modules.sh
-# e.g. docker run -t -v $PWD:$PWD -w $PWD ubuntu:14.04 modules.sh
-
-
-# If CVMFS is mounted at $CVMFS_MOUNT - usually /cvmfs then the modules are at
-# /cvmfs/<repo name>/modules
-
-# We need to set the following variables :
-
-# SITE - default = generic
-# OS - no default.
-# ARCH - default = x86_64
 SITE="generic"
 OS="undefined"
 ARCH="undefined"
-CVMFS_MOUNT="undefined"
+CVMFS_DIR="undefined"
 #REPO="devrepo.sagrid.ac.za"
-REPO=$1.sagrid.ac.za
-
-
+REPO=fastrepo.sagrid.ac.za
 shelltype=`echo $SHELL | awk 'BEGIN { FS = "/" } {print $3}'`
 echo "looks like you're using $shelltype"
 # What architecture are we ?
@@ -34,7 +46,6 @@ ARCH=`uname -m`
 # Linux - let's provide for this instance
 if [ $? != 0 ] ; then
   echo "My my, uname exited with a nonzero code. \n Are you trying to run this from a non-Linux machine ? \n Dude ! What's WRONG with you !? \n\n Bailing out... aaaaahhhhhrrrggg...."
-
   exit 127
 fi
 
@@ -121,14 +132,15 @@ echo $REPO
 export SITE
 export OS
 export ARCH
-export CVMFS_MOUNT
+export CVMFS_DIR=${CVMFS_MOUNT}/${REPO}
 export REPO
-
-echo "you are using devrepo version"
+export TMPDIR
+echo "you are using ${REPO} version"
 cat /cvmfs/${REPO}/version
 echo "Checking whether you have modules installed"
-
+CODERADE_VERSION=`cat /cvmfs/${REPO}/version`
 # Is "modules even available? "
+echo "you are using CODE-RADE version $CODERADE_VERSION"
 if [ -z ${MODULESHOME} ] ; then
   echo "MODULESHOME is not set. Are you sure you have modules installed ? you're going to need it."
   echo "stuff in p"
@@ -137,18 +149,18 @@ if [ -z ${MODULESHOME} ] ; then
 else
   source ${MODULESHOME}/init/${shelltype}
   echo "Great, seems that modules are here, at ${MODULESHOME}"
-  module avail
-  echo "Append CVMFS_MOUNT to the MODULEPATH environment"
-  module use --append ${CVMFS_MOUNT}/${REPO}/modules/libraries
-  module use --append ${CVMFS_MOUNT}/${REPO}/modules/compilers
-  module use --append ${CVMFS_MOUNT}${REPO}/modules/astro
-  module use --append ${CVMFS_MOUNT}${REPO}/modules/bioinformatics
-  module use --append ${CVMFS_MOUNT}${REPO}/modules/chemistry
-  module use --append ${CVMFS_MOUNT}${REPO}/modules/hep
-  module use --append ${CVMFS_MOUNT}${REPO}/modules/physical-sciences
-
-  echo "loading modulefile deploy"
-  module load deploy
-  echo "module avail"
-  module avail
+  echo "Append CVMFS_DIR to the MODULEPATH environment"
+  module use ${CVMFS_DIR}/modules/compilers
+  module use ${CVMFS_DIR}/modules/libraries
+  module use ${CVMFS_DIR}/modules/bioinformatics
+  module use ${CVMFS_DIR}/modules/astro
+  module use ${CVMFS_DIR}/modules/physical-sciences
+  module use ${CVMFS_DIR}/modules/chemistry
 fi
+
+module avail FMD
+module add FMD
+
+which minenergy
+ls $FMD_DIR
+exit 0;

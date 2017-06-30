@@ -1,0 +1,39 @@
+[
+
+# Example for Fermionic Molecular Dynamics
+# See README.md
+
+  Type = "Job";
+  JobType = "Normal";
+
+# Command to execute on the worker node
+# In this case, it is a script provided by us, which has to be included in the
+# Input Sandbox
+
+  Executable = "example1.sh";
+
+# Standard output (Would have been displayed to the screen output)
+
+  StdOutput = "example1.out";
+
+# Standard errors - we merge this with stdout
+
+  StdError = "example1.out";
+
+# Files to save after a jobrun (logfiles, outputfiles, etc.)
+# for CREAM-submission you need to specify a BaseDestURI
+# See https://wiki.italiangrid.it/twiki/bin/view/CREAM/JdlGuide#3_11_OutputSandboxBaseDestURI
+
+OutputSandboxBaseDestURI = "gsiftp://wms.c4.csir.co.za/tmp";
+
+OutputSandbox = {"example1.out"};
+InputSandbox = {"example1.sh"};
+
+# Number of times to resubmit job, if first submit fails from WMS
+
+RetryCount = 2;
+
+# Number of times to resubmit the job, if the first submit fails from the local queue
+
+ShallowRetryCount = 0;
+]
