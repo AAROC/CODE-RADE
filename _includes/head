@@ -9,13 +9,15 @@
   <script>
     WebFont.load({
       google: {
-        families: [ 'Lato:400,700,400italic:latin', 'Volkhov::latin' ]
+        families: [ 'Raleway:400,700,400italic:latin', 'Raleway::latin' ]
       }
     });
   </script>
 
   <noscript>
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic|Volkhov' rel='stylesheet' type='text/css' />
+    <!-- <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic|Volkhov' rel='stylesheet' type='text/css' /> -->
+		<link href="https://fonts.googleapis.com/css?family=BioRhyme:400,700|Raleway:400,400i&amp;subset=latin-ext" rel="stylesheet" type='text/css'>
+
   </noscript>
 
   {% if site.google_site_verification %}<meta name="google-site-verification" content="{{ site.google_site_verification}}" />{% endif %}

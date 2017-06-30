@@ -6,8 +6,12 @@
   url: "/overview"
   side: left
   dropdown:
-    - title: 7 Hypotheses
+    - title: Why CODE-RADE ?
+      url: "/problems-solved/"
+    - title: Hypotheses
       url: "/hypotheses/"
+    - title: Publications
+      url: "/publications/"
 
 - title: Documentation
   url: "/documentation/"

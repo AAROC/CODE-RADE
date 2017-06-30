@@ -1,14 +1,14 @@
 ---
-layout: page-fullwidth
+layout: page
 permalink: "/getting-started-user/"
 header:
-  title: "Getting Started : Users"
+  title: "Getting Started User Guide"
   subheadline: "How to use CODE-RADE"
   image_fullwidth: "header_roadmap_2.jpg"
 show_meta: true
 ---
 
-# CODE-RADE delivers pre-built, tested applications to you.
+  # CODE-RADE delivers pre-built, tested applications to you.
 
 Applications are built for various target architectures, so you have to be using one of these. Basically, this comes down to having either a RedHat 6 clone, or an Ubuntu-14.04 platform. For other targets, go ahead and try, YMMV.
 
