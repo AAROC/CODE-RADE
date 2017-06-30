@@ -6,7 +6,7 @@
 #
 layout: frontpage
 header:
-  image_fullwidth: header_unsplash_12.jpg
+  image_fullwidth: frontpage-splash.jpg
   title: Project CODE-RADE
 
 widget1:
