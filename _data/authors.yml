@@ -9,6 +9,6 @@ brucellino: # replace this with your info
   name: "Bruce Becker"
   siterole: "webmaster, developer, copywriter, designer"
   uri: http://brucellino.github.io/
- -  email: brucellino@gmail.com
- -  twitter: "@brusisceddu"
- -# you can add more authors here
+  email: brucellino@gmail.com
+  twitter: "@brusisceddu"
+# you can add more authors here
