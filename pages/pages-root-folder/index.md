@@ -4,10 +4,11 @@
 # inserted automagically in the webpage. To make
 # this work, you have to use › layout: frontpage
 #
+
 layout: frontpage
 header:
   image_fullwidth: frontpage-splash.jpg
-
+  title: "CODE-RADE"
 widget1:
   title: "Overview of the project"
   url: '/overview'

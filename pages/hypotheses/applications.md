@@ -4,7 +4,7 @@ permalink: "/hypotheses/applications/"
 header:
   title: "CODE-RADE Hypothesis 1 <br />It <b>always</b> comes down to an application"
   image_fullwidth: "application.jpg"
-show_meta: true
+show_meta: false
 breadcrumb: true
 ---
 

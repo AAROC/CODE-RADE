@@ -3,7 +3,6 @@ layout: page
 show_meta: false
 title: "Developer Quickstart"
 header:
-  image_soon: true
   image_fullwidth: "header_unsplash_5.jpg"
 permalink: "/getting-started-dev/"
 ---
