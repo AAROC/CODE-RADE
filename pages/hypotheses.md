@@ -3,7 +3,7 @@ layout: frontpage
 meta_title: "Seven Hypotheses of Scientific Applications"
 permalink: '/hypotheses/'
 header:
-  image_fullwidth: hypothesis_thumb.jpg
+  image_fullwidth: hypothesis.jpg
   title: The Seven Hypotheses of Scientific Applications
 widget1:
   title: "H1"
