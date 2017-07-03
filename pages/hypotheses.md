@@ -1,23 +1,42 @@
 ---
 layout: frontpage
 meta_title: "Seven Hypotheses of Scientific Applications"
-permalink: /hypotheses.html
+permalink: '/hypotheses/'
 header:
   image_fullwidth: hypothesis.jpg
   title: The Seven Hypotheses of Scientific Applications
 widget1:
   title: "H1"
-  url: '/hypothesis1/'
-  image: overview.jpg
+  url: '/applications/'
+  image: application.jpg
   text: 'It always comes down to an application'
 widget2:
   title: "H2"
-  url: '/hypothesis2/'
+  url: '/dependencies/'
   text: 'No software is an island'
-  image: header_roadmap_2.jpg
+  image: island.jpg
 widget3:
   title: "H3"
-  url: '/hypothesis3/'
-  image: sites.jpg
+  url: '/environment/'
+  image: environment.jpg
   text: 'Applications need an environment'
+widget4:
+  title: "H4"
+  url: '/environment/'
+  image: multiple.jpg
+  text: 'There is more than one environment'
+widget5:
+  title: "H5"
+  url: '/decay/'
+  text: 'Solutions Decay'
+  image: decay.jpg
+widget6:
+  title: "H6"
+  image: automate.jpg
+  text: "Humans need not apply"
+  url: '/automation/'
 ---
+
+<h1> Hypothesis 7</h1>
+
+This stuff's not hard

@@ -30,7 +30,21 @@ format: blog-index
 		{% include frontpage-widget widget=page.widget3 %}
 	{% endif %}
 </div><!-- /.row -->
+<div class="row t60"> <!-- row -->
+	{% if page.widget4.title %}
+		{% include frontpage-widget widget=page.widget4 %}
+	{% endif %}
 
+
+	{% if page.widget5.title %}
+		{% include frontpage-widget widget=page.widget5 %}
+	{% endif %}
+
+
+	{% if page.widget6.title %}
+		{% include frontpage-widget widget=page.widget6 %}
+	{% endif %}
+</div><!-- /.row -->
 
 {% comment %}
 *
