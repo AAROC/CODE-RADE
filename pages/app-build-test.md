@@ -5,6 +5,7 @@ header:
   title: "Building and Testing Applications"
   image_fullwidth: "tumblr_o1ulvtxCMk1sfie3io1_1280.jpg"
 show_meta: true
+breadcrumb: true
 ---
 
 # Building Applications

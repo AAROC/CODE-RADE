@@ -5,11 +5,16 @@ header:
   title: "Build Targets"
   image_fullwidth: "tumblr_o1ulvtxCMk1sfie3io1_1280.jpg"
 show_meta: true
+teaser: "CODE-RADE is cross-platform"
+subheadline: "CODE-RADE is Cross Platform"
+breadcrumb: true
 ---
 
-# CODE-RADE is cross-platform
-
-A distibuted computing environment is characterised by a high degree of heterogeneity. It is impossible to predict with certainty in which kind of an environment a  user will want to execute a particular application. One way to address this issue is to encapsulate the execution environment and separate it from the rest of the infrastructure, _i.e_ **contain** the application within it's environment. Another approach is to build and test in as many environments as possible, and distribute the resulting builds. These approaches are not mutually exclusive and CODE-RADE can handle both.
+A distributed computing environment is characterised by a high degree of heterogeneity.
+It is impossible to predict with certainty in which kind of an environment a  user will want to execute a particular application.
+One way to address this issue is to encapsulate the execution environment and separate it from the rest of the infrastructure, _i.e_ **contain** the application within it's environment.
+Another approach is to build and test in as many environments as possible, and distribute the resulting builds.
+These approaches are not mutually exclusive and CODE-RADE can handle both.
 
 # What defines a target ?
 

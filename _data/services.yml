@@ -1,17 +1,27 @@
-- menu_name: "Services"
+- menu_name: "Connect"
 
 - name: "Contact"
-  url: "/contact/"
+  url: "{{ site.url }}/contact/"
   title: "Contact"
+  icon:
 
-- name: "RSS"
-  url: "/feed.xml"
-  title: "Subscribe to RSS Feed"
+- name: "Github Repo"
+  url: https://github.com/AAROC/CODE-RADE
+  title: "CODE-RADE on GitHub"
+  icon: github-o
 
-- name: "Atom"
-  url: "/atom.xml"
-  title: "Subscribe to Atom Feed"
-
-- name: "sitemap.xml"
-  url: "/sitemap.xml"
-  title: "Sitemap for Google Webmaster Tools"
+- name: Waffle
+  url: https://waffle.io/AAROC/CODE-RADE
+  title: "Project board on Waffle"
+  icon: waffle
+# - name: "RSS"
+#   url: "/feed.xml"
+#   title: "Subscribe to RSS Feed"
+#
+# - name: "Atom"
+#   url: "/atom.xml"
+#   title: "Subscribe to Atom Feed"
+#
+# - name: "sitemap.xml"
+#   url: "/sitemap.xml"
+#   title: "Sitemap for Google Webmaster Tools"

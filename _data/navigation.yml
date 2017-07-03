@@ -25,7 +25,7 @@
     url: "/site-admin-quickstart"
 
 - title: Applications
-  url: "http://www.africa-grid.org/applications"
+  url: "applications"
   side: left
   dropdown:
   - title: "Target Architectures"

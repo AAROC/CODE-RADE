@@ -5,8 +5,10 @@ permalink: "/problems-solved/"
 header:
     title: Problems that CODE-RADE solves
     caption:
-    caption_url: 
+    caption_url:
     image_fullwidth: /hypothesis.jpg
+subheadline: "We have built a distributed computing federation, capable of interoperating with several other  infrastructures. Everything should be awesome..."
+teaser: "Spoiler alert : everything is  **not awesome**. The heterogeneity inherent in distributed computing environments has serious implications for portability and reproducibility. CODE-RADE addresses the paradox of abundant, but difficult-to-use computing resources."
 ---
 
 # Heterogeneity

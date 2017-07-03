@@ -7,7 +7,6 @@
 layout: frontpage
 header:
   image_fullwidth: frontpage-splash.jpg
-  title: Project CODE-RADE
 
 widget1:
   title: "Overview of the project"
