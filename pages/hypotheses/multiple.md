@@ -16,5 +16,5 @@ Simulate as many potential execution environments as possible.
 <br />
 <p>
 
-Previous: <a href="{{ site.url }}/hypotheses/environment/">Hypothesis 3</a> Next: <a href="{{ site.url }}/hypotheses/decay/">Hypothesis 5</a>
+Previous: <a href="{{ site.url }}.{{ site.baseurl }}/hypotheses/environment/">Hypothesis 3</a> Next: <a href="{{ site.url }}.{{ site.baseurl }}/hypotheses/decay/">Hypothesis 5</a>
 </p>

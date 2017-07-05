@@ -16,5 +16,5 @@ Assign versioned persistent identifiers to all artefacts.
 <br>
 
 <p>
-  Previous: <a href="{{ site.url }}/hypotheses/multiple/"> Hypothesis 4</a> Next: <a href="{{ site.url }}/hypotheses/automation/">Hypothesis 6</a>
+  Previous: <a href="{{ site.url }}.{{ site.baseurl }}/hypotheses/multiple/"> Hypothesis 4</a> Next: <a href="{{ site.url }}.{{ site.baseurl }}/hypotheses/automation/">Hypothesis 6</a>
 </p>

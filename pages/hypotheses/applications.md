@@ -10,4 +10,4 @@ breadcrumb: true
 
 At the end of any first-contact session with a researcher, you come away with a list of applications which need to be executed.
 
-Next: <a href="{{ site.url }}/hypotheses/dependencies/">Hypothesis 2</a>
+Next: <a href="{{ site.url }}.{{ site.baseurl }}/hypotheses/dependencies/">Hypothesis 2</a>

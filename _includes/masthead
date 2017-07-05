@@ -1,6 +1,8 @@
 {% if page.header == NULL and page.header.image_fullwidth == NULL and page.header.pattern == NULL and page.header.background-color == NULL and page.header.title == NULL %}
 nothing
 <div id="masthead-no-image-header">
+</div><!-- /#masthead -->
+<div id="masthead-with-text" style="{% if page.header.background-color %}background: {{ page.header.background-color }};{% endif %} {% if page.header.image_fullwidth %}{% elsif page.header.pattern %}background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('{{ site.urlimg }}/{{ page.header.pattern }}'){% endif %}">
 	<div class="row">
 		<div class="small-12 columns">
 			<a id="logo" href="{{ site.url }}" title="{{ site.title }} – {{ site.slogan }}">
@@ -34,9 +36,20 @@ nothing
 <div id="masthead-with-text" style="{% if page.header.background-color %}background: {{ page.header.background-color }};{% endif %} {% if page.header.image_fullwidth %}{% elsif page.header.pattern %}background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('{{ site.urlimg }}/{{ page.header.pattern }}'){% endif %}">
 	<div class="row">
 		<div class="small-12 columns">
-			<div class="masthead-title">{{ page.header.title }}</div>
-		</div><!-- /.small-12.columns -->
-	</div><!-- /.row -->
+			<a id="logo" href="{{ site.url }}" title="{{ site.title }} – {{ site.slogan }}">
+				<img src="{{ site.url }}{{ site.baseurl }}/assets/img/{{ site.logo }}" alt="{{ site.title }} – {{ site.slogan }}">
+				  {{ page.header.title }}
+				<span class="fa fa-wrench" aria-hidden="true"></span>
+				Build.
+				<span class="fa fa-check" aria-hidden="true"></span>
+				Test.
+				<span class="fa fa-cog" aria-hidden="true"></span>
+				Execute.
+				<span class="fa fa-globe" aria-hidden="true"></span>
+				Everywhere.
+				</a>
+		</div> <!-- /.small-12.columns -->
+	 </div> <!-- /.row -->
 </div><!-- /#masthead -->
 
 {% if page.breadcrumb == true %}

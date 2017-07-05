@@ -18,4 +18,4 @@ breadcrumb: true
 </ol>
 
 
-Previous: <a href="{{ site.url }}/hypotheses/applications/">Hypothesis 1</a> Next <a href="{{ site.url }}/hypotheses/environment/">Hypothesis 3</a>
+Previous: <a href="{{ site.url }}.{{ site.baseurl }}/hypotheses/applications/">Hypothesis 1</a> Next <a href="{{ site.url }}.{{ site.baseurl }}/hypotheses/environment/">Hypothesis 3</a>

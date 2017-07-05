@@ -26,5 +26,5 @@ Several factors determine the execution environment of an application.
 
 The execution environment should be made explicit
 <p>
-Previous:  <a href="{{ site.url }}/hypotheses/dependencies/">Hypothesis  2</a> Next: <a href="{{ site.url }}/hypotheses/multiple/"> Hypothesis 4</a>
+Previous:  <a href="{{ site.url }}.{{ site.baseurl }}/hypotheses/dependencies/">Hypothesis  2</a> Next: <a href="{{ site.url }}.{{ site.baseurl }}/hypotheses/multiple/"> Hypothesis 4</a>
 </p>

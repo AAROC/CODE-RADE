@@ -16,5 +16,5 @@ Integrate the various software, middleware, service and infrastructure component
 
 <br>
 <p>
-Previous: <a href="{{ site.url }}/hypotheses/decay/">Hypothesis 5</a> Next:  <a href="{{ site.url }}/hypotheses/methodology/">Hypothesis 7</a>  
+Previous: <a href="{{ site.url }}.{{ site.baseurl }}/hypotheses/decay/">Hypothesis 5</a> Next:  <a href="{{ site.url }}.{{ site.baseurl }}/hypotheses/methodology/">Hypothesis 7</a>  
 </p>
