@@ -1,7 +1,7 @@
 ---
 layout: frontpage
 meta_title: "Seven Hypotheses of Scientific Applications"
-permalink: '/hypotheses/'
+permalink: '{{ site}}/hypotheses/'
 breadcrumb: true
 header:
   image_fullwidth: hypothesis.jpg
