@@ -1,0 +1,16 @@
+{
+    "variables": {},
+    "builders": [{
+      "type": "openstack",
+      "identity_endpoint": "https://stack-server-01.cloud.dfa.unict.it:5000/v2.0/",
+      "tenant_name": "AAROC",
+      "domain_name": "",
+      "region": "RegionOne",
+      "ssh_username": "root",
+      "image_name": "CODE-RADE CEntOS 6",
+      "source_image": "96df9d07-9f14-4205-a254-8bd6b4eb324",
+      "flavor": "medium",
+      "insecure": "true"
+    }]
+  }
+  
