@@ -1,0 +1,43 @@
+# Site settings
+title: CODE-RADE
+description: 'Continuous Delivery of Research Applications in a Distributed Environment'
+url: 'http://localhost'
+baseurl: ''
+# google_analytics: 'UA-XXXXXX-X'
+# disqus_shortname: 'your-disqus-name'
+
+author:
+  name: 'CODE-RADE'
+  email: code-rade@africa-grid.org
+  twitter_username: 
+  facebook_username:
+  github_username:  AAROC
+  linkedin_username:  
+
+defaults:
+  -
+    scope:
+      path: ''
+      type: 'posts'
+    values:
+        layout: 'post'
+
+# Build settings
+destination: _site
+paginate: 10
+permalink: /:year/:title/
+markdown: kramdown
+highlighter: rouge
+
+sass:
+    sass_dir: _sass
+    style: compressed
+
+kramdown:
+  # use Github Flavored Markdown
+  input: GFM
+  # do not replace newlines by <br>s
+  hard_wrap: false
+
+plugins: ['jekyll-paginate']
+exclude: ['README.md', 'Gemfile', 'Gemfile.lock', 'screenshot.png']
