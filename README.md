@@ -99,7 +99,7 @@ All you need in each case is access to the repository, via CVMFS. In order to us
 export SITE=generic
 export OS=u1404
 export ARCH=x86_64
-export CVMFS_DIR=/cvmfs/fastrepo.sagrid.ac.za/
+export CVMFS_DIR=/cvmfs/code-rade.africa-grid.org/
 # Add modules
 module use $CVMFS_DIR/modules/compilers
 module use $CVMFS_DIR/modules/libraries

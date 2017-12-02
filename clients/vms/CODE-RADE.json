@@ -1,0 +1,30 @@
+{
+    "variables": {},
+    "builders": [{
+      "type": "openstack",
+      "identity_endpoint": "https://stack-server-01.cloud.dfa.unict.it:5000/v2.0/",
+      "tenant_name": "AAROC",
+      "region": "regionOne",
+      "floating_ip_pool": "ext-net",
+      "ssh_username": "centos",
+      "image_name": "CODE-RADE_CEntOS6",
+      "source_image_name": "centos6",
+      "flavor": "medium",
+      "insecure": "true",
+      "ssh_pty" : true,
+      "security_groups": "default"
+    }],
+    "provisioners": [
+      {
+        "type": "shell",
+        "inline": ["sudo yum install -y python"]
+      }, {
+        "type": "shell-local",
+        "command": "ansible-galaxy install AAROC.cvmfs-client-2-2"
+      }, {
+        "type": "ansible",
+        "playbook_file": "./code-rade-client.yml"
+      }
+    ]
+  }
+  
