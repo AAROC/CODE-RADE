@@ -28,14 +28,17 @@
       ],
       "boot_wait": "1s"  
     }],
-    "provisioners": [{
-      "type": "shell",
-      "inline": [
-        "sudo yum install -y git wget",
-        "useradd -m brucellino",
-        "ssh-keyscan github.com >> ~/.ssh/known_hosts",
-        "wget -O ~/.ssh/authorized_keys github.com/brucellino.keys"
-      ]
-    }]
+    "provisioners": [
+      {
+        "type": "shell",
+        "inline": ["sudo yum install -y python"]
+      }, {
+        "type": "shell-local",
+        "command": "ansible-galaxy install AAROC.cvmfs-client-2-2"
+      }, {
+        "type": "ansible",
+        "playbook_file": "./code-rade-client.yml"
+      }
+    ]
   }
   
