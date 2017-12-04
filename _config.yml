@@ -2,7 +2,7 @@
 title: CODE-RADE
 description: 'Continuous Delivery of Research Applications in a Distributed Environment'
 url: 'http://www.africa-grid.org/'
-baseurl: 'CODE-RADE/'
+baseurl: '/CODE-RADE/'
 coverimage: peak.jpg
 # google_analytics: 'UA-XXXXXX-X'
 # disqus_shortname: 'your-disqus-name'
