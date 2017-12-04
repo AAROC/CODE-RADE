@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+{% include head.html %}
+<body>
+  <div class="overlay-404"></div>      
+  <div class="container-404">
+    <div class="row">
+      <div class="col text-center">
+          <a href="{{ site.baseurl }}/" title="SO embarrassed right now">
+            <img src="{{ site.baseurl }}/images/bono.jpg" class="user-image" alt="SO embarrased right now"></a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <p class="text-center">
+            "You broke the bonds and you loosed the chains <br>
+            Carried the cross of my shame" <br>
+          <h2>But I still haven't found <br> what you're looking for</h2></p>
+          <br>
+          <a href="{{ site.url }}/{{site.baseurl}}" class="btn">Back Home</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <h3>We're still building and burning down love</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+          <p>This is a work in progress, and we really appreciate community feedback, especially where it helps us improve the content and find bugs. If you think there is an error here, please consider giving us a hand :</p>
+      </div>
+      <div class="col text-center">
+        <div class="btn-group-vertical">
+            <a href="https://github.com/{{ site.author.github_username }}/{{ site.author.github_repo}}/issues/new?title=Missing%20Link&labels=missing%20link" class="btn">Report a missing link</a>
+            <a href="https://discourse.sci-gaia.eu/" class="btn">Discuss</a>
+            <a href="https://github.com/{{ site.author.github_username }}/{{site.author.github_repo}}/fork" class="btn"><i class="fa fa-code-fork"></i> Send a pull request</a>
+        </div> <!-- a group -->
+    </div> <!-- col --> 
+    </div> <!-- row -->
+  </div>
+</body>
+</html>
