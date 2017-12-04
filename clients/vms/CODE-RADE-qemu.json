@@ -1,0 +1,44 @@
+{
+    "variables": {},
+    "builders": [{
+      "type": "qemu",
+        "iso_url": "/media/becker/backup/isos/centos6.9.iso",
+      "iso_checksum": "af4a1640c0c6f348c6c41f1ea9e192a2",
+      "iso_checksum_type": "md5",
+      "output_directory": "/media/becker/backup/packer/code-rade/",
+      "shutdown_command": "shutdown -P now",
+      "disk_size": 5000,
+      "format": "qcow2",
+      "headless": false,
+      "accelerator": "kvm",
+      "http_directory": "http",
+      "http_port_min": 10082,
+      "http_port_max": 10089,
+      "ssh_host_port_min": 22,
+      "ssh_host_port_max": 2229,
+      "ssh_username": "root",
+      "ssh_password": "s0m3password",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "30m",
+      "vm_name": "tdhtest",
+      "net_device": "virtio-net",
+      "disk_interface": "virtio",
+      "boot_command": [
+        "<tab> text ks='https://gist.githubusercontent.com/mitchellh/7328271/raw/9035b8e26d001f14a2a960d3cec65eceb0e716ea/centos6-ks.cfg'<enter><wait>"
+      ],
+      "boot_wait": "1s"  
+    }],
+    "provisioners": [
+      {
+        "type": "shell",
+        "inline": ["sudo yum install -y python"]
+      }, {
+        "type": "shell-local",
+        "command": "ansible-galaxy install AAROC.cvmfs-client-2-2"
+      }, {
+        "type": "ansible",
+        "playbook_file": "./code-rade-client.yml"
+      }
+    ]
+  }
+  
