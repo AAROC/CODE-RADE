@@ -3,16 +3,15 @@ title: CODE-RADE
 description: 'Continuous Delivery of Research Applications in a Distributed Environment'
 url: 'http://localhost'
 baseurl: ''
+coverimage: peak.jpg
 # google_analytics: 'UA-XXXXXX-X'
 # disqus_shortname: 'your-disqus-name'
 
 author:
   name: 'CODE-RADE'
   email: code-rade@africa-grid.org
-  twitter_username: 
-  facebook_username:
   github_username:  AAROC
-  linkedin_username:  
+  github_repo: CODE-RADE
 
 defaults:
   -
@@ -39,5 +38,5 @@ kramdown:
   # do not replace newlines by <br>s
   hard_wrap: false
 
-plugins: ['jekyll-paginate']
+plugins: ['jekyll-paginate','github-pages']
 exclude: ['README.md', 'Gemfile', 'Gemfile.lock', 'screenshot.png']
