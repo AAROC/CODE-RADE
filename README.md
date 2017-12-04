@@ -1,33 +1,11 @@
-# jekyll-uno
+[![Build Status](https://travis-ci.org/AAROC/CODE-RADE.svg?branch=master)](https://travis-ci.org/AAROC/CODE-RADE) [![Dependency Status](https://www.versioneye.com/user/projects/5a25613c0fb24f55cd7b787b/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5a25613c0fb24f55cd7b787b)
 
-Jekyll-Uno - a minimal, responsive theme for Jekyll based on the [Uno](https://github.com/daleanthony/Uno) theme for Ghost.
+# CODE-RADE
+
+This is the website for CODE-RADE, based  on Jekyll-Uno - a minimal, responsive theme for Jekyll based on the [Uno](https://github.com/daleanthony/Uno) theme for Ghost.
 
 > :warning:
   This theme requires ruby and rubygems installed
-
-### Features
-
-* Clean layout
-* Resposive layout
-* Pagination
-* Syntax highlighting
-* Social links
-* Tags listing page
-* Categories listing page
-* Google Analytics integration
-* Disqus integration
-
----
-
-### Install and Test
-
-1. Download or clone repo `git clone git@github.com:joshgerdes/jekyll-uno.git`
-2. Enter the folder: `cd jekyll-uno/`
-3. If you don't have bundler installed: `gem install bundler`
-3. Install Ruby gems: `bundle install`
-4. Start Jekyll server: `bundle exec jekyll serve --watch`
-
-Access via: [http://localhost:4000/jekyll-uno/](http://localhost:4000/jekyll-uno/)
 
 ---
 
