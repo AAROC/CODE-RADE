@@ -1,3 +1,0 @@
-- hosts: all
-  roles:
-  - { role: AAROC.cvmfs-client-2-2, become: true}

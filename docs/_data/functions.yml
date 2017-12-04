@@ -1,0 +1,13 @@
+---
+# functions of CODE-RADE
+- name: Build
+  url: /build/
+
+- name: Test
+  url: /test/
+
+- name: Execute
+  url: /execute/
+
+- name: Everywhere
+  url: /everywhere/
