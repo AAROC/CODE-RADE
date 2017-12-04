@@ -7,8 +7,8 @@
   <div class="panel-main">
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
-        <a href="{{ site.baseurl }}/" title="link to home of {{ site.title }}">
-          <img src="{{ site.baseurl }}/images/profile.jpg" class="user-image" alt="CODE-RADE">
+        <a href="{{ site.url }}/" title="link to home of {{ site.title }}">
+          <img src="{{ site.url }}/images/profile.jpg" class="user-image" alt="CODE-RADE">
           <h1 class="panel-cover__title panel-title">{{ site.title }}</h1>
         </a>
         <nav class="cover-navigation cover-navigation--primary">
@@ -26,8 +26,8 @@
         <div class="navigation-wrapper">
           <nav class="cover-navigation cover-navigation--primary">
             <ul class="navigation">
-              <li class="navigation__item"><a href="{{ site.baseurl | prepend: site.url }}/#quickstart" title="link to {{ site.title }} blog" class="blog-button">Quickstart</a></li>
-              <li class="navigation__item"><a href="{{ site.baseurl | prepend: site.url }}/code-rade-is" title="link to about" class="blog-button">About</a></li>
+              <li class="navigation__item"><a href="{{ site.url }}/#quickstart" title="link to {{ site.title }} blog" class="blog-button">Quickstart</a></li>
+              <li class="navigation__item"><a href="{{ site.url }}/code-rade-is" title="link to about" class="blog-button">About</a></li>
             </ul>
           </nav>
         <br />
@@ -66,7 +66,7 @@
 
             <!-- RSS -->
             <li class="navigation__item">
-              <a href="{{ site.baseurl | prepend: site.url }}/feed.xml" title="Subscribe" target="_blank">
+              <a href="{{ site.url }}/feed.xml" title="Subscribe" target="_blank">
                 <i class="fa fa-rss"></i>
                 <span class="label">RSS</span>
               </a>
