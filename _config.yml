@@ -1,18 +1,17 @@
 # Site settings
-title: Jekyll-Uno
-description: 'Jekyll-Uno - a minimal, responsive theme for Jekyll'
-url: 'http://joshgerdes.com/jekyll-uno'
-baseurl: '/jekyll-uno'
+title: CODE-RADE
+description: 'Continuous Delivery of Research Applications in a Distributed Environment'
+url: 'http://www.africa-grid.org'
+baseurl: 'CODE-RADE/'
+coverimage: peak.jpg
 # google_analytics: 'UA-XXXXXX-X'
 # disqus_shortname: 'your-disqus-name'
 
 author:
-  name: 'Josh Gerdes'
-  email: josh@joshgerdes.com
-  twitter_username: joshgerdes
-  facebook_username: joshgerdes
-  github_username:  joshgerdes
-  linkedin_username:  joshgerdes
+  name: 'CODE-RADE'
+  email: code-rade@africa-grid.org
+  github_username:  AAROC
+  github_repo: CODE-RADE
 
 defaults:
   -
@@ -39,5 +38,5 @@ kramdown:
   # do not replace newlines by <br>s
   hard_wrap: false
 
-plugins: ['jekyll-paginate','github-pages','bootstrap']
+plugins: ['jekyll-paginate','github-pages']
 exclude: ['README.md', 'Gemfile', 'Gemfile.lock', 'screenshot.png']
