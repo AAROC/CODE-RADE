@@ -6,27 +6,15 @@
 
 sudo: required
 
-language: bash
-
-env:
-  - CONTAINERDIR=u1404
-  - CONTAINERDIR=sl6
-#  - CONTAINERDIR=sl6buildslave
-#  - CONTAINERDIR=u1404buildslave
-
-services:
-  - docker
-
+language: ruby
+rvm:
+  - 2.2
+  - 2.3
 before_install:
-  - cd containers/$CONTAINERDIR
 install:
-  - docker build  -t coderade -f Ansible.Dockerfile .
-  - docker images
-#  - docker run -d aaroc/code-rade-build-slave:u1404 /bin/sh -c "echo hi"
+  - bundle install
 script:
-  - docker ps -a
-# can we see code-rade ?
-  - docker run --privileged -P -v /cvmfs/fastrepo.sagrid.ac.za/ coderade 'cat /cvmfs/fastrepo.sagrid.ac.za/version'
+  - jekyll build -c _config-dev.yml
 
 after_success:
 
