@@ -11,16 +11,6 @@
           <img src="{{ site.url }}/images/profile.jpg" class="user-image" alt="CODE-RADE">
           <h1 class="panel-cover__title panel-title">{{ site.title }}</h1>
         </a>
-        <nav class="cover-navigation cover-navigation--primary">
-        <ul class="navigation">
-        {% for item in site.data.functions %}
-          <li class="navigation__item">
-            <a class="blog-button" href="{{ item.url |prepend: site.url }}">{{ item.name }}</a>
-          </li>
-        {% endfor %}
-        </ul>
-      </nav>
-        <hr class="panel-cover__divider">
         <p class="panel-cover__description">{{ site.description }}</p>
         <hr class="panel-cover__divider panel-cover__divider--secondary">
         <div class="navigation-wrapper">
@@ -31,7 +21,17 @@
               <li class="navigation__item"><a href="{{ site.url }}/design" title="link to about" class="blog-button">Design</a></li>
             </ul>
           </nav>
-        <br />
+        <hr class="panel-cover__divider">
+        <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+            {% for item in site.data.functions %}
+              <li class="navigation__item">
+                <a class="blog-button" href="{{ item.url |prepend: site.url }}">{{ item.name }}</a>
+              </li>
+            {% endfor %}
+            </ul>
+          </nav>
+<br>
           <nav class="cover-navigation navigation--social">
             <ul class="navigation">
 
