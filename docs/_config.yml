@@ -1,7 +1,7 @@
 # Site settings
 title: CODE-RADE
 description: 'Continuous Delivery of Research Applications in a Distributed Environment'
-url: 'http://www.africa-grid.org/CODE-RADE'
+url: 'http://code-rade.africa-grid.org'
 coverimage: peak.jpg
 # google_analytics: 'UA-XXXXXX-X'
 # disqus_shortname: 'your-disqus-name'
