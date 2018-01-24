@@ -9,14 +9,14 @@
     <div class="panel-main__content">
         <a href="{{ site.url }}/" title="link to home of {{ site.title }}">
           <img src="{{ site.url }}/images/profile.jpg" class="user-image" alt="CODE-RADE">
-          <h1 class="panel-cover__title panel-title">{{ site.title }}</h1>
+          <h1 class="panel-cover__title panel-title">{{ page.title }}</h1>
         </a>
-        <p class="panel-cover__description">{{ site.description }}</p>
+        <p class="panel-cover__description">{{ page.description }}</p>
         <hr class="panel-cover__divider panel-cover__divider--secondary">
         <div class="navigation-wrapper">
           <nav class="cover-navigation cover-navigation--primary">
             <ul class="navigation">
-              <li class="navigation__item"><a href="{{ site.url }}/quickstart" title="link to {{ site.title }} blog" class="blog-button">Quickstart</a></li>
+              <li class="navigation__item"><a href="{{ site.url }}/quickstart" title="link to {{ page.title }} blog" class="blog-button">Quickstart</a></li>
               <li class="navigation__item"><a href="{{ site.url }}/code-rade-is" title="link to about" class="blog-button">About</a></li>
               <li class="navigation__item"><a href="{{ site.url }}/design" title="link to about" class="blog-button">Design</a></li>
             </ul>
